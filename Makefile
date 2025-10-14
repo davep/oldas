@@ -2,7 +2,7 @@ lib      := oldas
 src      := src/
 tests    := tests/
 docs     := docs/
-run      := uv run
+run      := uv run --env-file .env
 sync     := uv sync
 build    := uv build
 publish  := uv publish --username=__token__ --keyring-provider=subprocess

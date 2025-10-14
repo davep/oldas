@@ -14,4 +14,12 @@ __email__ = "davep@davep.org"
 __version__ = version("oldas")
 __licence__ = "MIT"
 
+##############################################################################
+# Local imports.
+from .exceptions import OldASError
+
+##############################################################################
+# Exports.
+__all__ = ["OldASError"]
+
 ### __init__.py ends here
