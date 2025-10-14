@@ -1,0 +1,146 @@
+lib      := oldas
+src      := src/
+tests    := tests/
+docs     := docs/
+run      := uv run
+sync     := uv sync
+build    := uv build
+publish  := uv publish --username=__token__ --keyring-provider=subprocess
+python   := $(run) python
+ruff     := $(run) ruff
+lint     := $(ruff) check --select I
+fmt      := $(ruff) format
+reports  := .reports
+test     := $(run) pytest --verbose --cov=$(lib)
+coverage := $(test) --cov-report html:$(reports)
+mypy     := $(run) mypy
+mkdocs   := $(run) mkdocs
+spell    := $(run) codespell
+
+##############################################################################
+# Show help by default.
+.DEFAULT_GOAL := help
+
+##############################################################################
+# Setup/update packages the system requires.
+.PHONY: setup
+setup:				# Set up the repository for development
+	$(sync)
+	$(run) pre-commit install
+
+.PHONY: update
+update:				# Update all dependencies
+	$(sync) --upgrade
+
+.PHONY: resetup
+resetup: realclean		# Recreate the virtual environment from scratch
+	make setup
+
+##############################################################################
+# Checking/testing/linting/etc.
+.PHONY: lint
+lint:				# Check the code for linting issues
+	$(lint) $(src) $(tests)
+
+.PHONY: codestyle
+codestyle:			# Is the code formatted correctly?
+	$(fmt) --check $(src) $(tests)
+
+.PHONY: typecheck
+typecheck:			# Perform static type checks with mypy
+	$(mypy) --scripts-are-modules $(src) $(tests)
+
+.PHONY: stricttypecheck
+stricttypecheck:	        # Perform a strict static type checks with mypy
+	$(mypy) --scripts-are-modules --strict $(src) $(tests)
+
+.PHONY: test
+test:				# Run the unit tests
+	$(test)
+
+.PHONY: coverage
+coverage:			# Produce a test coverage report
+	$(coverage)
+	open $(reports)/index.html
+
+.PHONY: comprehensive-test
+comprehensive-test:		# Read all the guides I have to test them
+	$(run) python .comprehensive_test/read_all_known_guides
+
+.PHONY: spellcheck
+spellcheck:			# Spell check the code
+	$(spell) *.md $(src) $(tests) $(docs)
+
+.PHONY: checkall
+checkall: spellcheck codestyle lint stricttypecheck test # Check all the things
+
+##############################################################################
+# Documentation.
+.PHONY: docs
+docs:                           # Generate the system documentation
+	$(mkdocs) build
+
+.PHONY: rtfm
+rtfm:                           # Locally read the library documentation
+	$(mkdocs) serve
+
+.PHONY: publishdocs
+publishdocs:			# Set up the docs for publishing
+	$(mkdocs) gh-deploy
+
+##############################################################################
+# Package/publish.
+.PHONY: package
+package:			# Package the library
+	$(build)
+
+.PHONY: spackage
+spackage:			# Create a source package for the library
+	$(build) --sdist
+
+.PHONY: testdist
+testdist: package			# Perform a test distribution
+	$(publish) --index testpypi
+
+.PHONY: dist
+dist: package			# Upload to pypi
+	$(publish)
+
+##############################################################################
+# Utility.
+.PHONY: repl
+repl:				# Start a Python REPL in the venv.
+	$(python)
+
+.PHONY: delint
+delint:			# Fix linting issues.
+	$(lint) --fix $(src) $(tests)
+
+.PHONY: pep8ify
+pep8ify:			# Reformat the code to be as PEP8 as possible.
+	$(fmt) $(src) $(tests)
+
+.PHONY: tidy
+tidy: delint pep8ify		# Tidy up the code, fixing lint and format issues.
+
+.PHONY: clean
+clean:				# Clean the build directories
+	rm -rf dist
+
+.PHONY: realclean
+realclean: clean		# Clean the venv and build directories
+	rm -rf .venv
+
+.PHONY: help
+help:				# Display this help
+	@grep -Eh "^[a-z]+:.+# " $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.+# "}; {printf "%-20s %s\n", $$1, $$2}'
+
+##############################################################################
+# Housekeeping tasks.
+.PHONY: housekeeping
+housekeeping:			# Perform some git housekeeping
+	git fsck
+	git gc --aggressive
+	git remote update --prune
+
+### Makefile ends here
