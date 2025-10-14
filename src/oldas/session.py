@@ -1,11 +1,11 @@
 """Provides a class for getting and managing a login session."""
 
 ##############################################################################
-from typing import Any, Final, Self
+from typing import Any, Awaitable, Final, Self
 
 ##############################################################################
 # Httpx imports.
-from httpx import AsyncClient, RequestError, HTTPStatusError
+from httpx import AsyncClient, RequestError, HTTPStatusError, Response
 
 ##############################################################################
 # Local imports.
@@ -46,6 +46,28 @@ class Session:
         """Are we logged in?"""
         return self._auth_code is not None
 
+    async def _call(self, call: Awaitable[Response]) -> Response:
+        """Make a call out to the API.
+
+        Args:
+            call: The call to make.
+
+        Returns:
+            The response.
+
+        Raises:
+            OldASError: If there was an error connecting or logging in.
+        """
+        try:
+            response = await call
+        except RequestError as error:
+            raise OldASError(str(error)) from None
+        try:
+            response.raise_for_status()
+        except HTTPStatusError as error:
+            raise OldASError(str(error)) from None
+        return response
+
     async def login(self, user: str, password: str) -> Self:
         """Log into TheOldReader.
 
@@ -61,26 +83,22 @@ class Session:
         """
         if self._auth_code is None:
             async with AsyncClient() as client:
-                try:
-                    response = await client.post(
-                        self._LOGIN,
-                        json={
-                            "accountType": "HOSTED_OR_GOOGLE",
-                            "client": self._client,
-                            "Email": user,
-                            "Passwd": password,
-                            "service": "reader",
-                            "output": "json",
-                            "user-agent": self._USER_AGENT,
-                        }
+                self._auth_code = (
+                    await self._call(
+                        client.post(
+                            self._LOGIN,
+                            json={
+                                "accountType": "HOSTED_OR_GOOGLE",
+                                "client": self._client,
+                                "Email": user,
+                                "Passwd": password,
+                                "service": "reader",
+                                "output": "json",
+                                "user-agent": self._USER_AGENT,
+                            }
+                        )
                     )
-                except RequestError as error:
-                    raise OldASError(str(error)) from None
-                try:
-                    response.raise_for_status()
-                except HTTPStatusError as error:
-                    raise OldASError(str(error)) from None
-                self._auth_code = response.json().get("Auth")
+                ).json().get("Auth")
         return self
 
     def logout(self) -> Self:
@@ -101,16 +119,22 @@ class Session:
 
         Returns:
             A dictionary that is the JSON data.
+
+        Raises:
+            OldASError: If there was an error connecting or logging in.
         """
         self._must_be_logged_in()
         async with AsyncClient() as client:
-            response = await client.get(
-                f"{self._API}{url}",
-                headers={
-                    "Authorization": f"GoogleLogin auth={self._auth_code}"
-                },
-                params={"output": "json", "user-agent": self._USER_AGENT}
-            )
-            return response.json()
+            return (
+                await self._call(
+                    client.get(
+                        f"{self._API}{url}",
+                        headers={
+                            "Authorization": f"GoogleLogin auth={self._auth_code}"
+                        },
+                        params={"output": "json", "user-agent": self._USER_AGENT}
+                    )
+                )
+            ).json()
 
 ### session.py ends here
