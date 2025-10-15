@@ -5,12 +5,13 @@ from typing import Any, Awaitable, Final, Self
 
 ##############################################################################
 # Httpx imports.
+import httpx
 from httpx import AsyncClient, HTTPStatusError, RequestError, Response
 
 ##############################################################################
 # Local imports.
 from . import __version__
-from .exceptions import OldASError
+from .exceptions import OldASError, OldASLoginNeeded
 
 
 ##############################################################################
@@ -66,6 +67,8 @@ class Session:
         try:
             response.raise_for_status()
         except HTTPStatusError as error:
+            if error.response.status_code == httpx.codes.UNAUTHORIZED:
+                raise OldASLoginNeeded("The current token is not valid") from None
             raise OldASError(str(error)) from None
         return response
 
@@ -116,7 +119,7 @@ class Session:
     def _must_be_logged_in(self) -> None:
         """Checks if we're logged in and raises an error if not."""
         if not self.logged_in:
-            raise OldASError("API call made but not logged in")
+            raise OldASLoginNeeded("API call made but not logged in")
 
     async def get(self, url: str) -> dict[str, Any]:
         """Make a GET call to the API.
