@@ -12,6 +12,7 @@ from typing import NamedTuple
 # Local imports.
 from .session import Session
 
+
 ##############################################################################
 class User(NamedTuple):
     """TheOldReader user information."""
@@ -61,5 +62,6 @@ class User(NamedTuple):
             is_multi_login_enabled=user["isMultiLoginEnabled"],
             is_premium=user["isPremium"],
         )
+
 
 ### user.py ends here

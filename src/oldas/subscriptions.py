@@ -12,6 +12,7 @@ from typing import Any, NamedTuple
 # Local imports.
 from .session import Session
 
+
 ##############################################################################
 class Category(NamedTuple):
     """Holds details of a category."""
@@ -32,9 +33,10 @@ class Category(NamedTuple):
             The category.
         """
         return cls(
-            id = data["id"],
-            label = data["label"],
+            id=data["id"],
+            label=data["label"],
         )
+
 
 ##############################################################################
 class Subscription(NamedTuple):
@@ -66,14 +68,17 @@ class Subscription(NamedTuple):
             The subscription.
         """
         return cls(
-            id = data["id"],
-            title = data["title"],
-            sort_id = data["sortid"],
-            first_item_time = data["firstitemmsec"],
-            url = data["url"],
-            html_url = data["htmlUrl"],
-            categories = [Category.from_json(category) for category in data["categories"]],
+            id=data["id"],
+            title=data["title"],
+            sort_id=data["sortid"],
+            first_item_time=data["firstitemmsec"],
+            url=data["url"],
+            html_url=data["htmlUrl"],
+            categories=[
+                Category.from_json(category) for category in data["categories"]
+            ],
         )
+
 
 ##############################################################################
 class Subscriptions:
@@ -90,8 +95,11 @@ class Subscriptions:
             A list of subscriptions.
         """
         return [
-            Subscription.from_json(subscription) for subscription in
-            (await session.get("subscription/list"))["subscriptions"]
+            Subscription.from_json(subscription)
+            for subscription in (await session.get("subscription/list"))[
+                "subscriptions"
+            ]
         ]
+
 
 ### subscriptions.py ends here

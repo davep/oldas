@@ -10,6 +10,7 @@ from typing import Any, NamedTuple
 
 ##############################################################################
 # Local imports.
+from ._prefixes import Prefix
 from .session import Session
 
 
@@ -53,7 +54,7 @@ class Unread(NamedTuple):
     """The unread count for each feed."""
 
     @staticmethod
-    def _get_counts(unread: dict[str, Any], prefixed_with: str) -> list[Count]:
+    def _get_counts(unread: dict[str, Any], prefixed_with: Prefix) -> list[Count]:
         return [
             Count.from_json(count)
             for count in unread["unreadcounts"]
@@ -73,8 +74,8 @@ class Unread(NamedTuple):
         unread = await session.get("unread-count")
         return cls(
             total=unread["max"],
-            folders=cls._get_counts(unread, "user/-/label/"),
-            feeds=cls._get_counts(unread, "feed/"),
+            folders=cls._get_counts(unread, Prefix.FOLDER),
+            feeds=cls._get_counts(unread, Prefix.FEED),
         )
 
 
