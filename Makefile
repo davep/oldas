@@ -15,8 +15,10 @@ mkdocs   := $(run) mkdocs
 spell    := $(run) codespell
 
 ##############################################################################
-# Show help by default.
-.DEFAULT_GOAL := help
+# Local "interactive testing" of the code.
+.PHONY: run
+run:				# Run the code in a testing context
+	$(python) -m $(lib)
 
 ##############################################################################
 # Setup/update packages the system requires.
