@@ -5,12 +5,13 @@ from typing import Any, Awaitable, Final, Self
 
 ##############################################################################
 # Httpx imports.
-from httpx import AsyncClient, RequestError, HTTPStatusError, Response
+from httpx import AsyncClient, HTTPStatusError, RequestError, Response
 
 ##############################################################################
 # Local imports.
 from . import __version__
 from .exceptions import OldASError
+
 
 ##############################################################################
 class Session:
@@ -84,21 +85,27 @@ class Session:
         if self._auth_code is None:
             async with AsyncClient() as client:
                 self._auth_code = (
-                    await self._call(
-                        client.post(
-                            self._LOGIN,
-                            json={
-                                "accountType": "HOSTED_OR_GOOGLE",
-                                "client": self._client,
-                                "Email": user,
-                                "Passwd": password,
-                                "service": "reader",
-                                "output": "json",
-                                "user-agent": self._USER_AGENT,
-                            }
+                    (
+                        await self._call(
+                            client.post(
+                                self._LOGIN,
+                                json={
+                                    "accountType": "HOSTED_OR_GOOGLE",
+                                    "client": self._client,
+                                    "Email": user,
+                                    "Passwd": password,
+                                    "service": "reader",
+                                    "output": "json",
+                                },
+                                headers={
+                                    "user-agent": self._USER_AGENT,
+                                },
+                            )
                         )
                     )
-                ).json().get("Auth")
+                    .json()
+                    .get("Auth")
+                )
         return self
 
     def logout(self) -> Self:
@@ -130,11 +137,13 @@ class Session:
                     client.get(
                         f"{self._API}{url}",
                         headers={
-                            "Authorization": f"GoogleLogin auth={self._auth_code}"
+                            "Authorization": f"GoogleLogin auth={self._auth_code}",
+                            "user-agent": self._USER_AGENT,
                         },
-                        params={"output": "json", "user-agent": self._USER_AGENT}
+                        params={"output": "json"},
                     )
                 )
             ).json()
+
 
 ### session.py ends here
