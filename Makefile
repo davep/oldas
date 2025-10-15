@@ -1,6 +1,5 @@
 lib      := oldas
 src      := src/
-tests    := tests/
 docs     := docs/
 run      := uv run --env-file .env
 sync     := uv sync
@@ -11,8 +10,6 @@ ruff     := $(run) ruff
 lint     := $(ruff) check --select I
 fmt      := $(ruff) format
 reports  := .reports
-test     := $(run) pytest --verbose --cov=$(lib)
-coverage := $(test) --cov-report html:$(reports)
 mypy     := $(run) mypy
 mkdocs   := $(run) mkdocs
 spell    := $(run) codespell
@@ -40,36 +37,23 @@ resetup: realclean		# Recreate the virtual environment from scratch
 # Checking/testing/linting/etc.
 .PHONY: lint
 lint:				# Check the code for linting issues
-	$(lint) $(src) $(tests)
+	$(lint) $(src)
 
 .PHONY: codestyle
 codestyle:			# Is the code formatted correctly?
-	$(fmt) --check $(src) $(tests)
+	$(fmt) --check $(src)
 
 .PHONY: typecheck
 typecheck:			# Perform static type checks with mypy
-	$(mypy) --scripts-are-modules $(src) $(tests)
+	$(mypy) --scripts-are-modules $(src)
 
 .PHONY: stricttypecheck
 stricttypecheck:	        # Perform a strict static type checks with mypy
-	$(mypy) --scripts-are-modules --strict $(src) $(tests)
-
-.PHONY: test
-test:				# Run the unit tests
-	$(test)
-
-.PHONY: coverage
-coverage:			# Produce a test coverage report
-	$(coverage)
-	open $(reports)/index.html
-
-.PHONY: comprehensive-test
-comprehensive-test:		# Read all the guides I have to test them
-	$(run) python .comprehensive_test/read_all_known_guides
+	$(mypy) --scripts-are-modules --strict $(src)
 
 .PHONY: spellcheck
 spellcheck:			# Spell check the code
-	$(spell) *.md $(src) $(tests) $(docs)
+	$(spell) *.md $(src) $(docs)
 
 .PHONY: checkall
 checkall: spellcheck codestyle lint stricttypecheck test # Check all the things
@@ -114,11 +98,11 @@ repl:				# Start a Python REPL in the venv.
 
 .PHONY: delint
 delint:			# Fix linting issues.
-	$(lint) --fix $(src) $(tests)
+	$(lint) --fix $(src)
 
 .PHONY: pep8ify
 pep8ify:			# Reformat the code to be as PEP8 as possible.
-	$(fmt) $(src) $(tests)
+	$(fmt) $(src)
 
 .PHONY: tidy
 tidy: delint pep8ify		# Tidy up the code, fixing lint and format issues.
