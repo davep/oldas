@@ -55,6 +55,15 @@ class Unread(NamedTuple):
 
     @staticmethod
     def _get_counts(unread: dict[str, Any], prefixed_with: Prefix) -> list[Count]:
+        """Get a particular set of unread counts.
+
+        Args:
+            unread: The unread data.
+            prefix_with: The prefix to look for.
+
+        Returns:
+            A list of unread counts of the given prefix.
+        """
         return [
             Count.from_json(count)
             for count in unread["unreadcounts"]
