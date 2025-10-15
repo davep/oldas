@@ -72,6 +72,17 @@ class Session:
             raise OldASError(str(error)) from None
         return response
 
+    @property
+    def _headers(self) -> dict[str, str]:
+        """The standard headers for a call to TheOldReader."""
+        return {
+            "user-agent": self._USER_AGENT,
+        } | (
+            {"Authorization": f"GoogleLogin auth={self._auth_code}"}
+            if self.logged_in
+            else {}
+        )
+
     async def login(self, user: str, password: str) -> Self:
         """Log into TheOldReader.
 
@@ -100,9 +111,7 @@ class Session:
                                     "service": "reader",
                                     "output": "json",
                                 },
-                                headers={
-                                    "user-agent": self._USER_AGENT,
-                                },
+                                headers=self._headers,
                             )
                         )
                     )
@@ -139,10 +148,7 @@ class Session:
                 await self._call(
                     client.get(
                         f"{self._API}{url}",
-                        headers={
-                            "Authorization": f"GoogleLogin auth={self._auth_code}",
-                            "user-agent": self._USER_AGENT,
-                        },
+                        headers=self._headers,
                         params={"output": "json"},
                     )
                 )
