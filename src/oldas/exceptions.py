@@ -7,6 +7,11 @@ class OldASError(Exception):
 
 
 ##############################################################################
+class OldASInvalidLogin(Exception):
+    """Exception thrown if the login failed."""
+
+
+##############################################################################
 class OldASLoginNeeded(Exception):
     """Exception thrown when a call is made when a login is needed.
 
