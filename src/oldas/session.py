@@ -11,7 +11,7 @@ from httpx import AsyncClient, HTTPStatusError, RequestError, Response
 ##############################################################################
 # Local imports.
 from . import __version__
-from .exceptions import OldASError, OldASLoginNeeded
+from .exceptions import OldASError, OldASInvalidLogin, OldASLoginNeeded
 
 
 ##############################################################################
@@ -74,6 +74,8 @@ class Session:
         except HTTPStatusError as error:
             if error.response.status_code == httpx.codes.UNAUTHORIZED:
                 raise OldASLoginNeeded("The current token is not valid") from None
+            if error.response.status_code == httpx.codes.FORBIDDEN:
+                raise OldASInvalidLogin(str(error)) from None
             raise OldASError(str(error)) from None
         return response
 
