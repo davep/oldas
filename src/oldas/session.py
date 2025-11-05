@@ -48,6 +48,11 @@ class Session:
         """Are we logged in?"""
         return self._auth_code is not None
 
+    @property
+    def auth_code(self) -> str | None:
+        """The auth code, if we are logged in, else `None`."""
+        return self._auth_code
+
     async def _call(self, call: Awaitable[Response]) -> Response:
         """Make a call out to the API.
 
