@@ -17,9 +17,10 @@ __licence__ = "MIT"
 ##############################################################################
 # Local imports.
 from .exceptions import OldASError, OldASInvalidLogin
+from .session import Session
 
 ##############################################################################
 # Exports.
-__all__ = ["OldASError", "OldASInvalidLogin"]
+__all__ = ["OldASError", "OldASInvalidLogin", "Session"]
 
 ### __init__.py ends here
