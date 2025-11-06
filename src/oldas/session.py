@@ -1,7 +1,7 @@
 """Provides a class for getting and managing a login session."""
 
 ##############################################################################
-from typing import Awaitable, Final, Self
+from typing import Any, Awaitable, Final, Self
 
 ##############################################################################
 # Httpx imports.
@@ -138,6 +138,20 @@ class Session:
         if not self.logged_in:
             raise OldASLoginNeeded("API call made but not logged in")
 
+    @staticmethod
+    def _verify(data: Any) -> RawData:
+        """Verify that the given data is of the type we expect.
+
+        Args:
+            data: The data that was received.
+
+        Returns:
+            The verified data, of the expected type.
+        """
+        if isinstance(data, dict):
+            return data
+        raise OldASError("Unexpected data type received from TheOldReader API")
+
     async def get(self, url: str) -> RawData:
         """Make a GET call to the API.
 
@@ -152,15 +166,17 @@ class Session:
         """
         self._must_be_logged_in()
         async with AsyncClient() as client:
-            return (
-                await self._call(
-                    client.get(
-                        f"{self._API}{url}",
-                        headers=self._headers,
-                        params={"output": "json"},
+            return self._verify(
+                (
+                    await self._call(
+                        client.get(
+                            f"{self._API}{url}",
+                            headers=self._headers,
+                            params={"output": "json"},
+                        )
                     )
-                )
-            ).json()
+                ).json()
+            )
 
 
 ### session.py ends here
