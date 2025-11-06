@@ -10,7 +10,7 @@ from typing import NamedTuple
 
 ##############################################################################
 # Local imports.
-from ._types import RawData
+from ._types import OldList, RawData
 from .session import Session
 
 
@@ -43,11 +43,11 @@ class Folder(NamedTuple):
 
 
 ##############################################################################
-class Folders:
+class Folders(OldList[Folder]):
     """Load the folder list from TheOldReader."""
 
     @classmethod
-    async def load(cls, session: Session) -> list[Folder]:
+    async def load(cls, session: Session) -> Folders:
         """Load the folders.
 
         Args:
@@ -56,10 +56,10 @@ class Folders:
         Returns:
             A list of folders.
         """
-        return [
+        return cls(
             Folder.from_json(folder)
             for folder in (await session.get("tag/list"))["tags"]
-        ]
+        )
 
 
 ### folders.py ends here

@@ -11,7 +11,7 @@ from typing import NamedTuple
 ##############################################################################
 # Local imports.
 from ._prefixes import Prefix
-from ._types import RawData
+from ._types import OldList, RawData
 from .session import Session
 
 
@@ -52,13 +52,13 @@ class Unread(NamedTuple):
 
     total: int
     """The total unread count."""
-    folders: list[Count]
+    folders: OldList[Count]
     """The unread counts for each folder."""
-    feeds: list[Count]
+    feeds: OldList[Count]
     """The unread count for each feed."""
 
     @staticmethod
-    def _get_counts(unread: RawData, prefixed_with: Prefix) -> list[Count]:
+    def _get_counts(unread: RawData, prefixed_with: Prefix) -> OldList[Count]:
         """Get a particular set of unread counts.
 
         Args:
@@ -68,11 +68,11 @@ class Unread(NamedTuple):
         Returns:
             A list of unread counts of the given prefix.
         """
-        return [
+        return OldList[Count](
             Count.from_json(count)
             for count in unread["unreadcounts"]
             if count["id"].startswith(prefixed_with)
-        ]
+        )
 
     @classmethod
     async def load(cls, session: Session) -> Unread:

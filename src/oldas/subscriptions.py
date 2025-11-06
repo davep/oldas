@@ -10,7 +10,7 @@ from typing import NamedTuple
 
 ##############################################################################
 # Local imports.
-from ._types import RawData
+from ._types import OldList, RawData
 from .session import Session
 
 
@@ -88,11 +88,11 @@ class Subscription(NamedTuple):
 
 
 ##############################################################################
-class Subscriptions:
+class Subscriptions(OldList[Subscription]):
     """Loads and holds the full list of subscriptions."""
 
     @classmethod
-    async def load(cls, session: Session) -> list[Subscription]:
+    async def load(cls, session: Session) -> Subscriptions:
         """Load the subscriptions.
 
         Args:
@@ -101,12 +101,12 @@ class Subscriptions:
         Returns:
             A list of subscriptions.
         """
-        return [
+        return cls(
             Subscription.from_json(subscription)
             for subscription in (await session.get("subscription/list"))[
                 "subscriptions"
             ]
-        ]
+        )
 
 
 ### subscriptions.py ends here
