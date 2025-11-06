@@ -11,7 +11,7 @@ __copyright__ = "Copyright 2025, Dave Pearson"
 __credits__ = ["Dave Pearson"]
 __maintainer__ = "Dave Pearson"
 __email__ = "davep@davep.org"
-__version__ = version("oldas")
+__version__: str = version("oldas")
 __licence__ = "MIT"
 
 ##############################################################################
