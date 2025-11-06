@@ -1,7 +1,7 @@
 """Provides a class for getting and managing a login session."""
 
 ##############################################################################
-from typing import Any, Awaitable, Final, Self
+from typing import Awaitable, Final, Self
 
 ##############################################################################
 # Httpx imports.
