@@ -20,28 +20,20 @@ class User(NamedTuple):
 
     raw: RawData
     """The raw data from the API."""
-
     user_id: str
     """The user's ID."""
-
     name: str
     """The user's name."""
-
     profile_id: str
     """The user's profile ID."""
-
     email: str
     """The user's email address."""
-
     is_blogger_user: str
     """Is the user a Blogger user?"""
-
     signup_time: int
     """The signup time of the user."""
-
     is_multi_login_enabled: bool
     """Is multi-login enabled?"""
-
     is_premium: bool
     """Is the user a premium user?"""
 
