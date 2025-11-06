@@ -19,6 +19,8 @@ from .session import Session
 class Count(NamedTuple):
     """Unread count information class."""
 
+    raw: RawData
+    """The raw data from the API."""
     id: str
     """The ID of the item that has an unread count."""
     unread: int
@@ -37,6 +39,7 @@ class Count(NamedTuple):
             The count information.
         """
         return Count(
+            raw=data,
             id=data["id"],
             unread=data["count"],
             newest_timestamp=data["newestItemTimestampUsec"],

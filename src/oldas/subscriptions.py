@@ -18,6 +18,8 @@ from .session import Session
 class Category(NamedTuple):
     """Holds details of a category."""
 
+    raw: RawData
+    """The raw data from the API."""
     id: str
     """The ID for the category."""
     label: str
@@ -34,6 +36,7 @@ class Category(NamedTuple):
             The category.
         """
         return cls(
+            raw=data,
             id=data["id"],
             label=data["label"],
         )
@@ -43,6 +46,8 @@ class Category(NamedTuple):
 class Subscription(NamedTuple):
     """Holds a subscription."""
 
+    raw: RawData
+    """The raw data from the API."""
     id: str
     """The ID of the subscription."""
     title: str
@@ -69,6 +74,7 @@ class Subscription(NamedTuple):
             The subscription.
         """
         return cls(
+            raw=data,
             id=data["id"],
             title=data["title"],
             sort_id=data["sortid"],

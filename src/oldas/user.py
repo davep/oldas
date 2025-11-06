@@ -10,12 +10,16 @@ from typing import NamedTuple
 
 ##############################################################################
 # Local imports.
+from ._types import RawData
 from .session import Session
 
 
 ##############################################################################
 class User(NamedTuple):
     """TheOldReader user information."""
+
+    raw: RawData
+    """The raw data from the API."""
 
     user_id: str
     """The user's ID."""
@@ -53,6 +57,7 @@ class User(NamedTuple):
         """
         user = await session.get("user-info")
         return cls(
+            raw=user,
             user_id=user["userId"],
             name=user["userName"],
             profile_id=user["userProfileId"],

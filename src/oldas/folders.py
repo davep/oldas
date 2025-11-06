@@ -18,6 +18,8 @@ from .session import Session
 class Folder(NamedTuple):
     """Folder information class."""
 
+    raw: RawData
+    """The raw data from the API."""
     id: str
     """The ID of the folder."""
     sort_id: str
@@ -34,6 +36,7 @@ class Folder(NamedTuple):
             The folder information.
         """
         return Folder(
+            raw=data,
             id=data["id"],
             sort_id=data["sortid"],
         )
