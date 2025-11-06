@@ -11,6 +11,7 @@ from httpx import AsyncClient, HTTPStatusError, RequestError, Response
 ##############################################################################
 # Local imports.
 from . import __version__
+from ._types import RawData
 from .exceptions import OldASError, OldASInvalidLogin, OldASLoginNeeded
 
 
@@ -137,7 +138,7 @@ class Session:
         if not self.logged_in:
             raise OldASLoginNeeded("API call made but not logged in")
 
-    async def get(self, url: str) -> dict[str, Any]:
+    async def get(self, url: str) -> RawData:
         """Make a GET call to the API.
 
         Args:

@@ -10,6 +10,7 @@ from typing import Any, NamedTuple
 
 ##############################################################################
 # Local imports.
+from ._types import RawData
 from .session import Session
 
 
@@ -23,7 +24,7 @@ class Folder(NamedTuple):
     """The sort ID of the folder."""
 
     @classmethod
-    def from_json(cls, data: dict[str, Any]) -> Folder:
+    def from_json(cls, data: RawData) -> Folder:
         """Load the folder from JSON data.
 
         Args:

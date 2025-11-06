@@ -10,6 +10,7 @@ from typing import Any, NamedTuple
 
 ##############################################################################
 # Local imports.
+from ._types import RawData
 from .session import Session
 
 
@@ -23,7 +24,7 @@ class Category(NamedTuple):
     """The label for the category."""
 
     @classmethod
-    def from_json(cls, data: dict[str, Any]) -> Category:
+    def from_json(cls, data: RawData) -> Category:
         """Load the category from JSON data.
 
         Args:
@@ -58,7 +59,7 @@ class Subscription(NamedTuple):
     """The Categories for the subscription."""
 
     @classmethod
-    def from_json(cls, data: dict[str, Any]) -> Subscription:
+    def from_json(cls, data: RawData) -> Subscription:
         """Load the subscription from JSON data.
 
         Args:

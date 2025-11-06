@@ -11,6 +11,7 @@ from typing import Any, NamedTuple
 ##############################################################################
 # Local imports.
 from ._prefixes import Prefix
+from ._types import RawData
 from .session import Session
 
 
@@ -26,7 +27,7 @@ class Count(NamedTuple):
     """The timestamp of the newest item."""
 
     @classmethod
-    def from_json(cls, data: dict[str, Any]) -> Count:
+    def from_json(cls, data: RawData) -> Count:
         """Load the count from JSON data.
 
         Args:
@@ -54,7 +55,7 @@ class Unread(NamedTuple):
     """The unread count for each feed."""
 
     @staticmethod
-    def _get_counts(unread: dict[str, Any], prefixed_with: Prefix) -> list[Count]:
+    def _get_counts(unread: RawData, prefixed_with: Prefix) -> list[Count]:
         """Get a particular set of unread counts.
 
         Args:
