@@ -60,7 +60,7 @@ class Subscription(NamedTuple):
     """The URL of the subscription."""
     html_url: str
     """The HTML URL of the subscription."""
-    categories: list[Category]
+    categories: OldList[Category]
     """The Categories for the subscription."""
 
     @classmethod
@@ -81,9 +81,9 @@ class Subscription(NamedTuple):
             first_item_time=data["firstitemmsec"],
             url=data["url"],
             html_url=data["htmlUrl"],
-            categories=[
+            categories=OldList[Category](
                 Category.from_json(category) for category in data["categories"]
-            ],
+            ),
         )
 
 
