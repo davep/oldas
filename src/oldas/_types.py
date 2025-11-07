@@ -2,7 +2,16 @@
 
 ##############################################################################
 # Python imports.
-from typing import Any, Generic, Iterable, Iterator, TypeAlias, TypeVar
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Generic,
+    Iterable,
+    Iterator,
+    TypeAlias,
+    TypeVar,
+    overload,
+)
 
 ##############################################################################
 RawData: TypeAlias = dict[str, Any]
@@ -25,6 +34,13 @@ class OldList(Generic[OldData]):
         """
         self._data: list[OldData] = list(data or [])
         """The data we're wrapping around."""
+
+    if TYPE_CHECKING:
+
+        @overload
+        def __getitem__(self, index: int) -> OldData: ...
+        @overload
+        def __getitem__(self, index: slice) -> OldList[OldData]: ...
 
     def __getitem__(self, index: int | slice) -> OldData | OldList[OldData]:
         return (
