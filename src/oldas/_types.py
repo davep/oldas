@@ -1,6 +1,10 @@
 """Types used across the library."""
 
 ##############################################################################
+# Backward compatibility.
+from __future__ import annotations
+
+##############################################################################
 # Python imports.
 from typing import (
     TYPE_CHECKING,
