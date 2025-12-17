@@ -19,9 +19,18 @@ __licence__ = "MIT"
 from .exceptions import OldASError, OldASInvalidLogin
 from .folders import Folder, Folders
 from .session import Session
+from .subscriptions import Subscription, Subscriptions
 
 ##############################################################################
 # Exports.
-__all__ = ["Folder", "Folders", "OldASError", "OldASInvalidLogin", "Session"]
+__all__ = [
+    "Folder",
+    "Folders",
+    "OldASError",
+    "OldASInvalidLogin",
+    "Session",
+    "Subscription",
+    "Subscriptions",
+]
 
 ### __init__.py ends here
