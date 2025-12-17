@@ -27,13 +27,21 @@ class Count(NamedTuple):
     """The unread count."""
     newest_timestamp: int
     """The timestamp of the newest item."""
+    prefix: str
+    """The prefix related to this type of count."""
+
+    @property
+    def name(self) -> str:
+        """The name of the count."""
+        return self.id.removeprefix(self.prefix)
 
     @classmethod
-    def from_json(cls, data: RawData) -> Count:
+    def from_json(cls, data: RawData, prefix: str) -> Count:
         """Load the count from JSON data.
 
         Args:
             data: The data to load the count from.
+            prefix: The prefix to associate with this type of count.
 
         Returns:
             The count information.
@@ -43,6 +51,7 @@ class Count(NamedTuple):
             id=data["id"],
             unread=data["count"],
             newest_timestamp=data["newestItemTimestampUsec"],
+            prefix=prefix,
         )
 
 
@@ -69,7 +78,7 @@ class Unread(NamedTuple):
             A list of unread counts of the given prefix.
         """
         return OldList[Count](
-            Count.from_json(count)
+            Count.from_json(count, prefixed_with)
             for count in unread["unreadcounts"]
             if count["id"].startswith(prefixed_with)
         )
