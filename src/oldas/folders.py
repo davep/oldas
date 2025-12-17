@@ -10,6 +10,7 @@ from typing import NamedTuple
 
 ##############################################################################
 # Local imports.
+from ._prefixes import Prefix
 from ._types import OldList, RawData
 from .session import Session
 
@@ -24,6 +25,16 @@ class Folder(NamedTuple):
     """The ID of the folder."""
     sort_id: str
     """The sort ID of the folder."""
+
+    @property
+    def name(self) -> str:
+        """The name of the folder."""
+        # TODO: Handle the special starred folder better.
+        return (
+            "*Starred*"
+            if self.id == "user/-/state/com.google/starred"
+            else self.id.removeprefix(Prefix.FOLDER)
+        )
 
     @classmethod
     def from_json(cls, data: RawData) -> Folder:
