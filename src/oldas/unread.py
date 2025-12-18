@@ -56,18 +56,23 @@ class Count(NamedTuple):
 
 
 ##############################################################################
+class Counts(OldList[Count]):
+    """Holds a collection of counts."""
+
+
+##############################################################################
 class Unread(NamedTuple):
     """Class that loads and holds unread counts."""
 
     total: int
     """The total unread count."""
-    folders: OldList[Count]
+    folders: Counts
     """The unread counts for each folder."""
-    feeds: OldList[Count]
+    feeds: Counts
     """The unread count for each feed."""
 
     @staticmethod
-    def _get_counts(unread: RawData, prefixed_with: Prefix) -> OldList[Count]:
+    def _get_counts(unread: RawData, prefixed_with: Prefix) -> Counts:
         """Get a particular set of unread counts.
 
         Args:
@@ -77,7 +82,7 @@ class Unread(NamedTuple):
         Returns:
             A list of unread counts of the given prefix.
         """
-        return OldList[Count](
+        return Counts(
             Count.from_json(count, prefixed_with)
             for count in unread["unreadcounts"]
             if count["id"].startswith(prefixed_with)

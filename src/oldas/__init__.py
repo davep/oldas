@@ -20,12 +20,13 @@ from .exceptions import OldASError, OldASInvalidLogin
 from .folders import Folder, Folders
 from .session import Session
 from .subscriptions import Subscription, Subscriptions
-from .unread import Count, Unread
+from .unread import Count, Counts, Unread
 
 ##############################################################################
 # Exports.
 __all__ = [
     "Count",
+    "Counts",
     "Folder",
     "Folders",
     "OldASError",
