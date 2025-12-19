@@ -102,6 +102,26 @@ class Article(NamedTuple):
     origin: Origin
     """The origin of the article."""
 
+    @property
+    def is_read(self) -> bool:
+        """Has this article been read?"""
+        return State.READ in self.categories
+
+    @property
+    def is_unread(self) -> bool:
+        """Is the article still unread?"""
+        return not self.is_read
+
+    @property
+    def is_fresh(self) -> bool:
+        """Is the article considered fresh?"""
+        return State.FRESH in self.categories
+
+    @property
+    def is_stale(self) -> bool:
+        """Is the article considered stale?"""
+        return not self.is_fresh
+
     @classmethod
     def from_json(cls, data: RawData) -> Article:
         """Load the article from JSON data.
