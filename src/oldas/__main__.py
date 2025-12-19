@@ -1,10 +1,9 @@
 from asyncio import run
 from os import getenv
 
-from .folders import Folders
+from .articles import Articles
 from .session import Session
 from .subscriptions import Subscriptions
-from .unread import Unread
 
 
 async def main() -> None:
@@ -14,10 +13,10 @@ async def main() -> None:
         session = await Session("test").login(
             getenv("TOR_USER", ""), getenv("TOR_PASSWORD", "")
         )
-    for subscription in await Subscriptions.load(session):
-        print(f"{subscription.title} - {subscription.id}")
-    print(await Unread.load(session))
-    print(await Folders.load(session))
+    sample_subscription = (await Subscriptions.load(session))[0]
+    articles = await Articles.load_unread(session, sample_subscription)
+    print(articles)
+    print(len(articles))
 
 
 if __name__ == "__main__":
