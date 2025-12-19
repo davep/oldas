@@ -146,7 +146,9 @@ class Articles(OldList[Article]):
             result = await session.get(
                 "/stream/contents", s=stream, xt=State.READ, c=continuation, n=1_000
             )
-            articles.extend(Article.from_json(article) for article in result["items"])
+            articles.extend(
+                Article.from_json(article) for article in result.get("items", [])
+            )
             if not (continuation := result.get("continuation")):
                 break
         return cls(articles)
