@@ -89,6 +89,8 @@ class Article(NamedTuple):
     """The raw data from the API."""
     id: str
     """The ID of the article."""
+    title: str
+    """The title of the article."""
     published: datetime
     """The time when the article was published."""
     author: str
@@ -113,6 +115,7 @@ class Article(NamedTuple):
         return cls(
             raw=data,
             id=data["id"],
+            title=data["title"],
             published=datetime.fromtimestamp(data["published"]),
             author=data["author"],
             summary=Summary.from_json(data["summary"]),
