@@ -152,11 +152,12 @@ class Session:
             return data
         raise OldASError("Unexpected data type received from TheOldReader API")
 
-    async def get(self, url: str) -> RawData:
+    async def get(self, url: str, **params: Any) -> RawData:
         """Make a GET call to the API.
 
         Args:
             url: The URL to call.
+            params: Any extra parameters that need to be passed.
 
         Returns:
             A dictionary that is the JSON data.
@@ -172,7 +173,7 @@ class Session:
                         client.get(
                             f"{self._API}{url}",
                             headers=self._headers,
-                            params={"output": "json"},
+                            params={**params, "output": "json"},
                         )
                     )
                 ).json()
