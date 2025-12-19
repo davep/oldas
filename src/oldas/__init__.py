@@ -16,6 +16,7 @@ __licence__ = "MIT"
 
 ##############################################################################
 # Local imports.
+from .articles import Article, Articles
 from .exceptions import OldASError, OldASInvalidLogin
 from .folders import Folder, Folders
 from .session import Session
@@ -25,6 +26,8 @@ from .unread import Count, Counts, Unread
 ##############################################################################
 # Exports.
 __all__ = [
+    "Article",
+    "Articles",
     "Count",
     "Counts",
     "Folder",
