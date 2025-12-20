@@ -165,7 +165,7 @@ class Articles(OldList[Article]):
         if isinstance(stream, (Folder, Subscription)):
             stream = stream.id
         articles: list[Article] = []
-        continuation = ""
+        continuation: str | None = ""
         while True:
             result = await session.get(
                 "/stream/contents", s=stream, xt=State.READ, c=continuation, n=1_000
