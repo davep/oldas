@@ -57,7 +57,7 @@ class Origin(NamedTuple):
 
     raw: RawData
     """The raw data from the API."""
-    stream_id: str
+    stream_id: str | None
     """The stream ID for the article's origin."""
     title: str
     """The title of the origin of the article."""
@@ -76,7 +76,7 @@ class Origin(NamedTuple):
         """
         return cls(
             raw=data,
-            stream_id=data["streamId"],
+            stream_id=data.get("streamId"),
             title=data["title"],
             html_url=data["htmlUrl"],
         )
