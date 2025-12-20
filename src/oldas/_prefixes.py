@@ -15,4 +15,15 @@ class Prefix(StrEnum):
     """A feed."""
 
 
+##############################################################################
+def id_is_a(item_id: str, prefix: Prefix) -> bool:
+    """Does the ID look like it's of a particular type?
+
+    Args:
+        item_id: The ID to check.
+        prefix: The prefix to test against.
+    """
+    return item_id.startswith(prefix)
+
+
 ### _prefixes.py ends here

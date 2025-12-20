@@ -11,7 +11,7 @@ from typing import NamedTuple
 
 ##############################################################################
 # Local imports.
-from ._prefixes import Prefix
+from ._prefixes import Prefix, id_is_a
 from ._types import OldList, RawData
 from .session import Session
 
@@ -88,7 +88,7 @@ class Unread(NamedTuple):
         return Counts(
             Count.from_json(count, prefixed_with)
             for count in unread["unreadcounts"]
-            if count["id"].startswith(prefixed_with)
+            if id_is_a(count["id"], prefixed_with)
         )
 
     @classmethod
