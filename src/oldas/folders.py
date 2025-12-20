@@ -11,6 +11,7 @@ from typing import NamedTuple
 ##############################################################################
 # Local imports.
 from ._prefixes import Prefix
+from ._states import State
 from ._types import OldList, RawData
 from .session import Session
 
@@ -32,7 +33,7 @@ class Folder(NamedTuple):
         # TODO: Handle the special starred folder better.
         return (
             "*Starred*"
-            if self.id == "user/-/state/com.google/starred"
+            if self.id == State.STARRED
             else self.id.removeprefix(Prefix.FOLDER)
         )
 
