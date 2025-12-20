@@ -97,7 +97,7 @@ class Article(NamedTuple):
     """The author of the article."""
     summary: Summary
     """The summary of the article."""
-    categories: list[str]
+    categories: list[str]  # TODO: Make this State | Folder, perhaps?
     """The list of categories associated with this article."""
     origin: Origin
     """The origin of the article."""
