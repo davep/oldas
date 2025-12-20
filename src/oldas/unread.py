@@ -6,6 +6,7 @@ from __future__ import annotations
 
 ##############################################################################
 # Python imports.
+from datetime import datetime
 from typing import NamedTuple
 
 ##############################################################################
@@ -25,7 +26,7 @@ class Count(NamedTuple):
     """The ID of the item that has an unread count."""
     unread: int
     """The unread count."""
-    newest_timestamp: int
+    newest_timestamp: datetime
     """The timestamp of the newest item."""
     prefix: str
     """The prefix related to this type of count."""
@@ -50,7 +51,9 @@ class Count(NamedTuple):
             raw=data,
             id=data["id"],
             unread=data["count"],
-            newest_timestamp=data["newestItemTimestampUsec"],
+            newest_timestamp=datetime.fromtimestamp(
+                int(data["newestItemTimestampUsec"]) / 1_000_000
+            ),
             prefix=prefix,
         )
 
