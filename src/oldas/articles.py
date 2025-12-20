@@ -11,6 +11,7 @@ from typing import Literal, NamedTuple
 
 ##############################################################################
 # Local imports.
+from ._prefixes import id_is_a_folder
 from ._states import State
 from ._types import OldList, RawData
 from .folders import Folder
@@ -97,7 +98,7 @@ class Article(NamedTuple):
     """The author of the article."""
     summary: Summary
     """The summary of the article."""
-    categories: list[str]  # TODO: Make this State | Folder, perhaps?
+    categories: list[State | str]
     """The list of categories associated with this article."""
     origin: Origin
     """The origin of the article."""
@@ -139,7 +140,10 @@ class Article(NamedTuple):
             published=datetime.fromtimestamp(data["published"]),
             author=data["author"],
             summary=Summary.from_json(data["summary"]),
-            categories=data["categories"],
+            categories=[
+                category if id_is_a_folder(category) else State(category)
+                for category in data["categories"]
+            ],
             origin=Origin.from_json(data["origin"]),
         )
 
