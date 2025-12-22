@@ -9,7 +9,6 @@ python   := $(run) python
 ruff     := $(run) ruff
 lint     := $(ruff) check --select I
 fmt      := $(ruff) format
-reports  := .reports
 mypy     := $(run) mypy
 mkdocs   := $(run) mkdocs
 spell    := $(run) codespell
