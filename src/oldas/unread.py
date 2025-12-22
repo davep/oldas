@@ -6,7 +6,7 @@ from __future__ import annotations
 
 ##############################################################################
 # Python imports.
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import NamedTuple
 
 ##############################################################################
@@ -52,7 +52,8 @@ class Count(NamedTuple):
             id=data["id"],
             unread=data["count"],
             newest_timestamp=datetime.fromtimestamp(
-                int(data["newestItemTimestampUsec"]) / 1_000_000
+                int(data["newestItemTimestampUsec"]) / 1_000_000,
+                timezone.utc,
             ),
             prefix=prefix,
         )

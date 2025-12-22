@@ -6,7 +6,7 @@ from __future__ import annotations
 
 ##############################################################################
 # Python imports.
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Any, Literal, NamedTuple
 
 ##############################################################################
@@ -137,7 +137,7 @@ class Article(NamedTuple):
             raw=data,
             id=data["id"],
             title=data["title"],
-            published=datetime.fromtimestamp(data["published"]),
+            published=datetime.fromtimestamp(data["published"], timezone.utc),
             author=data["author"],
             summary=Summary.from_json(data["summary"]),
             categories=[
