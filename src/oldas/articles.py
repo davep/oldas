@@ -161,11 +161,12 @@ class Articles(OldList[Article]):
             stream: The stream identifier to load from.
 
         """
-        """Load unread articles for a given stream.
+        """Load articles for a given stream.
 
         Args:
             session: The API session object.
             stream: The stream identifier to load from.
+            filters: Optional filters for the API.
         """
         if isinstance(stream, (Folder, Subscription)):
             stream = stream.id
