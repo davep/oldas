@@ -7,7 +7,7 @@ from __future__ import annotations
 ##############################################################################
 # Python imports.
 from datetime import datetime
-from typing import Literal, NamedTuple
+from typing import Any, Literal, NamedTuple
 
 ##############################################################################
 # Local imports.
@@ -153,9 +153,14 @@ class Articles(OldList[Article]):
     """Loads and holds a full list of articles."""
 
     @classmethod
-    async def load_unread(
-        cls, session: Session, stream: str | Subscription | Folder
-    ) -> Articles:
+    async def load(cls, session: Session, stream: str | Subscription | Folder, **filters: Any) -> Articles:
+        """Load articles for a given stream.
+
+        Args:
+            session: The API session object.
+            stream: The stream identifier to load from.
+
+        """
         """Load unread articles for a given stream.
 
         Args:
@@ -168,7 +173,7 @@ class Articles(OldList[Article]):
         continuation: str | None = ""
         while True:
             result = await session.get(
-                "/stream/contents", s=stream, xt=State.READ, c=continuation, n=1_000
+                "/stream/contents", s=stream, c=continuation, n=1_000, **filters
             )
             articles.extend(
                 Article.from_json(article) for article in result.get("items", [])
@@ -176,6 +181,18 @@ class Articles(OldList[Article]):
             if not (continuation := result.get("continuation")):
                 break
         return cls(articles)
+
+    @classmethod
+    async def load_unread(
+        cls, session: Session, stream: str | Subscription | Folder
+    ) -> Articles:
+        """Load unread articles for a given stream.
+
+        Args:
+            session: The API session object.
+            stream: The stream identifier to load from.
+        """
+        return await cls.load(session, stream, xt=State.READ)
 
 
 ### articles.py ends here
