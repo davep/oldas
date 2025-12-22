@@ -94,6 +94,8 @@ class Article(NamedTuple):
     """The title of the article."""
     published: datetime
     """The time when the article was published."""
+    updated: datetime
+    """The time when the article was updated."""
     author: str
     """The author of the article."""
     summary: Summary
@@ -123,6 +125,11 @@ class Article(NamedTuple):
         """Is the article considered stale?"""
         return not self.is_fresh
 
+    @property
+    def is_updated(self) -> bool:
+        """Does the article look like it's bee updated?"""
+        return self.published != self.updated
+
     @classmethod
     def from_json(cls, data: RawData) -> Article:
         """Load the article from JSON data.
@@ -138,6 +145,7 @@ class Article(NamedTuple):
             id=data["id"],
             title=data["title"],
             published=datetime.fromtimestamp(data["published"], timezone.utc),
+            updated=datetime.fromtimestamp(data["updated"], timezone.utc),
             author=data["author"],
             summary=Summary.from_json(data["summary"]),
             categories=[

@@ -18,8 +18,8 @@ async def main() -> None:
     articles = await Articles.load_new_since(
         session, sample_subscription, datetime.now() - timedelta(hours=2)
     )
-    print(articles)
-    print(len(articles))
+    for article in articles:
+        print(f"{article.title} - {article.published} - {article.updated}")
 
 
 if __name__ == "__main__":
