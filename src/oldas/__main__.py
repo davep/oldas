@@ -15,7 +15,9 @@ async def main() -> None:
             getenv("TOR_USER", ""), getenv("TOR_PASSWORD", "")
         )
     sample_subscription = (await Subscriptions.load(session))[0]
-    articles = await Articles.load_new_since(session, sample_subscription, datetime.now() - timedelta(hours=2))
+    articles = await Articles.load_new_since(
+        session, sample_subscription, datetime.now() - timedelta(hours=2)
+    )
     print(articles)
     print(len(articles))
 

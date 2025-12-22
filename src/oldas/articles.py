@@ -153,7 +153,9 @@ class Articles(OldList[Article]):
     """Loads and holds a full list of articles."""
 
     @classmethod
-    async def load(cls, session: Session, stream: str | Subscription | Folder, **filters: Any) -> Articles:
+    async def load(
+        cls, session: Session, stream: str | Subscription | Folder, **filters: Any
+    ) -> Articles:
         """Load articles for a given stream.
 
         Args:
@@ -196,7 +198,9 @@ class Articles(OldList[Article]):
         return await cls.load(session, stream, xt=State.READ)
 
     @classmethod
-    async def load_new_since(cls, session: Session, stream: str | Subscription | Folder, since: datetime) -> Articles:
+    async def load_new_since(
+        cls, session: Session, stream: str | Subscription | Folder, since: datetime
+    ) -> Articles:
         """Load articles newer than a given time for a given stream.
 
         Args:
@@ -204,6 +208,11 @@ class Articles(OldList[Article]):
             stream: The stream identifier to load from.
             since: Time from which to load articles.
         """
-        return await cls.load(session, stream, ot=since.timestamp())
+        return await cls.load(
+            session,
+            stream,
+            ot=since.timestamp(),  # codespell:ignore ot
+        )
+
 
 ### articles.py ends here
