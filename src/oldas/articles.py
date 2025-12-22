@@ -195,5 +195,15 @@ class Articles(OldList[Article]):
         """
         return await cls.load(session, stream, xt=State.READ)
 
+    @classmethod
+    async def load_new_since(cls, session: Session, stream: str | Subscription | Folder, since: datetime) -> Articles:
+        """Load unread articles for a given stream.
+
+        Args:
+            session: The API session object.
+            stream: The stream identifier to load from.
+            since: Time from which to load articles.
+        """
+        return await cls.load(session, stream, ot=since.timestamp())
 
 ### articles.py ends here
