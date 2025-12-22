@@ -197,7 +197,7 @@ class Articles(OldList[Article]):
 
     @classmethod
     async def load_new_since(cls, session: Session, stream: str | Subscription | Folder, since: datetime) -> Articles:
-        """Load unread articles for a given stream.
+        """Load articles newer than a given time for a given stream.
 
         Args:
             session: The API session object.
