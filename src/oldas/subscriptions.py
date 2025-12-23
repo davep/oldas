@@ -44,6 +44,11 @@ class Category(NamedTuple):
 
 
 ##############################################################################
+class Categories(OldList[Category]):
+    """Holds a collection of categories."""
+
+
+##############################################################################
 class Subscription(NamedTuple):
     """Holds a subscription."""
 
@@ -61,7 +66,7 @@ class Subscription(NamedTuple):
     """The URL of the subscription."""
     html_url: str
     """The HTML URL of the subscription."""
-    categories: OldList[Category]
+    categories: Categories
     """The Categories for the subscription."""
 
     @classmethod
@@ -84,7 +89,7 @@ class Subscription(NamedTuple):
             ),
             url=data["url"],
             html_url=data["htmlUrl"],
-            categories=OldList[Category](
+            categories=Categories(
                 Category.from_json(category) for category in data["categories"]
             ),
         )
