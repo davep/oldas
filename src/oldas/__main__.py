@@ -22,8 +22,12 @@ async def main() -> None:
         print(f"{article.title} - {article.published} - {article.updated}")
     print(f"Subscription ID: {sample_subscription.id}")
     for article in articles:
-        print(f"Article ID {article.id} relates to subscription {article.origin.stream_id}")
+        print(
+            f"Article ID {article.id} relates to subscription {article.origin.stream_id}"
+        )
     print(f"Subscription's categories: {sample_subscription.categories}")
+    print(f"First article timestamp: {sample_subscription.first_item_time}")
+
 
 if __name__ == "__main__":
     run(main())

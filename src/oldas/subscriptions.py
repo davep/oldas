@@ -6,6 +6,7 @@ from __future__ import annotations
 
 ##############################################################################
 # Python imports.
+from datetime import datetime, timezone
 from typing import NamedTuple
 
 ##############################################################################
@@ -54,7 +55,7 @@ class Subscription(NamedTuple):
     """The title of the subscription."""
     sort_id: str
     """The sort ID of the subscription."""
-    first_item_time: int
+    first_item_time: datetime
     """The time of the first item."""
     url: str
     """The URL of the subscription."""
@@ -78,7 +79,9 @@ class Subscription(NamedTuple):
             id=data["id"],
             title=data["title"],
             sort_id=data["sortid"],
-            first_item_time=data["firstitemmsec"],
+            first_item_time=datetime.fromtimestamp(
+                int(data["firstitemmsec"]) / 1_000, timezone.utc
+            ),
             url=data["url"],
             html_url=data["htmlUrl"],
             categories=OldList[Category](
