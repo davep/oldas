@@ -16,11 +16,14 @@ async def main() -> None:
         )
     sample_subscription = (await Subscriptions.load(session))[0]
     articles = await Articles.load_new_since(
-        session, sample_subscription, datetime.now() - timedelta(hours=2)
+        session, sample_subscription, datetime.now() - timedelta(hours=5)
     )
     for article in articles:
         print(f"{article.title} - {article.published} - {article.updated}")
-
+    print(f"Subscription ID: {sample_subscription.id}")
+    for article in articles:
+        print(f"Article ID {article.id} relates to subscription {article.origin.stream_id}")
+    print(f"Subscription's categories: {sample_subscription.categories}")
 
 if __name__ == "__main__":
     run(main())
