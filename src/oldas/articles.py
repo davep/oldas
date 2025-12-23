@@ -27,12 +27,12 @@ Direction = Literal["ltr", "rtl"]
 class Summary(NamedTuple):
     """The summary details for an article."""
 
-    raw: RawData
-    """The raw data from the API."""
     direction: Direction
     """The direction for the text in the summary."""
     content: str
     """The content of the summary."""
+    raw: RawData | None = None
+    """The raw data from the API."""
 
     @classmethod
     def from_json(cls, data: RawData) -> Summary:
@@ -55,14 +55,14 @@ class Summary(NamedTuple):
 class Origin(NamedTuple):
     """The origin details for an article."""
 
-    raw: RawData
-    """The raw data from the API."""
     stream_id: str | None
     """The stream ID for the article's origin."""
     title: str
     """The title of the origin of the article."""
     html_url: str
     """The URL of the HTML of the origin of the article."""
+    raw: RawData | None = None
+    """The raw data from the API."""
 
     @classmethod
     def from_json(cls, data: RawData) -> Origin:
@@ -86,8 +86,6 @@ class Origin(NamedTuple):
 class Article(NamedTuple):
     """Holds details about an article."""
 
-    raw: RawData
-    """The raw data from the API."""
     id: str
     """The ID of the article."""
     title: str
@@ -104,6 +102,8 @@ class Article(NamedTuple):
     """The list of categories associated with this article."""
     origin: Origin
     """The origin of the article."""
+    raw: RawData | None = None
+    """The raw data from the API."""
 
     @property
     def is_read(self) -> bool:

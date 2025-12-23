@@ -20,12 +20,12 @@ from .session import Session
 class Folder(NamedTuple):
     """Folder information class."""
 
-    raw: RawData
-    """The raw data from the API."""
     id: str
     """The ID of the folder."""
     sort_id: str
     """The sort ID of the folder."""
+    raw: RawData | None = None
+    """The raw data from the API."""
 
     @property
     def name(self) -> str:

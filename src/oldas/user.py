@@ -18,8 +18,6 @@ from .session import Session
 class User(NamedTuple):
     """TheOldReader user information."""
 
-    raw: RawData
-    """The raw data from the API."""
     user_id: str
     """The user's ID."""
     name: str
@@ -36,6 +34,8 @@ class User(NamedTuple):
     """Is multi-login enabled?"""
     is_premium: bool
     """Is the user a premium user?"""
+    raw: RawData | None = None
+    """The raw data from the API."""
 
     @classmethod
     async def load(cls, session: Session) -> User:

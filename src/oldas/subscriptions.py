@@ -19,12 +19,12 @@ from .session import Session
 class Category(NamedTuple):
     """Holds details of a category."""
 
-    raw: RawData
-    """The raw data from the API."""
     id: str
     """The ID for the category."""
     label: str
     """The label for the category."""
+    raw: RawData | None = None
+    """The raw data from the API."""
 
     @classmethod
     def from_json(cls, data: RawData) -> Category:
@@ -52,8 +52,6 @@ class Categories(OldList[Category]):
 class Subscription(NamedTuple):
     """Holds a subscription."""
 
-    raw: RawData
-    """The raw data from the API."""
     id: str
     """The ID of the subscription."""
     title: str
@@ -68,6 +66,8 @@ class Subscription(NamedTuple):
     """The HTML URL of the subscription."""
     categories: Categories
     """The Categories for the subscription."""
+    raw: RawData | None = None
+    """The raw data from the API."""
 
     @classmethod
     def from_json(cls, data: RawData) -> Subscription:

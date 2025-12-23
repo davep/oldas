@@ -20,8 +20,6 @@ from .session import Session
 class Count(NamedTuple):
     """Unread count information class."""
 
-    raw: RawData
-    """The raw data from the API."""
     id: str
     """The ID of the item that has an unread count."""
     unread: int
@@ -30,6 +28,8 @@ class Count(NamedTuple):
     """The timestamp of the newest item."""
     prefix: str
     """The prefix related to this type of count."""
+    raw: RawData | None = None
+    """The raw data from the API."""
 
     @property
     def name(self) -> str:
