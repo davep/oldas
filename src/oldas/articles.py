@@ -7,7 +7,7 @@ from __future__ import annotations
 ##############################################################################
 # Python imports.
 from datetime import datetime, timezone
-from typing import Any, Literal, NamedTuple
+from typing import Any, AsyncIterator, Literal, NamedTuple
 
 ##############################################################################
 # Local imports.
@@ -161,6 +161,33 @@ class Articles(OldList[Article]):
     """Loads and holds a full list of articles."""
 
     @classmethod
+    async def stream(
+        cls, session: Session, stream: str | Subscription | Folder, **filters: Any
+    ) -> AsyncIterator[Article]:
+        """Load articles from a given stream.
+
+        Args:
+            session: The API session object.
+            stream: The stream identifier to load from.
+
+        Yields:
+            The articles.
+        """
+        if isinstance(stream, (Folder, Subscription)):
+            stream = stream.id
+        continuation: str | None = ""
+        while True:
+            result = await session.get(
+                "/stream/contents", s=stream, c=continuation, n=1_000, **filters
+            )
+            for article in (
+                Article.from_json(article) for article in result.get("items", [])
+            ):
+                yield article
+            if not (continuation := result.get("continuation")):
+                break
+
+    @classmethod
     async def load(
         cls, session: Session, stream: str | Subscription | Folder, **filters: Any
     ) -> Articles:
@@ -169,28 +196,14 @@ class Articles(OldList[Article]):
         Args:
             session: The API session object.
             stream: The stream identifier to load from.
-
-        """
-        """Load articles for a given stream.
-
-        Args:
-            session: The API session object.
-            stream: The stream identifier to load from.
             filters: Optional filters for the API.
+
+        Returns:
+            The `Articles`.
         """
-        if isinstance(stream, (Folder, Subscription)):
-            stream = stream.id
         articles: list[Article] = []
-        continuation: str | None = ""
-        while True:
-            result = await session.get(
-                "/stream/contents", s=stream, c=continuation, n=1_000, **filters
-            )
-            articles.extend(
-                Article.from_json(article) for article in result.get("items", [])
-            )
-            if not (continuation := result.get("continuation")):
-                break
+        async for article in cls.stream(session, stream, **filters):
+            articles.append(article)
         return cls(articles)
 
     @classmethod
@@ -202,6 +215,9 @@ class Articles(OldList[Article]):
         Args:
             session: The API session object.
             stream: The stream identifier to load from.
+
+        Returns:
+            The `Articles`.
         """
         return await cls.load(session, stream, xt=State.READ)
 
@@ -215,6 +231,9 @@ class Articles(OldList[Article]):
             session: The API session object.
             stream: The stream identifier to load from.
             since: Time from which to load articles.
+
+        Returns:
+            The `Articles`.
         """
         return await cls.load(
             session,
