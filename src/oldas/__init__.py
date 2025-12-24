@@ -16,6 +16,7 @@ __licence__ = "MIT"
 
 ##############################################################################
 # Local imports.
+from ._states import State
 from .articles import Article, Articles
 from .exceptions import OldASError, OldASInvalidLogin
 from .folders import Folder, Folders
@@ -35,6 +36,7 @@ __all__ = [
     "OldASError",
     "OldASInvalidLogin",
     "Session",
+    "State",
     "Subscription",
     "Subscriptions",
     "Unread",
