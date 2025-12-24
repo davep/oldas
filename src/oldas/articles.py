@@ -7,7 +7,7 @@ from __future__ import annotations
 ##############################################################################
 # Python imports.
 from datetime import datetime, timezone
-from typing import Any, AsyncIterator, Literal, NamedTuple
+from typing import Any, AsyncIterator, Iterable, Literal, NamedTuple
 
 ##############################################################################
 # Local imports.
@@ -130,6 +130,21 @@ class Article(NamedTuple):
         """Does the article look like it's bee updated?"""
         return self.published != self.updated
 
+    @staticmethod
+    def clean_categories(categories: Iterable[str]) -> list[State | str]:
+        """Clean up a collection of categories.
+
+        Args:
+            categories: The categories to clean up.
+
+        Returns:
+            The cleaned categories.
+        """
+        return [
+            category if id_is_a_folder(category) else State(category)
+            for category in categories
+        ]
+
     @classmethod
     def from_json(cls, data: RawData) -> Article:
         """Load the article from JSON data.
@@ -148,10 +163,7 @@ class Article(NamedTuple):
             updated=datetime.fromtimestamp(data["updated"], timezone.utc),
             author=data["author"],
             summary=Summary.from_json(data["summary"]),
-            categories=[
-                category if id_is_a_folder(category) else State(category)
-                for category in data["categories"]
-            ],
+            categories=cls.clean_categories(data["categories"]),
             origin=Origin.from_json(data["origin"]),
         )
 
