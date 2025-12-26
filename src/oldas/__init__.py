@@ -16,6 +16,7 @@ __licence__ = "MIT"
 
 ##############################################################################
 # Local imports.
+from ._prefixes import Prefix, id_is_a_feed, id_is_a_folder
 from ._states import State
 from .articles import Article, Articles
 from .exceptions import OldASError, OldASInvalidLogin
@@ -33,8 +34,11 @@ __all__ = [
     "Counts",
     "Folder",
     "Folders",
+    "id_is_a_feed",
+    "id_is_a_folder",
     "OldASError",
     "OldASInvalidLogin",
+    "Prefix",
     "Session",
     "State",
     "Subscription",
