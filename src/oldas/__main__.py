@@ -16,7 +16,7 @@ async def main() -> None:
         )
     sample_subscription = (await Subscriptions.load(session))[0]
     articles = await Articles.load_new_since(
-        session, sample_subscription, datetime.now() - timedelta(hours=5)
+        session, datetime.now() - timedelta(hours=5), sample_subscription
     )
     for article in articles:
         print(f"{article.title} - {article.published} - {article.updated}")
