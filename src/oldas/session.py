@@ -168,7 +168,8 @@ class Session:
             OldASError: If there was an error connecting or logging in.
         """
         self._must_be_logged_in()
-        async with AsyncClient() as client:
+        # TODO: Make this timeout configurable.
+        async with AsyncClient(timeout=60) as client:
             return self._verify(
                 (
                     await self._call(
