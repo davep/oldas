@@ -174,7 +174,7 @@ class Articles(OldList[Article]):
 
     @classmethod
     async def stream(
-        cls, session: Session, stream: str | Subscription | Folder, **filters: Any
+        cls, session: Session, stream: str | Subscription | Folder = "", **filters: Any
     ) -> AsyncIterator[Article]:
         """Load articles from a given stream.
 
@@ -201,7 +201,7 @@ class Articles(OldList[Article]):
 
     @classmethod
     async def load(
-        cls, session: Session, stream: str | Subscription | Folder, **filters: Any
+        cls, session: Session, stream: str | Subscription | Folder = "", **filters: Any
     ) -> Articles:
         """Load articles for a given stream.
 
@@ -220,7 +220,7 @@ class Articles(OldList[Article]):
 
     @classmethod
     async def load_unread(
-        cls, session: Session, stream: str | Subscription | Folder
+        cls, session: Session, stream: str | Subscription | Folder = ""
     ) -> Articles:
         """Load unread articles for a given stream.
 
@@ -235,14 +235,14 @@ class Articles(OldList[Article]):
 
     @classmethod
     async def load_new_since(
-        cls, session: Session, stream: str | Subscription | Folder, since: datetime
+            cls, session: Session, since: datetime, stream: str | Subscription | Folder = ""
     ) -> Articles:
         """Load articles newer than a given time for a given stream.
 
         Args:
             session: The API session object.
-            stream: The stream identifier to load from.
             since: Time from which to load articles.
+            stream: The stream identifier to load from.
 
         Returns:
             The `Articles`.
