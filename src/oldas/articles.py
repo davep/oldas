@@ -190,7 +190,7 @@ class Articles(OldList[Article]):
         continuation: str | None = ""
         while True:
             result = await session.get(
-                "/stream/contents", s=stream, c=continuation, n=1_000, **filters
+                "/stream/contents", s=stream, c=continuation, **filters
             )
             for article in (
                 Article.from_json(article) for article in result.get("items", [])
@@ -200,58 +200,24 @@ class Articles(OldList[Article]):
                 break
 
     @classmethod
-    async def load(
-        cls, session: Session, stream: str | Subscription | Folder = "", **filters: Any
-    ) -> Articles:
-        """Load articles for a given stream.
-
-        Args:
-            session: The API session object.
-            stream: The stream identifier to load from.
-            filters: Optional filters for the API.
-
-        Returns:
-            The `Articles`.
-        """
-        articles: list[Article] = []
-        async for article in cls.stream(session, stream, **filters):
-            articles.append(article)
-        return cls(articles)
-
-    @classmethod
-    async def load_unread(
-        cls, session: Session, stream: str | Subscription | Folder = ""
-    ) -> Articles:
-        """Load unread articles for a given stream.
-
-        Args:
-            session: The API session object.
-            stream: The stream identifier to load from.
-
-        Returns:
-            The `Articles`.
-        """
-        return await cls.load(session, stream, xt=State.READ)
-
-    @classmethod
-    async def load_new_since(
-        cls, session: Session, since: datetime, stream: str | Subscription | Folder = ""
-    ) -> Articles:
-        """Load articles newer than a given time for a given stream.
+    async def stream_new_since(cls, session: Session, since: datetime, stream: str | Subscription | Folder = "", **filters: Any) -> AsyncIterator[Article]:
+        """Stream all articles newer than a given time.
 
         Args:
             session: The API session object.
             since: Time from which to load articles.
-            stream: The stream identifier to load from.
+            stream: The stream identifier to stream from.
 
-        Returns:
-            The `Articles`.
+        Yields:
+            Articles.
         """
-        return await cls.load(
+        async for article in cls.stream(
             session,
             stream,
-            ot=since.timestamp(),  # codespell:ignore ot
-        )
+            ot=since.timestamp(),  # codespell:ignore ot,
+            **filters
+        ):
+            yield article
 
 
 ### articles.py ends here
