@@ -235,7 +235,7 @@ class Articles(OldList[Article]):
 
     @classmethod
     async def load_new_since(
-            cls, session: Session, since: datetime, stream: str | Subscription | Folder = ""
+        cls, session: Session, since: datetime, stream: str | Subscription | Folder = ""
     ) -> Articles:
         """Load articles newer than a given time for a given stream.
 
