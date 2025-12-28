@@ -220,7 +220,10 @@ class Articles(OldList[Article]):
         async for article in cls.stream(
             session,
             stream,
-            ot=since.timestamp(),  # codespell:ignore ot,
+            ot=int(since.timestamp()),  # codespell:ignore ot,
+            # The continuation of "newer than" filtered items seems to not
+            # work unless we order the result; so let's go oldest first...
+            r="o",
             **filters,
         ):
             yield article
