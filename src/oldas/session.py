@@ -6,7 +6,7 @@ from typing import Any, Awaitable, Final, Self
 ##############################################################################
 # Httpx imports.
 import httpx
-from httpx import AsyncClient, HTTPStatusError, RequestError, Response
+from httpx import AsyncClient, HTTPStatusError, ReadTimeout, RequestError, Response
 
 ##############################################################################
 # Local imports.
@@ -68,6 +68,8 @@ class Session:
         """
         try:
             response = await call
+        except ReadTimeout:
+            raise OldASError("Timeout while talking to TheOldReader API")
         except RequestError as error:
             raise OldASError(str(error)) from None
         try:
