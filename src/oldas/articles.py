@@ -200,7 +200,13 @@ class Articles(OldList[Article]):
                 break
 
     @classmethod
-    async def stream_new_since(cls, session: Session, since: datetime, stream: str | Subscription | Folder = "", **filters: Any) -> AsyncIterator[Article]:
+    async def stream_new_since(
+        cls,
+        session: Session,
+        since: datetime,
+        stream: str | Subscription | Folder = "",
+        **filters: Any,
+    ) -> AsyncIterator[Article]:
         """Stream all articles newer than a given time.
 
         Args:
@@ -215,7 +221,7 @@ class Articles(OldList[Article]):
             session,
             stream,
             ot=since.timestamp(),  # codespell:ignore ot,
-            **filters
+            **filters,
         ):
             yield article
 
