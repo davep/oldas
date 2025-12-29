@@ -141,7 +141,7 @@ class Session:
             raise OldASLoginNeeded("API call made but not logged in")
 
     @staticmethod
-    def _verify(data: Any) -> RawData:
+    def _verify_raw(data: Any) -> RawData:
         """Verify that the given data is of the type we expect.
 
         Args:
@@ -170,7 +170,7 @@ class Session:
         self._must_be_logged_in()
         # TODO: Make this timeout configurable.
         async with AsyncClient(timeout=60) as client:
-            return self._verify(
+            return self._verify_raw(
                 (
                     await self._call(
                         client.get(
