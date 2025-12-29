@@ -236,7 +236,7 @@ class Session:
         Returns:
             The boolean result of the call.
         """
-        return await self.post("/edit-tag", i=item, **{operation: str(tag)})
+        return await self.post("/edit-tag", i=item, **{str(operation): str(tag)})
 
     async def add_tag(self, item: str | list[str], tag: str | State) -> bool:
         """Add a tag to an item.
