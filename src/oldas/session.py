@@ -1,7 +1,7 @@
 """Provides a class for getting and managing a login session."""
 
 ##############################################################################
-from typing import Any, Awaitable, Final, Self
+from typing import Any, Awaitable, Final, Literal, Self
 
 ##############################################################################
 # Httpx imports.
@@ -11,6 +11,7 @@ from httpx import AsyncClient, HTTPStatusError, ReadTimeout, RequestError, Respo
 ##############################################################################
 # Local imports.
 from . import __version__
+from ._states import State
 from ._types import RawData
 from .exceptions import OldASError, OldASInvalidLogin, OldASLoginNeeded
 
@@ -181,6 +182,85 @@ class Session:
                     )
                 ).json()
             )
+
+    @staticmethod
+    def _verify_ok(response: Response) -> bool:
+        """Verify that the given data is of the type we expect.
+
+        Args:
+            response: The response that was received.
+
+        Returns:
+            `True`/`False` if there was a boolean response.
+        """
+        return response.text.strip() == "OK"
+
+    async def post(self, url: str, **data: Any) -> bool:
+        """Make a POST call to the API.
+
+        Args:
+            url: The URL to call.
+            data: The data to pass.
+
+        Returns:
+            The boolean response from the API.
+
+        Raises:
+            OldASError: If there was an error connecting or logging in.
+        """
+        self._must_be_logged_in()
+        # TODO: Make this timeout configurable.
+        async with AsyncClient(timeout=60) as client:
+            return self._verify_ok(
+                (
+                    await self._call(
+                        client.post(
+                            f"{self._API}{url}",
+                            headers=self._headers,
+                            data=data,
+                        )
+                    )
+                )
+            )
+
+    async def _edit_tag(
+        self, item: str | list[str], tag: str | State, operation: Literal["a", "r"]
+    ) -> bool:
+        """Perform an edit on a tag.
+
+        Args:
+            item: The item(s) to perform the edit on.
+            tag: The tag to add or remove.
+            operation: The operation to perform.
+
+        Returns:
+            The boolean result of the call.
+        """
+        return await self.post("/edit-tag", i=item, **{operation: str(tag)})
+
+    async def add_tag(self, item: str | list[str], tag: str | State) -> bool:
+        """Add a tag to an item.
+
+        Args:
+            item: The item(s) to perform the edit on.
+            tag: The tag to add.
+
+        Returns:
+            The boolean result of the call.
+        """
+        return await self._edit_tag(item, tag, "a")
+
+    async def remove_tag(self, item: str | list[str], tag: str | State) -> bool:
+        """Remove a tag from an item.
+
+        Args:
+            item: The item(s) to perform the edit on.
+            tag: The tag to remove.
+
+        Returns:
+            The boolean result of the call.
+        """
+        return await self._edit_tag(item, tag, "r")
 
 
 ### session.py ends here

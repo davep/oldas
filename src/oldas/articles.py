@@ -130,6 +130,28 @@ class Article(NamedTuple):
         """Does the article look like it's bee updated?"""
         return self.published != self.updated
 
+    async def mark_read(self, session: Session) -> bool:
+        """Mark the article as read.
+
+        Args:
+            session: The API session object.
+
+        Returns:
+            The boolean response from the API.
+        """
+        return await session.add_tag(self.id, State.READ)
+
+    async def mark_unread(self, session: Session) -> bool:
+        """Mark the article as unread.
+
+        Args:
+            session: The API session object.
+
+        Returns:
+            The boolean response from the API.
+        """
+        return await session.remove_tag(self.id, State.READ)
+
     @staticmethod
     def clean_categories(categories: Iterable[str]) -> list[State | str]:
         """Clean up a collection of categories.
