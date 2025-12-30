@@ -49,6 +49,15 @@ class Session:
         """The auth code."""
         self._timeout = timeout
         """The timeout, in seconds, to use when making calls."""
+        self._web_client_: AsyncClient | None = None
+        """The internal reference to the HTTPX client."""
+
+    @property
+    def _web_client(self) -> AsyncClient:
+        """The HTTPX client."""
+        if self._web_client_ is None:
+            self._web_client_ = AsyncClient(timeout=self._timeout)
+        return self._web_client_
 
     @property
     def logged_in(self) -> bool:
@@ -113,27 +122,26 @@ class Session:
             OldASError: If there was an error connecting or logging in.
         """
         if self._auth_code is None:
-            async with AsyncClient() as client:
-                self._auth_code = (
-                    (
-                        await self._call(
-                            client.post(
-                                self._LOGIN,
-                                json={
-                                    "accountType": "HOSTED_OR_GOOGLE",
-                                    "client": self._client,
-                                    "Email": user,
-                                    "Passwd": password,
-                                    "service": "reader",
-                                    "output": "json",
-                                },
-                                headers=self._headers,
-                            )
+            self._auth_code = (
+                (
+                    await self._call(
+                        self._web_client.post(
+                            self._LOGIN,
+                            json={
+                                "accountType": "HOSTED_OR_GOOGLE",
+                                "client": self._client,
+                                "Email": user,
+                                "Passwd": password,
+                                "service": "reader",
+                                "output": "json",
+                            },
+                            headers=self._headers,
                         )
                     )
-                    .json()
-                    .get("Auth")
                 )
+                .json()
+                .get("Auth")
+            )
         return self
 
     def logout(self) -> Self:
@@ -174,18 +182,17 @@ class Session:
             OldASError: If there was an error connecting or logging in.
         """
         self._must_be_logged_in()
-        async with AsyncClient(timeout=self._timeout) as client:
-            return self._verify_raw(
-                (
-                    await self._call(
-                        client.get(
-                            f"{self._API}{url}",
-                            headers=self._headers,
-                            params={**params, "output": "json"},
-                        )
+        return self._verify_raw(
+            (
+                await self._call(
+                    self._web_client.get(
+                        f"{self._API}{url}",
+                        headers=self._headers,
+                        params={**params, "output": "json"},
                     )
-                ).json()
-            )
+                )
+            ).json()
+        )
 
     @staticmethod
     def _verify_ok(response: Response) -> bool:
@@ -213,18 +220,17 @@ class Session:
             OldASError: If there was an error connecting or logging in.
         """
         self._must_be_logged_in()
-        async with AsyncClient(timeout=self._timeout) as client:
-            return self._verify_ok(
-                (
-                    await self._call(
-                        client.post(
-                            f"{self._API}{url}",
-                            headers=self._headers,
-                            data=data,
-                        )
+        return self._verify_ok(
+            (
+                await self._call(
+                    self._web_client.post(
+                        f"{self._API}{url}",
+                        headers=self._headers,
+                        data=data,
                     )
                 )
             )
+        )
 
     async def _edit_tag(
         self, item: str | list[str], tag: str | State, operation: Literal["a", "r"]
