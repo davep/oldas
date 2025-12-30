@@ -29,12 +29,15 @@ class Session:
     _USER_AGENT: Final[str] = f"oldas v{__version__} (https://github.com/davep/oldas)"
     """The user agent to use for the library."""
 
-    def __init__(self, client: str, auth_code: str | None = None) -> None:
+    def __init__(
+        self, client: str, auth_code: str | None = None, timeout: int = 60
+    ) -> None:
         """Initialise the object.
 
         Args:
             client: The name of the client that is logging in.
             auth_code: Optional authorization code to resume a session.
+            timeout: The timeout in seconds to use when making calls.
 
         Note:
             The `client` should be a unique name you give your client
@@ -44,6 +47,8 @@ class Session:
         """The name of the client to log in as."""
         self._auth_code = auth_code
         """The auth code."""
+        self._timeout = timeout
+        """The timeout, in seconds, to use when making calls."""
 
     @property
     def logged_in(self) -> bool:
@@ -169,8 +174,7 @@ class Session:
             OldASError: If there was an error connecting or logging in.
         """
         self._must_be_logged_in()
-        # TODO: Make this timeout configurable.
-        async with AsyncClient(timeout=60) as client:
+        async with AsyncClient(timeout=self._timeout) as client:
             return self._verify_raw(
                 (
                     await self._call(
@@ -209,8 +213,7 @@ class Session:
             OldASError: If there was an error connecting or logging in.
         """
         self._must_be_logged_in()
-        # TODO: Make this timeout configurable.
-        async with AsyncClient(timeout=60) as client:
+        async with AsyncClient(timeout=self._timeout) as client:
             return self._verify_ok(
                 (
                     await self._call(
