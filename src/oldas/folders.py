@@ -11,7 +11,6 @@ from typing import NamedTuple
 ##############################################################################
 # Local imports.
 from ._prefixes import Prefix, id_is_a_folder
-from ._states import State
 from ._types import OldList, RawData
 from .session import Session
 
