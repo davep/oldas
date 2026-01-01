@@ -35,6 +35,7 @@ jobs:
       - name: Install Dependencies
         run: |
           echo ${{ matrix.python-version }} > .python-version
+          touch .env
           make setup
 
       - name: Check for typos
