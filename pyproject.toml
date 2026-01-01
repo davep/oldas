@@ -1,7 +1,7 @@
 [project]
 name = "oldas"
 version = "0.0.1"
-description = "Coming at some point"
+description = "An async-friendly wrapper library for the API of TheOldReader"
 readme = "README.md"
 authors = [
     { name = "Dave Pearson", email = "davep@davep.org" }
@@ -10,9 +10,38 @@ requires-python = ">=3.11"
 dependencies = [
     "httpx>=0.28.1",
 ]
+license = "MIT"
+keywords = [
+    "API",
+    "async",
+    "atom",
+    "client",
+    "Google Reader",
+    "library",
+    "RSS",
+    "TheOldReader",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Software Development :: Libraries",
+    "Typing :: Typed",
+]
 
-[project.scripts]
-oldas = "oldas:main"
+[project.urls]
+Homepage = "https://oldas.davep.dev/"
+Repository = "https://github.com/davep/oldas"
+Documentation = "https://oldas.davep.dev/"
+Source = "https://github.com/davep/oldas"
+Issues = "https://github.com/davep/oldas/issues"
+Discussions = "https://github.com/davep/oldas/discussions"
 
 [build-system]
 requires = ["uv_build>=0.9.2,<0.10.0"]
@@ -24,11 +53,6 @@ url = "https://test.pypi.org/simple/"
 publish-url = "https://test.pypi.org/legacy/"
 explicit = true
 
-[tool.pyright]
-venvPath="."
-venv=".venv"
-exclude=[".venv"]
-
 [dependency-groups]
 dev = [
     "codespell>=2.4.1",
@@ -36,3 +60,8 @@ dev = [
     "pre-commit>=4.3.0",
     "ruff>=0.14.0",
 ]
+
+[tool.pyright]
+venvPath="."
+venv=".venv"
+exclude=[".venv"]
