@@ -127,7 +127,7 @@ class Article(NamedTuple):
 
     @property
     def is_updated(self) -> bool:
-        """Does the article look like it's bee updated?"""
+        """Does the article look like it's been updated?"""
         return self.published != self.updated
 
     async def mark_read(self, session: Session) -> bool:
