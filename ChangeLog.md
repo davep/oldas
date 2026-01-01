@@ -1,8 +1,8 @@
 # OldAS ChangeLog
 
-## Unreleased
+## v0.1.0
 
-**Released: WiP**
+**Released: 2026-01-01**
 
 - Initial alpha release.
 
