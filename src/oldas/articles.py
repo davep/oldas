@@ -83,6 +83,39 @@ class Origin(NamedTuple):
 
 
 ##############################################################################
+class Alternate(NamedTuple):
+    """Holds details of an alternate for an article."""
+
+    href: str
+    """The URL for the alternate."""
+    mime_type: str
+    """The MIME type of the alternate."""
+    raw: RawData | None = None
+    """The raw data from the API."""
+
+    @classmethod
+    def from_json(cls, data: RawData) -> Alternate:
+        """Load the category from JSON data.
+
+        Args:
+            data: The data to load the category from.
+
+        Returns:
+            The category.
+        """
+        return cls(
+            raw=data,
+            href=data["href"],
+            mime_type=data["type"],
+        )
+
+
+##############################################################################
+class Alternates(OldList[Alternate]):
+    """Holds a list of alternates."""
+
+
+##############################################################################
 class Article(NamedTuple):
     """Holds details about an article."""
 
@@ -102,6 +135,8 @@ class Article(NamedTuple):
     """The list of categories associated with this article."""
     origin: Origin
     """The origin of the article."""
+    alternate: Alternates
+    """Alternates for the article."""
     raw: RawData | None = None
     """The raw data from the API."""
 
@@ -129,6 +164,18 @@ class Article(NamedTuple):
     def is_updated(self) -> bool:
         """Does the article look like it's been updated?"""
         return self.published != self.updated
+
+    @property
+    def html_url(self) -> str | None:
+        """The best guess at the HTML URL for the article."""
+        return next(
+            (
+                alternate.href
+                for alternate in self.alternate
+                if alternate.mime_type == "text/html"
+            ),
+            None,
+        )
 
     async def mark_read(self, session: Session) -> bool:
         """Mark the article as read.
@@ -187,6 +234,9 @@ class Article(NamedTuple):
             summary=Summary.from_json(data["summary"]),
             categories=cls.clean_categories(data["categories"]),
             origin=Origin.from_json(data["origin"]),
+            alternate=Alternates(
+                Alternate.from_json(alternate) for alternate in data["alternate"]
+            ),
         )
 
 
