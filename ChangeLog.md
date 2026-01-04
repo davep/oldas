@@ -1,8 +1,8 @@
 # OldAS ChangeLog
 
-## Unreleased
+## v0.2.0
 
-**Released: WiP**
+**Released: 2026-01-04**
 
 - Added support for loading up the alternates for an article.
   ([#2](https://github.com/davep/oldas/pull/2))
