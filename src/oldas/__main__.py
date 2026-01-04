@@ -17,8 +17,7 @@ async def main() -> None:
             session, i="tag:google.com,2005:reader/item/6952dab95f45b77afe000dbf"
         )
     )
-    for alternate in article.alternate:
-        print(alternate)
+    print(article.html_url)
 
 
 if __name__ == "__main__":

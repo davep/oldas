@@ -165,6 +165,18 @@ class Article(NamedTuple):
         """Does the article look like it's been updated?"""
         return self.published != self.updated
 
+    @property
+    def html_url(self) -> str | None:
+        """The best guess at the HTML URL for the article."""
+        return next(
+            (
+                alternate.href
+                for alternate in self.alternate
+                if alternate.mime_type == "text/html"
+            ),
+            None,
+        )
+
     async def mark_read(self, session: Session) -> bool:
         """Mark the article as read.
 
