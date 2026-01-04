@@ -83,6 +83,39 @@ class Origin(NamedTuple):
 
 
 ##############################################################################
+class Alternate(NamedTuple):
+    """Holds details of an alternate for an article."""
+
+    href: str
+    """The URL for the alternate."""
+    mime_type: str
+    """The MIME type of the alternate."""
+    raw: RawData | None = None
+    """The raw data from the API."""
+
+    @classmethod
+    def from_json(cls, data: RawData) -> Alternate:
+        """Load the category from JSON data.
+
+        Args:
+            data: The data to load the category from.
+
+        Returns:
+            The category.
+        """
+        return cls(
+            raw=data,
+            href=data["href"],
+            mime_type=data["type"],
+        )
+
+
+##############################################################################
+class Alternates(OldList[NamedTuple]):
+    """Holds a list of alternates."""
+
+
+##############################################################################
 class Article(NamedTuple):
     """Holds details about an article."""
 
@@ -102,6 +135,8 @@ class Article(NamedTuple):
     """The list of categories associated with this article."""
     origin: Origin
     """The origin of the article."""
+    alternate: Alternates
+    """Alternates for the article."""
     raw: RawData | None = None
     """The raw data from the API."""
 
@@ -187,6 +222,9 @@ class Article(NamedTuple):
             summary=Summary.from_json(data["summary"]),
             categories=cls.clean_categories(data["categories"]),
             origin=Origin.from_json(data["origin"]),
+            alternate=Alternates(
+                Alternate.from_json(alternate) for alternate in data["alternate"]
+            ),
         )
 
 
