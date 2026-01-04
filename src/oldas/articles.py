@@ -111,7 +111,7 @@ class Alternate(NamedTuple):
 
 
 ##############################################################################
-class Alternates(OldList[NamedTuple]):
+class Alternates(OldList[Alternate]):
     """Holds a list of alternates."""
 
 
