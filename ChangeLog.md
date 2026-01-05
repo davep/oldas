@@ -1,5 +1,12 @@
 # OldAS ChangeLog
 
+## Unreleased
+
+**Released: WiP**
+
+- Added `ArticleIDs` and related classes, providing methods for loading up a
+  list of pure article IDs.
+
 ## v0.2.0
 
 **Released: 2026-01-04**

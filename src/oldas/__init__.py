@@ -21,6 +21,7 @@ from ._states import State
 from .articles import Article, Articles
 from .exceptions import OldASError, OldASInvalidLogin
 from .folders import Folder, Folders
+from .id_streams import ArticleID, ArticleIDs
 from .session import Session
 from .subscriptions import Subscription, Subscriptions
 from .unread import Count, Counts, Unread
@@ -29,14 +30,16 @@ from .unread import Count, Counts, Unread
 # Exports.
 __all__ = [
     "Article",
+    "ArticleID",
+    "ArticleIDs",
     "Articles",
     "Count",
     "Counts",
     "Folder",
     "Folders",
-    "id_is_an_article",
     "id_is_a_feed",
     "id_is_a_folder",
+    "id_is_an_article",
     "OldASError",
     "OldASInvalidLogin",
     "Prefix",

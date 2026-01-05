@@ -1,7 +1,8 @@
 from asyncio import run
 from os import getenv
 
-from .articles import Articles
+from oldas import ArticleIDs
+
 from .session import Session
 
 
@@ -12,12 +13,8 @@ async def main() -> None:
         session = await Session("test").login(
             getenv("TOR_USER", ""), getenv("TOR_PASSWORD", "")
         )
-    article = await anext(
-        Articles.stream(
-            session, i="tag:google.com,2005:reader/item/6952dab95f45b77afe000dbf"
-        )
-    )
-    print(article.html_url)
+    for article in await ArticleIDs.load_unread(session):
+        print(article.full_id)
 
 
 if __name__ == "__main__":
