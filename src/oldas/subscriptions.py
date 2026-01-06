@@ -45,7 +45,7 @@ class Category(NamedTuple):
 
 ##############################################################################
 class Categories(OldList[Category]):
-    """Holds a collection of categories."""
+    """Holds a collection of [categories][oldas.subscriptions.Category]."""
 
 
 ##############################################################################
@@ -65,7 +65,7 @@ class Subscription(NamedTuple):
     html_url: str
     """The HTML URL of the subscription."""
     categories: Categories
-    """The Categories for the subscription."""
+    """The categories for the subscription."""
     raw: RawData | None = None
     """The raw data from the API."""
 
@@ -97,7 +97,7 @@ class Subscription(NamedTuple):
 
 ##############################################################################
 class Subscriptions(OldList[Subscription]):
-    """Loads and holds the full list of subscriptions."""
+    """Loads and holds the full list of [subscriptions][oldas.Subscription]."""
 
     @classmethod
     async def load(cls, session: Session) -> Subscriptions:

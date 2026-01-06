@@ -24,6 +24,10 @@ def id_is_a(item_id: str, prefix: Prefix) -> bool:
     Args:
         item_id: The ID to check.
         prefix: The prefix to test against.
+
+    Returns:
+        [`True`][True] if the `item_id` has the provided `prefix`,
+        [`False`][False] if not.
     """
     return item_id.startswith(prefix)
 
@@ -36,7 +40,7 @@ def id_is_a_folder(item_id: str) -> bool:
         item_id: The ID to check.
 
     Returns:
-        `True` if the ID looks like a folder, `False` if not.
+        [`True`][True] if the ID looks like a folder, [`False`][False] if not.
     """
     return id_is_a(item_id, Prefix.FOLDER)
 
@@ -49,7 +53,7 @@ def id_is_a_feed(item_id: str) -> bool:
         item_id: The ID to check.
 
     Returns:
-        `True` if the ID looks like a feed, `False` if not.
+        [`True`][True] if the ID looks like a feed, [`False`][False] if not.
     """
     return id_is_a(item_id, Prefix.FEED)
 
@@ -62,7 +66,7 @@ def id_is_an_article(item_id: str) -> bool:
         item_id: The ID to check.
 
     Returns:
-        `True` if the ID looks like an article, `False` if not.
+        [`True`][True] if the ID looks like an article, [`False`][False] if not.
     """
     return id_is_a(item_id, Prefix.ARTICLE)
 

@@ -17,6 +17,8 @@ nav:
       - library-contents/types.md
       - library-contents/unread.md
       - library-contents/user.md
+  - Change Log: changelog.md
+  - License: license.md
 
 watch:
   - src/oldas
@@ -31,7 +33,7 @@ plugins:
   autorefs:
   mkdocstrings:
     default_handler: python
-    enable_inventory: false
+    enable_inventory: true
     handlers:
       python:
         inventories:
@@ -44,7 +46,7 @@ plugins:
           modernize_annotations: false
           show_symbol_type_heading: true
           show_symbol_type_toc: true
-          show_signature_annotations: false
+          show_signature_annotations: true
           separate_signature: true
           signature_crossrefs: true
           merge_init_into_class: true

@@ -33,13 +33,13 @@ class ArticleID(NamedTuple):
 
     @classmethod
     def from_json(cls, data: RawData) -> ArticleID:
-        """Load the summary from JSON data.
+        """Load the article ID from JSON data.
 
         Args:
-            data: The data to load the summary from.
+            data: The data to load the article ID from.
 
         Returns:
-            The summary.
+            The article ID.
         """
         return cls(
             raw=data,
@@ -53,20 +53,20 @@ class ArticleID(NamedTuple):
 
 ##############################################################################
 class ArticleIDs(OldList[ArticleID]):
-    """Loads and holds article ID lists."""
+    """Loads and holds [article ID][oldas.ArticleID] list."""
 
     @classmethod
     async def stream(
         cls, session: Session, state: State, **filters: Any
     ) -> AsyncIterator[ArticleID]:
-        """Stream article IDs.
+        """Stream [article IDs][oldas.ArticleID].
 
         Args:
             session: The API session object.
-            state: The `State` to stream.
+            state: The [`State`][oldas.State] to stream.
 
         Yields:
-            The article IDs.
+            The [article IDs][oldas.ArticleID].
         """
         continuation: str | None = ""
         while True:
@@ -83,15 +83,15 @@ class ArticleIDs(OldList[ArticleID]):
 
     @classmethod
     async def load(cls, session: Session, state: State, **filters: Any) -> ArticleIDs:
-        """Load article IDs.
+        """Load [article IDs][oldas.ArticleID].
 
         Args:
             session: The API session object.
-            state: The `State` to load IDs for.
+            state: The [`State`][oldas.State] to stream.
             filters: Any addition filter values.
 
         Returns:
-            The list of matching article IDs.
+            The list of matching [article IDs][oldas.ArticleID].
         """
         ids: list[ArticleID] = []
         async for article_id in cls.stream(session, state, **filters):
@@ -100,25 +100,25 @@ class ArticleIDs(OldList[ArticleID]):
 
     @classmethod
     async def load_read(cls, session: Session) -> ArticleIDs:
-        """Load the list of IDs for all read articles.
+        """Load the list of [IDs][oldas.ArticleID] for all read articles.
 
         Args:
             session: The API session object.
 
         Returns:
-            The list of read article IDs.
+            The list of read [article IDs][oldas.ArticleID].
         """
         return await cls.load(session, State.READ)
 
     @classmethod
     async def load_unread(cls, session: Session) -> ArticleIDs:
-        """Load the list of IDs for all unread articles.
+        """Load the list of [IDs][oldas.ArticleID] for all unread articles.
 
         Args:
             session: The API session object.
 
         Returns:
-            The list of unread article IDs.
+            The list of unread [article IDs][oldas.ArticleID].
         """
         return await cls.load(session, State.READING_LIST, xt=State.READ)
 

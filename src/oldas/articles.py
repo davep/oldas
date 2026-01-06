@@ -25,7 +25,7 @@ Direction = Literal["ltr", "rtl"]
 
 ##############################################################################
 class Summary(NamedTuple):
-    """The summary details for an article."""
+    """The summary details for an [`Article`][oldas.Article]."""
 
     direction: Direction
     """The direction for the text in the summary."""
@@ -53,7 +53,7 @@ class Summary(NamedTuple):
 
 ##############################################################################
 class Origin(NamedTuple):
-    """The origin details for an article."""
+    """The origin details for an [`Article`][oldas.Article]."""
 
     stream_id: str | None
     """The stream ID for the article's origin."""
@@ -72,7 +72,7 @@ class Origin(NamedTuple):
             data: The data to load the origin from.
 
         Returns:
-            The summary.
+            The origin data.
         """
         return cls(
             raw=data,
@@ -84,7 +84,7 @@ class Origin(NamedTuple):
 
 ##############################################################################
 class Alternate(NamedTuple):
-    """Holds details of an alternate for an article."""
+    """Holds details of an alternate for an [`Article`][oldas.Article]."""
 
     href: str
     """The URL for the alternate."""
@@ -95,13 +95,13 @@ class Alternate(NamedTuple):
 
     @classmethod
     def from_json(cls, data: RawData) -> Alternate:
-        """Load the category from JSON data.
+        """Load the alternate data from JSON data.
 
         Args:
-            data: The data to load the category from.
+            data: The data to load the alternate data from.
 
         Returns:
-            The category.
+            The alternates.
         """
         return cls(
             raw=data,
@@ -112,7 +112,7 @@ class Alternate(NamedTuple):
 
 ##############################################################################
 class Alternates(OldList[Alternate]):
-    """Holds a list of alternates."""
+    """Holds a list of [alternates][oldas.articles.Alternate] for an [`Article`][oldas.Article]."""
 
 
 ##############################################################################
@@ -208,6 +208,15 @@ class Article(NamedTuple):
 
         Returns:
             The cleaned categories.
+
+        The incoming list of categories will simply be a list of strings,
+        but each of them may refer to a folder or a [state][oldas.State],
+        etc. This method will clean the list, turning relevant values into
+        their specific type.
+
+        Note:
+            For the moment only values matching a [`State`][oldas.State]
+            will be turned into their related type.
         """
         return [
             category if id_is_a_folder(category) else State(category)
@@ -242,20 +251,21 @@ class Article(NamedTuple):
 
 ##############################################################################
 class Articles(OldList[Article]):
-    """Loads and holds a full list of articles."""
+    """Loads and holds a full list of [articles][oldas.Article]."""
 
     @classmethod
     async def stream(
         cls, session: Session, stream: str | Subscription | Folder = "", **filters: Any
     ) -> AsyncIterator[Article]:
-        """Load articles from a given stream.
+        """Load [articles][oldas.Article] from a given stream.
 
         Args:
             session: The API session object.
             stream: The stream identifier to load from.
+            filters: Any other filters to pass to the API.
 
         Yields:
-            The articles.
+            The [articles][oldas.Article] matching the request.
         """
         if isinstance(stream, (Folder, Subscription)):
             stream = stream.id
@@ -279,15 +289,16 @@ class Articles(OldList[Article]):
         stream: str | Subscription | Folder = "",
         **filters: Any,
     ) -> AsyncIterator[Article]:
-        """Stream all articles newer than a given time.
+        """Stream all [articles][oldas.Article] newer than a given time.
 
         Args:
             session: The API session object.
             since: Time from which to load articles.
             stream: The stream identifier to stream from.
+            filters: Any other filters to pass to the API.
 
         Yields:
-            Articles.
+            The [articles][oldas.Article] matching the request.
         """
         async for article in cls.stream(
             session,
