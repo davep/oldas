@@ -5,7 +5,7 @@
 **Released: WiP**
 
 - Added `ArticleIDs` and related classes, providing methods for loading up a
-  list of pure article IDs.
+  list of pure article IDs. ([#4](https://github.com/davep/oldas/pull/4))
 
 ## v0.2.0
 
