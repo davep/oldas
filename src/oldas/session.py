@@ -11,8 +11,8 @@ from httpx import AsyncClient, HTTPStatusError, ReadTimeout, RequestError, Respo
 ##############################################################################
 # Local imports.
 from . import __version__
-from ._states import State
 from .exceptions import OldASError, OldASInvalidLogin, OldASLoginNeeded
+from .states import State
 from .types import RawData
 
 

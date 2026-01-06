@@ -8,8 +8,8 @@ from typing import Any, AsyncIterator, NamedTuple
 ##############################################################################
 # Local imports.
 from ._prefixes import Prefix
-from ._states import State
 from .session import Session
+from .states import State
 from .types import OldList, RawData
 
 

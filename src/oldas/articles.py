@@ -12,9 +12,9 @@ from typing import Any, AsyncIterator, Iterable, Literal, NamedTuple
 ##############################################################################
 # Local imports.
 from ._prefixes import id_is_a_folder
-from ._states import State
 from .folders import Folder
 from .session import Session
+from .states import State
 from .subscriptions import Subscription
 from .types import OldList, RawData
 
