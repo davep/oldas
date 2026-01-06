@@ -11,7 +11,7 @@ from typing import NamedTuple
 
 ##############################################################################
 # Local imports.
-from ._prefixes import Prefix, id_is_a
+from .prefixes import Prefix, id_is_a
 from .session import Session
 from .types import OldList, RawData
 

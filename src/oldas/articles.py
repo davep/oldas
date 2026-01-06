@@ -11,8 +11,8 @@ from typing import Any, AsyncIterator, Iterable, Literal, NamedTuple
 
 ##############################################################################
 # Local imports.
-from ._prefixes import id_is_a_folder
 from .folders import Folder
+from .prefixes import id_is_a_folder
 from .session import Session
 from .states import State
 from .subscriptions import Subscription

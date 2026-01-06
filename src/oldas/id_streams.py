@@ -7,7 +7,7 @@ from typing import Any, AsyncIterator, NamedTuple
 
 ##############################################################################
 # Local imports.
-from ._prefixes import Prefix
+from .prefixes import Prefix
 from .session import Session
 from .states import State
 from .types import OldList, RawData
