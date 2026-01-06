@@ -17,6 +17,7 @@ nav:
       - library-contents/types.md
       - library-contents/unread.md
       - library-contents/user.md
+  - License: license.md
 
 watch:
   - src/oldas
