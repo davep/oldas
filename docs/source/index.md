@@ -1,7 +1,8 @@
 # Introduction
 
-OldAS is a library designed to allow async-friendly interaction with [the
-API](https://github.com/theoldreader/api) for
+OldAS is a library designed to allow
+[async](https://docs.python.org/3/library/asyncio.html)-friendly interaction
+with [the API](https://github.com/theoldreader/api) for
 [TheOldReader](https://theoldreader.com).
 
 # Installing
