@@ -66,7 +66,7 @@ class Session:
 
     @property
     def auth_code(self) -> str | None:
-        """The auth code, if we are logged in, else `None`."""
+        """The auth code, if we are logged in, else [`None`][None]."""
         return self._auth_code
 
     async def _call(self, call: Awaitable[Response]) -> Response:
@@ -145,7 +145,11 @@ class Session:
         return self
 
     def logout(self) -> Self:
-        """Log out of the TheOldReader."""
+        """Log out of the TheOldReader.
+
+        Returns:
+            Self.
+        """
         self._auth_code = None
         return self
 

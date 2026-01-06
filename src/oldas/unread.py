@@ -61,12 +61,12 @@ class Count(NamedTuple):
 
 ##############################################################################
 class Counts(OldList[Count]):
-    """Holds a collection of counts."""
+    """Holds a collection of [counts][oldas.Count]."""
 
 
 ##############################################################################
 class Unread(NamedTuple):
-    """Class that loads and holds unread counts."""
+    """Class that loads and holds [unread counts][oldas.Counts]."""
 
     total: int
     """The total unread count."""

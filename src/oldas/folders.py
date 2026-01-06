@@ -50,7 +50,7 @@ class Folder(NamedTuple):
 
 ##############################################################################
 class Folders(OldList[Folder]):
-    """Load the folder list from TheOldReader."""
+    """Load the [folder][oldas.Folder] list from TheOldReader."""
 
     @classmethod
     async def load(cls, session: Session) -> Folders:
@@ -60,7 +60,7 @@ class Folders(OldList[Folder]):
             session: The API session object.
 
         Returns:
-            A list of folders.
+            A list of [folders][oldas.Folder].
         """
         return cls(
             Folder.from_json(folder)
