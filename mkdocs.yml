@@ -9,8 +9,10 @@ nav:
       - library-contents/articles.md
       - library-contents/exceptions.md
       - library-contents/folders.md
+      - library-contents/id_streams.md
       - library-contents/session.md
       - library-contents/subscriptions.md
+      - library-contents/types.md
       - library-contents/unread.md
       - library-contents/user.md
 

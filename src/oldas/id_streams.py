@@ -9,8 +9,8 @@ from typing import Any, AsyncIterator, NamedTuple
 # Local imports.
 from ._prefixes import Prefix
 from ._states import State
-from ._types import OldList, RawData
 from .session import Session
+from .types import OldList, RawData
 
 
 ##############################################################################

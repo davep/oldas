@@ -11,8 +11,8 @@ from typing import NamedTuple
 
 ##############################################################################
 # Local imports.
-from ._types import OldList, RawData
 from .session import Session
+from .types import OldList, RawData
 
 
 ##############################################################################

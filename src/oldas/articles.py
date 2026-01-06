@@ -13,10 +13,10 @@ from typing import Any, AsyncIterator, Iterable, Literal, NamedTuple
 # Local imports.
 from ._prefixes import id_is_a_folder
 from ._states import State
-from ._types import OldList, RawData
 from .folders import Folder
 from .session import Session
 from .subscriptions import Subscription
+from .types import OldList, RawData
 
 ##############################################################################
 Direction = Literal["ltr", "rtl"]
