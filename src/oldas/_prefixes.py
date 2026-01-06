@@ -13,6 +13,8 @@ class Prefix(StrEnum):
     """A folder."""
     FEED = "feed/"
     """A feed."""
+    ARTICLE = "tag:google.com,2005:reader/item/"
+    """An article."""
 
 
 ##############################################################################
@@ -50,6 +52,19 @@ def id_is_a_feed(item_id: str) -> bool:
         `True` if the ID looks like a feed, `False` if not.
     """
     return id_is_a(item_id, Prefix.FEED)
+
+
+##############################################################################
+def id_is_an_article(item_id: str) -> bool:
+    """Does the ID look like it's an article?
+
+    Args:
+        item_id: The ID to check.
+
+    Returns:
+        `True` if the ID looks like an article, `False` if not.
+    """
+    return id_is_a(item_id, Prefix.ARTICLE)
 
 
 ### _prefixes.py ends here
