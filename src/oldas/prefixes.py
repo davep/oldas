@@ -67,4 +67,4 @@ def id_is_an_article(item_id: str) -> bool:
     return id_is_a(item_id, Prefix.ARTICLE)
 
 
-### _prefixes.py ends here
+### prefixes.py ends here

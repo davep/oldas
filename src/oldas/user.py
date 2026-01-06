@@ -10,8 +10,8 @@ from typing import NamedTuple
 
 ##############################################################################
 # Local imports.
-from ._types import RawData
 from .session import Session
+from .types import RawData
 
 
 ##############################################################################

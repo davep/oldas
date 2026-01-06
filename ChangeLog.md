@@ -6,6 +6,11 @@
 
 - Added `ArticleIDs` and related classes, providing methods for loading up a
   list of pure article IDs. ([#4](https://github.com/davep/oldas/pull/4))
+- Exposed `Prefix` and related code.
+  ([#5](https://github.com/davep/oldas/pull/5))
+- Exposed `State` and related code.
+  ([#5](https://github.com/davep/oldas/pull/5))
+- Exposed `oldas.types`. ([#5](https://github.com/davep/oldas/pull/5))
 
 ## v0.2.0
 

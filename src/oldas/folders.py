@@ -10,9 +10,9 @@ from typing import NamedTuple
 
 ##############################################################################
 # Local imports.
-from ._prefixes import Prefix, id_is_a_folder
-from ._types import OldList, RawData
+from .prefixes import Prefix, id_is_a_folder
 from .session import Session
+from .types import OldList, RawData
 
 
 ##############################################################################
