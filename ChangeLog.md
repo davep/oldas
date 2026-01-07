@@ -1,8 +1,8 @@
 # OldAS ChangeLog
 
-## Unreleased
+## v0.3.1
 
-**Released: WiP**
+**Released: 2026-01-07**
 
 - Fix incompatibility with older Pythons.
   ([#8](https://github.com/davep/oldas/pull/8))
