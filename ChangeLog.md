@@ -1,8 +1,8 @@
 # OldAS ChangeLog
 
-## Unreleased
+## v0.3.0
 
-**Released: WiP**
+**Released: 2026-01-07**
 
 - Added `ArticleIDs` and related classes, providing methods for loading up a
   list of pure article IDs. ([#4](https://github.com/davep/oldas/pull/4))
