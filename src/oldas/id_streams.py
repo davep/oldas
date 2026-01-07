@@ -1,6 +1,10 @@
 """Provides code for steaming article IDs."""
 
 ##############################################################################
+# Backward compatibility.
+from __future__ import annotations
+
+##############################################################################
 # Python imports.
 from datetime import datetime, timezone
 from typing import Any, AsyncIterator, NamedTuple

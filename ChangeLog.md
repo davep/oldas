@@ -1,5 +1,11 @@
 # OldAS ChangeLog
 
+## Unreleased
+
+**Released: WiP**
+
+- Fix incompatibility with older Pythons.
+
 ## v0.3.0
 
 **Released: 2026-01-07**
