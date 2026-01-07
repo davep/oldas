@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../folders/">
+        <link rel="prev" href="../prefixes/">
       
       
-        <link rel="next" href="../subscriptions/">
+        <link rel="next" href="../states/">
       
       
         
@@ -257,6 +257,44 @@
   
 
       
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../changelog/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Change Log
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../license/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  License
+
+      </a>
+    </li>
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -400,6 +438,14 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -517,6 +563,62 @@
     
   
     oldas.folders
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../id_streams/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    oldas.id_streams
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prefixes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    oldas.prefixes
   
 
     
@@ -897,6 +999,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../states/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    oldas.states
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../subscriptions/" class="md-nav__link">
         
   
@@ -905,6 +1035,34 @@
     
   
     oldas.subscriptions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    oldas.types
   
 
     
@@ -977,6 +1135,60 @@
           </ul>
         </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Change Log
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../license/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    License
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1353,7 +1565,11 @@
 
 
 </h2>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">Session</span><span class="p">(</span><span class="n"><a class="autorefs autorefs-internal" title="client (oldas.session.Session(client))" href="#oldas.session.Session(client)">client</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-internal" title="auth_code (oldas.session.Session(auth_code))" href="#oldas.session.Session(auth_code)">auth_code</a></span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-internal" title="timeout (oldas.session.Session(timeout))" href="#oldas.session.Session(timeout)">timeout</a></span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">Session</span><span class="p">(</span>
+    <span class="n"><a class="autorefs autorefs-internal" title="client (oldas.session.Session(client))" href="#oldas.session.Session(client)">client</a></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span>
+    <span class="n"><a class="autorefs autorefs-internal" title="auth_code (oldas.session.Session(auth_code))" href="#oldas.session.Session(auth_code)">auth_code</a></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n"><a class="autorefs autorefs-internal" title="timeout (oldas.session.Session(timeout))" href="#oldas.session.Session(timeout)">timeout</a></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">60</span><span class="p">,</span>
+<span class="p">)</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -1463,12 +1679,12 @@ application that is using this library.</p>
   </span>
 
 </h3>
-<div class="doc-signature highlight"><pre><span></span><code><span class="n">auth_code</span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">auth_code</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="kc">None</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
 
-        <p>The auth code, if we are logged in, else <code>None</code>.</p>
+        <p>The auth code, if we are logged in, else <a class="autorefs autorefs-external" href="https://docs.python.org/3/library/constants.html#None"><code>None</code></a>.</p>
 
     </div>
 
@@ -1487,7 +1703,7 @@ application that is using this library.</p>
   </span>
 
 </h3>
-<div class="doc-signature highlight"><pre><span></span><code><span class="n">logged_in</span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">logged_in</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -1513,7 +1729,7 @@ application that is using this library.</p>
   </span>
 
 </h3>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">add_tag</span><span class="p">(</span><span class="n"><a class="autorefs autorefs-internal" title="item (oldas.session.Session.add_tag(item))" href="#oldas.session.Session.add_tag(item)">item</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-internal" title="tag (oldas.session.Session.add_tag(tag))" href="#oldas.session.Session.add_tag(tag)">tag</a></span><span class="p">)</span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">add_tag</span><span class="p">(</span><span class="n"><a class="autorefs autorefs-internal" title="item (oldas.session.Session.add_tag(item))" href="#oldas.session.Session.add_tag(item)">item</a></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">],</span> <span class="n"><a class="autorefs autorefs-internal" title="tag (oldas.session.Session.add_tag(tag))" href="#oldas.session.Session.add_tag(tag)">tag</a></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-internal" title="            State (oldas.states.State)" href="../states/#oldas.states.State">State</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -1553,7 +1769,7 @@ application that is using this library.</p>
 <h4 id="oldas.session.Session.add_tag(tag)" class="doc doc-heading doc-heading-parameter">                  <code>tag</code>
 </h4>            </td>
             <td>
-                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <span title="oldas._states.State">State</span></code>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <a class="autorefs autorefs-internal" title="            State (oldas.states.State)" href="../states/#oldas.states.State">State</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1607,7 +1823,12 @@ application that is using this library.</p>
   </span>
 
 </h3>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">get</span><span class="p">(</span><span class="n"><a class="autorefs autorefs-internal" title="url (oldas.session.Session.get(url))" href="#oldas.session.Session.get(url)">url</a></span><span class="p">,</span> <span class="o">**</span><span class="n"><span title="oldas.session.Session.get(**params)">params</span></span><span class="p">)</span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">get</span><span class="p">(</span><span class="n"><a class="autorefs autorefs-internal" title="url (oldas.session.Session.get(url))" href="#oldas.session.Session.get(url)">url</a></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="o">**</span><span class="n"><span title="oldas.session.Session.get(**params)">params</span></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-internal" title="            RawData
+
+
+  
+      module-attribute
+   (oldas.types.RawData)" href="../types/#oldas.types.RawData">RawData</a></span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -1673,7 +1894,12 @@ application that is using this library.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
-                  <code><span title="oldas._types.RawData">RawData</span></code>
+                  <code><a class="autorefs autorefs-internal" title="            RawData
+
+
+  
+      module-attribute
+   (oldas.types.RawData)" href="../types/#oldas.types.RawData">RawData</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1724,7 +1950,7 @@ application that is using this library.</p>
   </span>
 
 </h3>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">login</span><span class="p">(</span><span class="n"><a class="autorefs autorefs-internal" title="user (oldas.session.Session.login(user))" href="#oldas.session.Session.login(user)">user</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-internal" title="password (oldas.session.Session.login(password))" href="#oldas.session.Session.login(password)">password</a></span><span class="p">)</span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">login</span><span class="p">(</span><span class="n"><a class="autorefs autorefs-internal" title="user (oldas.session.Session.login(user))" href="#oldas.session.Session.login(user)">user</a></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-internal" title="password (oldas.session.Session.login(password))" href="#oldas.session.Session.login(password)">password</a></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Self" href="https://docs.python.org/3/library/typing.html#typing.Self">Self</a></span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -1837,12 +2063,35 @@ application that is using this library.</p>
 
 
 </h3>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">logout</span><span class="p">()</span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">logout</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Self" href="https://docs.python.org/3/library/typing.html#typing.Self">Self</a></span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
 
         <p>Log out of the TheOldReader.</p>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-external" title="typing.Self" href="https://docs.python.org/3/library/typing.html#typing.Self">Self</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Self.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -1861,7 +2110,7 @@ application that is using this library.</p>
   </span>
 
 </h3>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">post</span><span class="p">(</span><span class="n"><a class="autorefs autorefs-internal" title="url (oldas.session.Session.post(url))" href="#oldas.session.Session.post(url)">url</a></span><span class="p">,</span> <span class="o">**</span><span class="n"><span title="oldas.session.Session.post(**data)">data</span></span><span class="p">)</span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">post</span><span class="p">(</span><span class="n"><a class="autorefs autorefs-internal" title="url (oldas.session.Session.post(url))" href="#oldas.session.Session.post(url)">url</a></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="o">**</span><span class="n"><span title="oldas.session.Session.post(**data)">data</span></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -1978,7 +2227,7 @@ application that is using this library.</p>
   </span>
 
 </h3>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">remove_tag</span><span class="p">(</span><span class="n"><a class="autorefs autorefs-internal" title="item (oldas.session.Session.remove_tag(item))" href="#oldas.session.Session.remove_tag(item)">item</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-internal" title="tag (oldas.session.Session.remove_tag(tag))" href="#oldas.session.Session.remove_tag(tag)">tag</a></span><span class="p">)</span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">remove_tag</span><span class="p">(</span><span class="n"><a class="autorefs autorefs-internal" title="item (oldas.session.Session.remove_tag(item))" href="#oldas.session.Session.remove_tag(item)">item</a></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">],</span> <span class="n"><a class="autorefs autorefs-internal" title="tag (oldas.session.Session.remove_tag(tag))" href="#oldas.session.Session.remove_tag(tag)">tag</a></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-internal" title="            State (oldas.states.State)" href="../states/#oldas.states.State">State</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -2018,7 +2267,7 @@ application that is using this library.</p>
 <h4 id="oldas.session.Session.remove_tag(tag)" class="doc doc-heading doc-heading-parameter">                  <code>tag</code>
 </h4>            </td>
             <td>
-                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <span title="oldas._states.State">State</span></code>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <a class="autorefs autorefs-internal" title="            State (oldas.states.State)" href="../states/#oldas.states.State">State</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2108,7 +2357,7 @@ application that is using this library.</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../folders/" class="md-footer__link md-footer__link--prev" aria-label="Previous: oldas.folders">
+          <a href="../prefixes/" class="md-footer__link md-footer__link--prev" aria-label="Previous: oldas.prefixes">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2118,20 +2367,20 @@ application that is using this library.</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                oldas.folders
+                oldas.prefixes
               </div>
             </div>
           </a>
         
         
           
-          <a href="../subscriptions/" class="md-footer__link md-footer__link--next" aria-label="Next: oldas.subscriptions">
+          <a href="../states/" class="md-footer__link md-footer__link--next" aria-label="Next: oldas.states">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                oldas.subscriptions
+                oldas.states
               </div>
             </div>
             <div class="md-footer__button md-icon">
