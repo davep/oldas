@@ -4,9 +4,12 @@
 
 **Released: WiP**
 
-- Added `ArticleIDs.fill_ids`.
+- Added `ArticleIDs.full_ids`.
+  ([#10](https://github.com/davep/oldas/pull/10))
 - Added `ArticleIDs.mark_read`.
+  ([#10](https://github.com/davep/oldas/pull/10))
 - Added `ArticleIDs.mark_unread`.
+  ([#10](https://github.com/davep/oldas/pull/10))
 
 ## v0.3.1
 
