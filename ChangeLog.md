@@ -1,5 +1,13 @@
 # OldAS ChangeLog
 
+## Unrealsed
+
+**Released: WiP**
+
+- Added `ArticleIDs.fill_ids`.
+- Added `ArticleIDs.mark_read`.
+- Added `ArticleIDs.mark_unread`.
+
 ## v0.3.1
 
 **Released: 2026-01-07**
