@@ -1,4 +1,4 @@
-"""Provides code for steaming article IDs."""
+"""Provides code for working with lists of article IDs."""
 
 ##############################################################################
 # Backward compatibility.
@@ -126,5 +126,32 @@ class ArticleIDs(OldList[ArticleID]):
         """
         return await cls.load(session, State.READING_LIST, xt=State.READ)
 
+    @property
+    def full_ids(self) -> list[str]:
+        """The list of article IDs."""
+        return [article.full_id for article in self]
 
-### id_streams.py ends here
+    async def mark_read(self, session: Session) -> bool:
+        """Mark all the articles as read.
+
+        Args:
+            session: The API session object.
+
+        Returns:
+            The boolean response from the API.
+        """
+        return await session.add_tag(self.full_ids, State.READ)
+
+    async def mark_unread(self, session: Session) -> bool:
+        """Mark all the articles as unread.
+
+        Args:
+            session: The API session object.
+
+        Returns:
+            The boolean response from the API.
+        """
+        return await session.remove_tag(self.full_ids, State.READ)
+
+
+### article_ids.py ends here
