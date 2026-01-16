@@ -126,5 +126,10 @@ class ArticleIDs(OldList[ArticleID]):
         """
         return await cls.load(session, State.READING_LIST, xt=State.READ)
 
+    @property
+    def full_ids(self) -> list[str]:
+        """The list of article IDs."""
+        return [article.full_id for article in self]
+
 
 ### id_streams.py ends here
