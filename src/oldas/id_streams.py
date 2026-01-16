@@ -131,5 +131,27 @@ class ArticleIDs(OldList[ArticleID]):
         """The list of article IDs."""
         return [article.full_id for article in self]
 
+    async def mark_read(self, session: Session) -> bool:
+        """Mark all the articles as read.
+
+        Args:
+            session: The API session object.
+
+        Returns:
+            The boolean response from the API.
+        """
+        return await session.add_tag(self.full_ids, State.READ)
+
+    async def mark_unread(self, session: Session) -> bool:
+        """Mark all the articles as unread.
+
+        Args:
+            session: The API session object.
+
+        Returns:
+            The boolean response from the API.
+        """
+        return await session.remove_tag(self.full_ids, State.READ)
+
 
 ### id_streams.py ends here
