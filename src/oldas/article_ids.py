@@ -1,4 +1,4 @@
-"""Provides code for steaming article IDs."""
+"""Provides code for working with lists of article IDs."""
 
 ##############################################################################
 # Backward compatibility.
@@ -154,4 +154,4 @@ class ArticleIDs(OldList[ArticleID]):
         return await session.remove_tag(self.full_ids, State.READ)
 
 
-### id_streams.py ends here
+### article_ids.py ends here
