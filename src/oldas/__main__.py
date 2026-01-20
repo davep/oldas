@@ -1,7 +1,7 @@
 from asyncio import run
 from os import getenv
 
-from oldas import ArticleIDs
+from oldas.subscriptions import Subscriptions
 
 from .session import Session
 
@@ -13,8 +13,7 @@ async def main() -> None:
         session = await Session("test").login(
             getenv("TOR_USER", ""), getenv("TOR_PASSWORD", "")
         )
-    for article in await ArticleIDs.load_unread(session):
-        print(article.full_id)
+    print(await Subscriptions.add(session, "example.com"))
 
 
 if __name__ == "__main__":

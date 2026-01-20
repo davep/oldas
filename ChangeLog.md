@@ -10,6 +10,7 @@
   ([#10](https://github.com/davep/oldas/pull/10))
 - Added `ArticleIDs.mark_unread`.
   ([#10](https://github.com/davep/oldas/pull/10))
+- Added `Subscriptions.add`.
 
 ## v0.3.1
 
