@@ -210,7 +210,7 @@ class Session:
         """
         return response.text.strip() == "OK"
 
-    async def post(self, url: str, **data: Any) -> bool:
+    async def _post(self, url: str, **data: Any) -> Response:
         """Make a POST call to the API.
 
         Args:
@@ -218,23 +218,34 @@ class Session:
             data: The data to pass.
 
         Returns:
-            The boolean response from the API.
+            The response from the call to the API.
 
         Raises:
             OldASError: If there was an error connecting or logging in.
         """
         self._must_be_logged_in()
-        return self._verify_ok(
-            (
-                await self._call(
-                    self._web_client.post(
-                        f"{self._API}{url}",
-                        headers=self._headers,
-                        data=data,
-                    )
-                )
+        return await self._call(
+            self._web_client.post(
+                f"{self._API}{url}",
+                headers=self._headers,
+                data=data,
             )
         )
+
+    async def post(self, url: str, **data: Any) -> RawData:
+        """Make a POST call to the API.
+
+        Args:
+            url: The URL to call.
+            data: The data to pass.
+
+        Returns:
+            The response from the call to the API.
+
+        Raises:
+            OldASError: If there was an error connecting or logging in.
+        """
+        return self._verify_raw((await self._post(url, **data)).json())
 
     async def _edit_tag(
         self, item: str | list[str], tag: str | State, operation: Literal["a", "r"]
@@ -249,7 +260,9 @@ class Session:
         Returns:
             The boolean result of the call.
         """
-        return await self.post("/edit-tag", i=item, **{str(operation): str(tag)})
+        return self._verify_ok(
+            await self._post("/edit-tag", i=item, **{str(operation): str(tag)})
+        )
 
     async def add_tag(self, item: str | list[str], tag: str | State) -> bool:
         """Add a tag to an item.

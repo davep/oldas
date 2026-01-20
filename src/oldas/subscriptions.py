@@ -96,6 +96,45 @@ class Subscription(NamedTuple):
 
 
 ##############################################################################
+class SubscribeResult(NamedTuple):
+    """Class that holds the request of adding a subscription."""
+
+    query: str
+    """The query that was performed."""
+    number_of_results: int
+    """The number of requests from the query to add."""
+    stream_id: str | None
+    """The stream ID if the subscription took place."""
+    error: str | None
+    """The reason why the subscribe failed, if it did."""
+    raw: RawData | None = None
+    """The raw data from the API."""
+
+    @classmethod
+    def from_json(cls, data: RawData) -> SubscribeResult:
+        """Load the subscribe result from JSON data.
+
+        Args:
+            data: The data to load the subscribe result from.
+
+        Returns:
+            The result of making the subscribe request.
+        """
+        return cls(
+            raw=data,
+            query=data["query"],
+            number_of_results=data["numResults"],
+            stream_id=data.get("streamId"),
+            error=data.get("error"),
+        )
+
+    @property
+    def failed(self) -> bool:
+        """Did the request to subscribe fail?"""
+        return self.number_of_results == 0
+
+
+##############################################################################
 class Subscriptions(OldList[Subscription]):
     """Loads and holds the full list of [subscriptions][oldas.Subscription]."""
 
@@ -114,6 +153,21 @@ class Subscriptions(OldList[Subscription]):
             for subscription in (await session.get("subscription/list"))[
                 "subscriptions"
             ]
+        )
+
+    @staticmethod
+    async def add(session: Session, feed: str) -> SubscribeResult:
+        """Add a subscription.
+
+        Args:
+            session: The API session object.
+            feed: The feed to subscribe to.
+
+        Returns:
+            A [`SubscribeResult`][oldas.subscriptions.SubscribeResult].
+        """
+        return SubscribeResult.from_json(
+            await session.post("subscription/quickadd", quickadd=feed)
         )
 
 
