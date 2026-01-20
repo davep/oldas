@@ -13,7 +13,13 @@ async def main() -> None:
         session = await Session("test").login(
             getenv("TOR_USER", ""), getenv("TOR_PASSWORD", "")
         )
-    print(await Subscriptions.add(session, "example.com"))
+    print(
+        result := await Subscriptions.add(
+            session, "https://lorem-rss.herokuapp.com/feed"
+        )
+    )
+    if result.stream_id:
+        print(await Subscriptions.remove(session, result.stream_id))
 
 
 if __name__ == "__main__":
