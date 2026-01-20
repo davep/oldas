@@ -247,6 +247,21 @@ class Session:
         """
         return self._verify_raw((await self._post(url, **data)).json())
 
+    async def post_ok(self, url: str, **data: Any) -> bool:
+        """Make a POST call to the API.
+
+        Args:
+            url: The URL to call.
+            data: The data to pass.
+
+        Returns:
+            `True` if the call worked, `False` if not.
+
+        Raises:
+            OldASError: If there was an error connecting or logging in.
+        """
+        return self._verify_ok(await self._post(url, **data))
+
     async def _edit_tag(
         self, item: str | list[str], tag: str | State, operation: Literal["a", "r"]
     ) -> bool:
@@ -260,9 +275,7 @@ class Session:
         Returns:
             The boolean result of the call.
         """
-        return self._verify_ok(
-            await self._post("/edit-tag", i=item, **{str(operation): str(tag)})
-        )
+        return await self.post_ok("/edit-tag", i=item, **{str(operation): str(tag)})
 
     async def add_tag(self, item: str | list[str], tag: str | State) -> bool:
         """Add a tag to an item.

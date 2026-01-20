@@ -170,5 +170,24 @@ class Subscriptions(OldList[Subscription]):
             await session.post("subscription/quickadd", quickadd=feed)
         )
 
+    @staticmethod
+    async def remove(session: Session, feed: str | Subscription) -> bool:
+        """Remove a subscription.
+
+        Args:
+            session: The API session object.
+            feed: The feed to unsubscribe from.
+
+        Returns:
+            [`True`][True] if the unsubscribe call worked, [`False`][False] if not.
+
+        Note:
+            The `feed` can either be a string that is the ID of a feed, or
+            it can be a [`Subscription`][oldas.Subscription] object.
+        """
+        if isinstance(feed, Subscription):
+            feed = feed.id
+        return await session.post_ok("subscription/edit", ac="unsubscribe", s=feed)
+
 
 ### subscriptions.py ends here
