@@ -12,6 +12,7 @@
   ([#10](https://github.com/davep/oldas/pull/10))
 - Added `Subscriptions.add`. ([#17](https://github.com/davep/oldas/pull/17))
 - Added `Subscriptions.remove`.
+  ([#18](https://github.com/davep/oldas/pull/18))
 
 ## v0.3.1
 
