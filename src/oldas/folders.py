@@ -68,5 +68,32 @@ class Folders(OldList[Folder]):
             if id_is_a_folder(folder.get("id", ""))
         )
 
+    @staticmethod
+    async def rename(
+        session: Session, rename_from: str | Folder, rename_to: str
+    ) -> bool:
+        """Rename a folder on the server.
+
+        Args:
+            session: The API session object.
+            rename_from: The folder that is to be renamed.
+            rename_to: The new name for the folder.
+
+        Returns:
+            [`True`][True] if the rename worked, [`False`][False] if not.
+
+        Notes:
+            `rename_from` and `rename_to` can have or be missing the prefix
+            [`Prefix.FOLDER`][oldas.prefixes.Prefix.FOLDER]; this method
+            will handle either case and do the right thing.
+        """
+        if isinstance(rename_from, Folder):
+            rename_from = rename_from.id
+        if not id_is_a_folder(rename_from):
+            rename_from = f"{Prefix.FOLDER}{rename_from}"
+        if not id_is_a_folder(rename_to):
+            rename_to = f"{Prefix.FOLDER}{rename_to}"
+        return await session.post_ok("rename-tag", s=rename_from, dest=rename_to)
+
 
 ### folders.py ends here
