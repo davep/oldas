@@ -11,6 +11,7 @@ from typing import NamedTuple
 
 ##############################################################################
 # Local imports.
+from .folders import Folder, Folders
 from .prefixes import Prefix, id_is_a_feed
 from .session import Session
 from .types import OldList, RawData
@@ -228,6 +229,36 @@ class Subscriptions(OldList[Subscription]):
         """
         return await session.post_ok(
             "subscription/edit", ac="unsubscribe", s=cls._full_id(subscription)
+        )
+
+    @classmethod
+    async def move(
+        cls,
+        session: Session,
+        subscription: str | Subscription,
+        target_folder: str | Folder | None = None,
+    ) -> bool:
+        """Move a subscription to a different folder.
+
+        Args:
+            session: The API session object.
+            subscription: The subscription to move.
+            target_folder: The folder to move the subscription to.
+
+        Returns:
+            [`True`][True] if the move call worked, [`False`][False] if not.
+
+        Note:
+            If `target_folder` is omitted, the subscription will be moved to
+            the top-level default folder.
+        """
+        operation = (
+            {"r": "remove"}
+            if target_folder is None
+            else {"a": Folders.full_id(target_folder)}
+        )
+        return await session.post_ok(
+            "subscription/edit", ac="edit", s=cls._full_id(subscription), **operation
         )
 
 

@@ -69,7 +69,7 @@ class Folders(OldList[Folder]):
         )
 
     @staticmethod
-    def _full_id(folder: str | Folder) -> str:
+    def full_id(folder: str | Folder) -> str:
         """Turn something that identifies a folder into a full folder ID.
 
         Args:
@@ -102,7 +102,7 @@ class Folders(OldList[Folder]):
             will handle either case and do the right thing.
         """
         return await session.post_ok(
-            "rename-tag", s=cls._full_id(rename_from), dest=cls._full_id(rename_to)
+            "rename-tag", s=cls.full_id(rename_from), dest=cls.full_id(rename_to)
         )
 
     @classmethod
@@ -121,7 +121,7 @@ class Folders(OldList[Folder]):
             [`Prefix.FOLDER`][oldas.prefixes.Prefix.FOLDER]; this method
             will handle either case and do the right thing.
         """
-        return await session.post_ok("disable-tag", s=cls._full_id(folder))
+        return await session.post_ok("disable-tag", s=cls.full_id(folder))
 
 
 ### folders.py ends here
