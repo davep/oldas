@@ -1,7 +1,7 @@
 from asyncio import run
 from os import getenv
 
-from oldas import Folders
+from oldas import Subscriptions
 
 from .session import Session
 
@@ -13,7 +13,11 @@ async def main() -> None:
         session = await Session("test").login(
             getenv("TOR_USER", ""), getenv("TOR_PASSWORD", "")
         )
-    print(await Folders.remove(session, "Tested"))
+    print(
+        await Subscriptions.rename(
+            session, "feed/696fb43aa5dab627b40000a0", "Tested Rename"
+        )
+    )
 
 
 if __name__ == "__main__":

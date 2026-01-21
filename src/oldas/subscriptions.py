@@ -190,6 +190,28 @@ class Subscriptions(OldList[Subscription]):
         )
 
     @classmethod
+    async def rename(
+        cls, session: Session, subscription: str | Subscription, new_name: str
+    ) -> bool:
+        """Rename a subscription.
+
+        Args:
+            session: The API session object.
+            subscription: The subscription to unsubscribe.
+            new_name: The new name for the subscription.
+
+        Returns:
+            [`True`][True] if the rename call worked, [`False`][False] if not.
+
+        Note:
+            The `subscription` can either be a string that is the ID of a feed, or
+            it can be a [`Subscription`][oldas.Subscription] object.
+        """
+        return await session.post_ok(
+            "subscription/edit", ac="edit", s=cls._full_id(subscription), t=new_name
+        )
+
+    @classmethod
     async def remove(cls, session: Session, subscription: str | Subscription) -> bool:
         """Remove a subscription.
 

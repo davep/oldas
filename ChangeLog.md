@@ -15,6 +15,7 @@
   ([#18](https://github.com/davep/oldas/pull/18))
 - Added `Folders.rename`. ([#19](https://github.com/davep/oldas/pull/19))
 - Added `Folders.remove`. ([#20](https://github.com/davep/oldas/pull/20))
+- Added `Subscriptions.rename`.
 
 ## v0.3.1
 
