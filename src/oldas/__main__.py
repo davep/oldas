@@ -1,7 +1,7 @@
 from asyncio import run
 from os import getenv
 
-from oldas.subscriptions import Subscriptions
+from oldas import Folders
 
 from .session import Session
 
@@ -13,13 +13,7 @@ async def main() -> None:
         session = await Session("test").login(
             getenv("TOR_USER", ""), getenv("TOR_PASSWORD", "")
         )
-    print(
-        result := await Subscriptions.add(
-            session, "https://lorem-rss.herokuapp.com/feed"
-        )
-    )
-    if result.stream_id:
-        print(await Subscriptions.remove(session, result.stream_id))
+    print(await Folders.rename(session, "Test", "Tested"))
 
 
 if __name__ == "__main__":
