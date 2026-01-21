@@ -14,8 +14,9 @@ async def main() -> None:
             getenv("TOR_USER", ""), getenv("TOR_PASSWORD", "")
         )
     print(
-        await Subscriptions.rename(
-            session, "feed/696fb43aa5dab627b40000a0", "Tested Rename"
+        await Subscriptions.move(
+            session,
+            "feed/696fb43aa5dab627b40000a0",
         )
     )
 
