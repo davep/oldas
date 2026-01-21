@@ -11,6 +11,7 @@ from typing import NamedTuple
 
 ##############################################################################
 # Local imports.
+from .prefixes import Prefix, id_is_a_feed
 from .session import Session
 from .types import OldList, RawData
 
@@ -171,23 +172,41 @@ class Subscriptions(OldList[Subscription]):
         )
 
     @staticmethod
-    async def remove(session: Session, feed: str | Subscription) -> bool:
+    def _full_id(subscription: str | Subscription) -> str:
+        """Get the full ID for a given subscription.
+
+        Args:
+            subscription: The subscription to get the full ID for.
+
+        Returns:
+            The full ID for the subscription.
+        """
+        if isinstance(subscription, Subscription):
+            subscription = subscription.id
+        return (
+            subscription
+            if id_is_a_feed(subscription)
+            else f"{Prefix.FEED}{subscription}"
+        )
+
+    @classmethod
+    async def remove(cls, session: Session, subscription: str | Subscription) -> bool:
         """Remove a subscription.
 
         Args:
             session: The API session object.
-            feed: The feed to unsubscribe from.
+            subscription: The subscription to unsubscribe.
 
         Returns:
             [`True`][True] if the unsubscribe call worked, [`False`][False] if not.
 
         Note:
-            The `feed` can either be a string that is the ID of a feed, or
+            The `subscription` can either be a string that is the ID of a feed, or
             it can be a [`Subscription`][oldas.Subscription] object.
         """
-        if isinstance(feed, Subscription):
-            feed = feed.id
-        return await session.post_ok("subscription/edit", ac="unsubscribe", s=feed)
+        return await session.post_ok(
+            "subscription/edit", ac="unsubscribe", s=cls._full_id(subscription)
+        )
 
 
 ### subscriptions.py ends here
