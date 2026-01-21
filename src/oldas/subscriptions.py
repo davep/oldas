@@ -167,6 +167,9 @@ class Subscriptions(OldList[Subscription]):
 
         Returns:
             A [`SubscribeResult`][oldas.subscriptions.SubscribeResult].
+
+        Notes:
+            The `feed` will normally be the URL of the feed to subscribe to.
         """
         return SubscribeResult.from_json(
             await session.post("subscription/quickadd", quickadd=feed)
@@ -198,7 +201,7 @@ class Subscriptions(OldList[Subscription]):
 
         Args:
             session: The API session object.
-            subscription: The subscription to unsubscribe.
+            subscription: The subscription to rename.
             new_name: The new name for the subscription.
 
         Returns:

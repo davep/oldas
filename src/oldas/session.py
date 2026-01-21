@@ -36,7 +36,7 @@ class Session:
 
         Args:
             client: The name of the client that is logging in.
-            auth_code: Optional authorization code to resume a session.
+            auth_code: Optional authorisation code to resume a session.
             timeout: The timeout in seconds to use when making calls.
 
         Note:
@@ -46,7 +46,7 @@ class Session:
         self._client = client
         """The name of the client to log in as."""
         self._auth_code = auth_code
-        """The auth code."""
+        """The authorisation code."""
         self._timeout = timeout
         """The timeout, in seconds, to use when making calls."""
         self._web_client_: AsyncClient | None = None
@@ -206,7 +206,8 @@ class Session:
             response: The response that was received.
 
         Returns:
-            `True`/`False` if there was a boolean response.
+            [`True`][True] if the response reported that everything was
+            okay, [`False`][False] if not.
         """
         return response.text.strip() == "OK"
 
@@ -255,7 +256,7 @@ class Session:
             data: The data to pass.
 
         Returns:
-            `True` if the call worked, `False` if not.
+            [`True`][True] if the call worked, [`False`][False] if not.
 
         Raises:
             OldASError: If there was an error connecting or logging in.
@@ -273,7 +274,8 @@ class Session:
             operation: The operation to perform.
 
         Returns:
-            The boolean result of the call.
+            [`True`][True] if the tag edit operation worked,
+            [`False`][False] if not.
         """
         return await self.post_ok("/edit-tag", i=item, **{str(operation): str(tag)})
 
@@ -285,7 +287,8 @@ class Session:
             tag: The tag to add.
 
         Returns:
-            The boolean result of the call.
+            [`True`][True] if the add tag operation worked,
+            [`False`][False] if not.
         """
         return await self._edit_tag(item, tag, "a")
 
@@ -297,7 +300,8 @@ class Session:
             tag: The tag to remove.
 
         Returns:
-            The boolean result of the call.
+            [`True`][True] if the remove tag operation worked,
+            [`False`][False] if not.
         """
         return await self._edit_tag(item, tag, "r")
 
