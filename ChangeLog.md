@@ -1,8 +1,8 @@
 # OldAS ChangeLog
 
-## Unrealsed
+## v0.4.0
 
-**Released: WiP**
+**Released: 2026-01-21**
 
 - Added `ArticleIDs.full_ids`.
   ([#10](https://github.com/davep/oldas/pull/10))
