@@ -128,7 +128,11 @@ class ArticleIDs(OldList[ArticleID]):
 
     @property
     def full_ids(self) -> list[str]:
-        """The list of article IDs."""
+        """The list of article IDs.
+
+        Note:
+            This is a list of strings where each string is a full article ID.
+        """
         return [article.full_id for article in self]
 
     async def mark_read(self, session: Session) -> bool:
