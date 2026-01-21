@@ -46,7 +46,7 @@ class Session:
         self._client = client
         """The name of the client to log in as."""
         self._auth_code = auth_code
-        """The auth code."""
+        """The authorisation code."""
         self._timeout = timeout
         """The timeout, in seconds, to use when making calls."""
         self._web_client_: AsyncClient | None = None
