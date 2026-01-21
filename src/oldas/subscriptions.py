@@ -198,7 +198,7 @@ class Subscriptions(OldList[Subscription]):
 
         Args:
             session: The API session object.
-            subscription: The subscription to unsubscribe.
+            subscription: The subscription to rename.
             new_name: The new name for the subscription.
 
         Returns:
