@@ -18,6 +18,7 @@
 - Added `Subscriptions.rename`.
   ([#21](https://github.com/davep/oldas/pull/21))
 - Added `Subscriptions.move`.
+  ([#22](https://github.com/davep/oldas/pull/22))
 
 ## v0.3.1
 
