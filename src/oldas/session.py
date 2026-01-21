@@ -36,7 +36,7 @@ class Session:
 
         Args:
             client: The name of the client that is logging in.
-            auth_code: Optional authorization code to resume a session.
+            auth_code: Optional authorisation code to resume a session.
             timeout: The timeout in seconds to use when making calls.
 
         Note:
