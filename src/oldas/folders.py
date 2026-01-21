@@ -69,8 +69,22 @@ class Folders(OldList[Folder]):
         )
 
     @staticmethod
+    def _full_id(folder: str | Folder) -> str:
+        """Turn something that identifies a folder into a full folder ID.
+
+        Args:
+            folder: The folder to get the ID from.
+
+        Returns:
+            The full prefixed folder ID.
+        """
+        if isinstance(folder, Folder):
+            folder = folder.id
+        return folder if id_is_a_folder(folder) else f"{Prefix.FOLDER}{folder}"
+
+    @classmethod
     async def rename(
-        session: Session, rename_from: str | Folder, rename_to: str
+        cls, session: Session, rename_from: str | Folder, rename_to: str
     ) -> bool:
         """Rename a folder on the server.
 
@@ -87,13 +101,27 @@ class Folders(OldList[Folder]):
             [`Prefix.FOLDER`][oldas.prefixes.Prefix.FOLDER]; this method
             will handle either case and do the right thing.
         """
-        if isinstance(rename_from, Folder):
-            rename_from = rename_from.id
-        if not id_is_a_folder(rename_from):
-            rename_from = f"{Prefix.FOLDER}{rename_from}"
-        if not id_is_a_folder(rename_to):
-            rename_to = f"{Prefix.FOLDER}{rename_to}"
-        return await session.post_ok("rename-tag", s=rename_from, dest=rename_to)
+        return await session.post_ok(
+            "rename-tag", s=cls._full_id(rename_from), dest=cls._full_id(rename_to)
+        )
+
+    @classmethod
+    async def remove(cls, session: Session, folder: str | Folder) -> bool:
+        """Remove the given folder from the server.
+
+        Args:
+            session: The API session object.
+            folder: The folder that is to be removed.
+
+        Returns:
+            [`True`][True] if the folder was removed, [`False`][False] if not.
+
+        Notes:
+            `folder` can have or be missing the prefix
+            [`Prefix.FOLDER`][oldas.prefixes.Prefix.FOLDER]; this method
+            will handle either case and do the right thing.
+        """
+        return await session.post_ok("disable-tag", s=cls._full_id(folder))
 
 
 ### folders.py ends here

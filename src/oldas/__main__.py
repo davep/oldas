@@ -13,7 +13,7 @@ async def main() -> None:
         session = await Session("test").login(
             getenv("TOR_USER", ""), getenv("TOR_PASSWORD", "")
         )
-    print(await Folders.rename(session, "Test", "Tested"))
+    print(await Folders.remove(session, "Tested"))
 
 
 if __name__ == "__main__":
