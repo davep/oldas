@@ -138,7 +138,8 @@ class ArticleIDs(OldList[ArticleID]):
             session: The API session object.
 
         Returns:
-            The boolean response from the API.
+            [`True`][True] if the request to mark as read worked,
+            [`False`][False] if not.
         """
         return await session.add_tag(self.full_ids, State.READ)
 
@@ -149,7 +150,8 @@ class ArticleIDs(OldList[ArticleID]):
             session: The API session object.
 
         Returns:
-            The boolean response from the API.
+            [`True`][True] if the request to mark as unread worked,
+            [`False`][False] if not.
         """
         return await session.remove_tag(self.full_ids, State.READ)
 
