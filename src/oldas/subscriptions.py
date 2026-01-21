@@ -167,6 +167,9 @@ class Subscriptions(OldList[Subscription]):
 
         Returns:
             A [`SubscribeResult`][oldas.subscriptions.SubscribeResult].
+
+        Notes:
+            The `feed` will normally be the URL of the feed to subscribe to.
         """
         return SubscribeResult.from_json(
             await session.post("subscription/quickadd", quickadd=feed)
