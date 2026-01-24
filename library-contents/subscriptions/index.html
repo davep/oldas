@@ -996,6 +996,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#oldas.subscriptions.Subscription.folder_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;folder_id
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#oldas.subscriptions.Subscription.html_url" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1734,6 +1745,17 @@
     <span class="md-ellipsis">
       
         <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;first_item_time
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oldas.subscriptions.Subscription.folder_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;folder_id
       
     </span>
   </a>
@@ -2747,6 +2769,44 @@
 
         <p>The time of the first item.</p>
 
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="oldas.subscriptions.Subscription.folder_id" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">folder_id</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">folder_id</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="kc">None</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>The ID of the folder that this subscription belongs to, or <a class="autorefs autorefs-external" href="https://docs.python.org/3/library/constants.html#None"><code>None</code></a> if it doesn't.</p>
+
+
+<details class="note" open>
+  <summary>Note</summary>
+  <p>According to the API documentation it would appear that a
+subscription could be a member of multiple folders. Note that
+this property is the ID of the first folder that could be found
+amongst the
+<a class="autorefs autorefs-internal" title="            categories
+
+
+  
+      instance-attribute
+  " href="#oldas.subscriptions.Subscription.categories">categories</a>.</p>
+</details>
     </div>
 
 </div>
