@@ -1,5 +1,12 @@
 # OldAS ChangeLog
 
+## Unrealsed
+
+**Released: WiP**
+
+- Added `Subscription.folder_id`.
+  ([#25](https://github.com/davep/oldas/pull/25))
+
 ## v0.4.0
 
 **Released: 2026-01-21**

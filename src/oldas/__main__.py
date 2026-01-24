@@ -13,12 +13,8 @@ async def main() -> None:
         session = await Session("test").login(
             getenv("TOR_USER", ""), getenv("TOR_PASSWORD", "")
         )
-    print(
-        await Subscriptions.move(
-            session,
-            "feed/696fb43aa5dab627b40000a0",
-        )
-    )
+    for subscription in await Subscriptions.load(session):
+        print(f"{subscription.title} {subscription.folder_id}")
 
 
 if __name__ == "__main__":
