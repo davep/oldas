@@ -1,5 +1,11 @@
 # OldAS ChangeLog
 
+## Unrealsed
+
+**Released: WiP**
+
+- Added `Subscription.folder_id`.
+
 ## v0.4.0
 
 **Released: 2026-01-21**

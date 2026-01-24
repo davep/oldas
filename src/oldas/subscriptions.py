@@ -12,7 +12,7 @@ from typing import NamedTuple
 ##############################################################################
 # Local imports.
 from .folders import Folder, Folders
-from .prefixes import Prefix, id_is_a_feed
+from .prefixes import Prefix, id_is_a_feed, id_is_a_folder
 from .session import Session
 from .types import OldList, RawData
 
@@ -94,6 +94,26 @@ class Subscription(NamedTuple):
             categories=Categories(
                 Category.from_json(category) for category in data["categories"]
             ),
+        )
+
+    @property
+    def folder_id(self) -> str | None:
+        """The ID of the folder that this subscription belongs to, or [`None`][None] if it doesn't.
+
+        Note:
+            According to the API documentation it would appear that a
+            subscription could be a member of multiple folders. Note that
+            this property is the ID of the first folder that could be found
+            amongst the
+            [categories][oldas.subscriptions.Subscription.categories].
+        """
+        return next(
+            (
+                category.id
+                for category in self.categories
+                if id_is_a_folder(category.id)
+            ),
+            None,
         )
 
 
