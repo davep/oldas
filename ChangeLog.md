@@ -6,6 +6,7 @@
 
 - Updated `Subscriptions.move` so that any form of "empty" for the
   `target_folder` is seen as a "remove folder" operation.
+  ([#28](https://github.com/davep/oldas/pull/28))
 
 ## v0.5.0
 
