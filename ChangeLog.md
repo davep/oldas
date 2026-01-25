@@ -1,8 +1,8 @@
 # OldAS ChangeLog
 
-## Unreleased
+## v0.6.0
 
-**Released: WiP**
+**Released: 2026-01-25**
 
 - Updated `Subscriptions.move` so that any form of "empty" for the
   `target_folder` is seen as a "remove folder" operation.
