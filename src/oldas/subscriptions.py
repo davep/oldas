@@ -272,12 +272,15 @@ class Subscriptions(OldList[Subscription]):
             [`True`][True] if the move call worked, [`False`][False] if not.
 
         Note:
-            If `target_folder` is omitted, the subscription will be moved to
-            the top-level default folder.
+            If `target_folder` is omitted, is [`None`][None], or is an empty
+            [string][str], the subscription will be moved to the top-level
+            default folder.
         """
+        if isinstance(target_folder, str):
+            target_folder = target_folder.strip()
         operation = (
             {"r": "remove"}
-            if target_folder is None
+            if not target_folder
             else {"a": Folders.full_id(target_folder)}
         )
         return await session.post_ok(
