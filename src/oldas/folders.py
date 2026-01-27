@@ -6,6 +6,7 @@ from __future__ import annotations
 
 ##############################################################################
 # Python imports.
+from functools import total_ordering
 from typing import NamedTuple
 
 ##############################################################################
@@ -16,6 +17,7 @@ from .types import OldList, RawData
 
 
 ##############################################################################
+@total_ordering
 class Folder(NamedTuple):
     """Folder information class."""
 
@@ -46,6 +48,16 @@ class Folder(NamedTuple):
             id=data["id"],
             sort_id=data["sortid"],
         )
+
+    def __gt__(self, value: object, /) -> bool:
+        if isinstance(value, Folder):
+            return self.name > value.name
+        raise NotImplementedError
+
+    def __eq__(self, value: object, /) -> bool:
+        if isinstance(value, Folder):
+            return self.name == value.name
+        raise NotImplementedError
 
 
 ##############################################################################
