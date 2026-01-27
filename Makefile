@@ -1,10 +1,12 @@
 lib      := oldas
 src      := src/
+tests    := tests/
 docs     := docs/
 run      := uv run --env-file .env
 sync     := uv sync
 build    := uv build
 publish  := uv publish --username=__token__ --keyring-provider=subprocess
+test     := $(run) pytest
 python   := $(run) python
 ruff     := $(run) ruff
 lint     := $(ruff) check --select I
@@ -38,26 +40,30 @@ resetup: realclean		# Recreate the virtual environment from scratch
 # Checking/testing/linting/etc.
 .PHONY: lint
 lint:				# Check the code for linting issues
-	$(lint) $(src)
+	$(lint) $(src) $(tests)
 
 .PHONY: codestyle
 codestyle:			# Is the code formatted correctly?
-	$(fmt) --check $(src)
+	$(fmt) --check $(src) $(tests)
 
 .PHONY: typecheck
 typecheck:			# Perform static type checks with mypy
-	$(mypy) --scripts-are-modules $(src)
+	$(mypy) --scripts-are-modules $(src) $(tests)
 
 .PHONY: stricttypecheck
 stricttypecheck:	        # Perform a strict static type checks with mypy
-	$(mypy) --scripts-are-modules --strict $(src)
+	$(mypy) --scripts-are-modules --strict $(src) $(tests)
+
+.PHONY: test
+test:				# Run the unit tests
+	$(test) -v
 
 .PHONY: spellcheck
 spellcheck:			# Spell check the code
-	$(spell) *.md $(src) $(docs)
+	$(spell) *.md $(src) $(docs) $(tests)
 
 .PHONY: checkall
-checkall: spellcheck codestyle lint stricttypecheck # Check all the things
+checkall: spellcheck codestyle lint stricttypecheck test # Check all the things
 
 ##############################################################################
 # Documentation.
@@ -103,7 +109,7 @@ delint:			# Fix linting issues.
 
 .PHONY: pep8ify
 pep8ify:			# Reformat the code to be as PEP8 as possible.
-	$(fmt) $(src)
+	$(fmt) $(src) $(tests)
 
 .PHONY: tidy
 tidy: delint pep8ify		# Tidy up the code, fixing lint and format issues.
