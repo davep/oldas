@@ -1,8 +1,8 @@
 # OldAS ChangeLog
 
-## Unrelased
+## v0.7.0
 
-**Released: WiP**
+**Released: 2026-01-27**
 
 - Make `Folders` sortable by `Folder.name` by default.
   ([#30](https://github.com/davep/oldas/pull/30))
