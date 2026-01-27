@@ -8,9 +8,9 @@ on:
 
 jobs:
 
-  style-and-lint:
+  style-lint-and-test:
 
-    name: Style and lint
+    name: Style, lint, test
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -50,4 +50,7 @@ jobs:
       - name: Type check the code
         run: make stricttypecheck
 
-### style-and-lint.yaml ends here
+      - name: Run unit tests
+        run: make test
+
+### style-lint-and-test.yaml ends here
