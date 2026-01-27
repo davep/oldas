@@ -1,5 +1,12 @@
 # OldAS ChangeLog
 
+## Unrelased
+
+**Released: WiP**
+
+- Make `Folders` sortable by `Folder.name` by default.
+- Make `Subscriptons` sortable by `Subscription.title` by default.
+
 ## v0.6.0
 
 **Released: 2026-01-25**
