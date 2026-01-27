@@ -5,7 +5,9 @@
 **Released: WiP**
 
 - Make `Folders` sortable by `Folder.name` by default.
+  ([#30](https://github.com/davep/oldas/pull/30))
 - Make `Subscriptons` sortable by `Subscription.title` by default.
+  ([#30](https://github.com/davep/oldas/pull/30))
 
 ## v0.6.0
 
