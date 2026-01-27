@@ -7,6 +7,7 @@ from __future__ import annotations
 ##############################################################################
 # Python imports.
 from datetime import datetime, timezone
+from functools import total_ordering
 from typing import NamedTuple
 
 ##############################################################################
@@ -51,6 +52,7 @@ class Categories(OldList[Category]):
 
 
 ##############################################################################
+@total_ordering
 class Subscription(NamedTuple):
     """Holds a subscription."""
 
@@ -115,6 +117,16 @@ class Subscription(NamedTuple):
             ),
             None,
         )
+
+    def __gt__(self, value: object, /) -> bool:
+        if isinstance(value, Subscription):
+            return self.title > value.title
+        raise NotImplementedError
+
+    def __eq__(self, value: object, /) -> bool:
+        if isinstance(value, Subscription):
+            return self.title == value.title
+        raise NotImplementedError
 
 
 ##############################################################################
