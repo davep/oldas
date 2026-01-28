@@ -1,8 +1,8 @@
 # OldAS ChangeLog
 
-## Unreleased
+## v0.8.0
 
-**Released: WiP**
+**Released: 2026-01-28**
 
 - Added `in` support to `Subscriptions.Categories` for easier checking.
   ([#32](https://github.com/davep/oldas/pull/32))
