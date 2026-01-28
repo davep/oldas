@@ -49,12 +49,12 @@ class Folder:
 
     def __gt__(self, value: object, /) -> bool:
         if isinstance(value, Folder):
-            return self.name > value.name
+            return self.name.casefold() > value.name.casefold()
         raise NotImplementedError
 
     def __eq__(self, value: object, /) -> bool:
         if isinstance(value, Folder):
-            return self.name == value.name
+            return self.name.casefold() == value.name.casefold()
         raise NotImplementedError
 
 

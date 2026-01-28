@@ -24,7 +24,7 @@ TEST_SUBSCRIPTIONS = Subscriptions(
         Subscription.from_json(
             {
                 "id": f"{Prefix.FEED}foo",
-                "title": "z",
+                "title": "Z",
                 "sortid": "",
                 "firstitemmsec": 0,
                 "url": "https://example.com/",
@@ -50,10 +50,10 @@ TEST_SUBSCRIPTIONS = Subscriptions(
 ##############################################################################
 def test_sort_subscriptions() -> None:
     """Subscriptions should sort by title."""
-    assert [subscription.title for subscription in TEST_SUBSCRIPTIONS] == ["z", "a"]
+    assert [subscription.title for subscription in TEST_SUBSCRIPTIONS] == ["Z", "a"]
     assert [subscription.title for subscription in sorted(TEST_SUBSCRIPTIONS)] == [
         "a",
-        "z",
+        "Z",
     ]
 
 
