@@ -924,17 +924,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#oldas.user.User.raw" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;raw
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#oldas.user.User.signup_time" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1173,17 +1162,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#oldas.user.User.raw" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;raw
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#oldas.user.User.signup_time" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1296,12 +1274,24 @@
 <code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <span class="doc doc-object-name doc-class-name">User</span>
 
 
-</h2>
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
 
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">User</span><span class="p">(</span>
+    <span class="n"><span title="oldas.user.User(user_id)">user_id</span></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span>
+    <span class="n"><span title="oldas.user.User(name)">name</span></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span>
+    <span class="n"><span title="oldas.user.User(profile_id)">profile_id</span></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span>
+    <span class="n"><span title="oldas.user.User(email)">email</span></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span>
+    <span class="n"><span title="oldas.user.User(is_blogger_user)">is_blogger_user</span></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span>
+    <span class="n"><span title="oldas.user.User(signup_time)">signup_time</span></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span><span class="p">,</span>
+    <span class="n"><span title="oldas.user.User(is_multi_login_enabled)">is_multi_login_enabled</span></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span><span class="p">,</span>
+    <span class="n"><span title="oldas.user.User(is_premium)">is_premium</span></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
 
     <div class="doc doc-contents ">
-            <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-external" title="typing.NamedTuple" href="https://docs.python.org/3/library/typing.html#typing.NamedTuple">NamedTuple</a></code></p>
 
 
 
@@ -1473,36 +1463,6 @@
 
 
 
-<h3 id="oldas.user.User.raw" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">raw</span>
-
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-</h3>
-<div class="doc-signature highlight"><pre><span></span><code><span class="n">raw</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="            RawData
-
-
-  
-      module-attribute
-   (oldas.types.RawData)" href="../types/#oldas.types.RawData">RawData</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-</code></pre></div>
-
-    <div class="doc doc-contents ">
-
-        <p>The raw data from the API.</p>
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-attribute">
-
-
-
 <h3 id="oldas.user.User.signup_time" class="doc doc-heading">
 <code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">signup_time</span>
 
@@ -1563,7 +1523,12 @@
   </span>
 
 </h3>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">load</span><span class="p">(</span><span class="n"><a class="autorefs autorefs-internal" title="session (oldas.user.User.load(session))" href="#oldas.user.User.load(session)">session</a></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="            Session (oldas.session.Session)" href="../session/#oldas.session.Session">Session</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-internal" title="            User (oldas.user.User)" href="#oldas.user.User">User</a></span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">load</span><span class="p">(</span><span class="n"><a class="autorefs autorefs-internal" title="session (oldas.user.User.load(session))" href="#oldas.user.User.load(session)">session</a></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="            Session (oldas.session.Session)" href="../session/#oldas.session.Session">Session</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-internal" title="            User
+
+
+  
+      dataclass
+   (oldas.user.User)" href="#oldas.user.User">User</a></span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -1613,7 +1578,12 @@
       <tbody>
           <tr class="doc-section-item">
             <td>
-                  <code><a class="autorefs autorefs-internal" title="            User (oldas.user.User)" href="#oldas.user.User">User</a></code>
+                  <code><a class="autorefs autorefs-internal" title="            User
+
+
+  
+      dataclass
+   (oldas.user.User)" href="#oldas.user.User">User</a></code>
             </td>
             <td>
               <div class="doc-md-description">

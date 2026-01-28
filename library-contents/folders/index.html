@@ -684,17 +684,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#oldas.folders.Folder.raw" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;raw
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#oldas.folders.Folder.sort_id" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1236,17 +1225,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#oldas.folders.Folder.raw" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;raw
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#oldas.folders.Folder.sort_id" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1510,12 +1488,15 @@
 <code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <span class="doc doc-object-name doc-class-name">Folder</span>
 
 
-</h2>
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
 
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">Folder</span><span class="p">(</span><span class="n"><span title="oldas.folders.Folder(id)">id</span></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n"><span title="oldas.folders.Folder(sort_id)">sort_id</span></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">)</span>
+</code></pre></div>
 
     <div class="doc doc-contents ">
-            <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-external" title="typing.NamedTuple" href="https://docs.python.org/3/library/typing.html#typing.NamedTuple">NamedTuple</a></code></p>
 
 
 
@@ -1591,36 +1572,6 @@
 
 
 
-<h3 id="oldas.folders.Folder.raw" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">raw</span>
-
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-</h3>
-<div class="doc-signature highlight"><pre><span></span><code><span class="n">raw</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="            RawData
-
-
-  
-      module-attribute
-   (oldas.types.RawData)" href="../types/#oldas.types.RawData">RawData</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-</code></pre></div>
-
-    <div class="doc doc-contents ">
-
-        <p>The raw data from the API.</p>
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-attribute">
-
-
-
 <h3 id="oldas.folders.Folder.sort_id" class="doc doc-heading">
 <code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">sort_id</span>
 
@@ -1661,7 +1612,12 @@
 
   
       module-attribute
-   (oldas.types.RawData)" href="../types/#oldas.types.RawData">RawData</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-internal" title="            Folder (oldas.folders.Folder)" href="#oldas.folders.Folder">Folder</a></span>
+   (oldas.types.RawData)" href="../types/#oldas.types.RawData">RawData</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-internal" title="            Folder
+
+
+  
+      dataclass
+   (oldas.folders.Folder)" href="#oldas.folders.Folder">Folder</a></span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -1716,7 +1672,12 @@
       <tbody>
           <tr class="doc-section-item">
             <td>
-                  <code><a class="autorefs autorefs-internal" title="            Folder (oldas.folders.Folder)" href="#oldas.folders.Folder">Folder</a></code>
+                  <code><a class="autorefs autorefs-internal" title="            Folder
+
+
+  
+      dataclass
+   (oldas.folders.Folder)" href="#oldas.folders.Folder">Folder</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1759,11 +1720,21 @@
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="            OldList (oldas.types.OldList)" href="../types/#oldas.types.OldList">OldList</a>[<a class="autorefs autorefs-internal" title="            Folder (oldas.folders.Folder)" href="#oldas.folders.Folder">Folder</a>]</code></p>
+              Bases: <code><a class="autorefs autorefs-internal" title="            OldList (oldas.types.OldList)" href="../types/#oldas.types.OldList">OldList</a>[<a class="autorefs autorefs-internal" title="            Folder
+
+
+  
+      dataclass
+   (oldas.folders.Folder)" href="#oldas.folders.Folder">Folder</a>]</code></p>
 
 
 
-        <p>Load the <a class="autorefs autorefs-internal" title="            Folder" href="#oldas.folders.Folder">folder</a> list from TheOldReader.</p>
+        <p>Load the <a class="autorefs autorefs-internal" title="            Folder
+
+
+  
+      dataclass
+  " href="#oldas.folders.Folder">folder</a> list from TheOldReader.</p>
 
 
 
@@ -1798,7 +1769,12 @@
   </span>
 
 </h3>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">full_id</span><span class="p">(</span><span class="n"><a class="autorefs autorefs-internal" title="folder (oldas.folders.Folders.full_id(folder))" href="#oldas.folders.Folders.full_id(folder)">folder</a></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-internal" title="            Folder (oldas.folders.Folder)" href="#oldas.folders.Folder">Folder</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">full_id</span><span class="p">(</span><span class="n"><a class="autorefs autorefs-internal" title="folder (oldas.folders.Folders.full_id(folder))" href="#oldas.folders.Folders.full_id(folder)">folder</a></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-internal" title="            Folder
+
+
+  
+      dataclass
+   (oldas.folders.Folder)" href="#oldas.folders.Folder">Folder</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -1822,7 +1798,12 @@
 <h4 id="oldas.folders.Folders.full_id(folder)" class="doc doc-heading doc-heading-parameter">                  <code>folder</code>
 </h4>            </td>
             <td>
-                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <a class="autorefs autorefs-internal" title="            Folder (oldas.folders.Folder)" href="#oldas.folders.Folder">Folder</a></code>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <a class="autorefs autorefs-internal" title="            Folder
+
+
+  
+      dataclass
+   (oldas.folders.Folder)" href="#oldas.folders.Folder">Folder</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1931,7 +1912,12 @@
             </td>
             <td>
               <div class="doc-md-description">
-                <p>A list of <a class="autorefs autorefs-internal" title="            Folder" href="#oldas.folders.Folder">folders</a>.</p>
+                <p>A list of <a class="autorefs autorefs-internal" title="            Folder
+
+
+  
+      dataclass
+  " href="#oldas.folders.Folder">folders</a>.</p>
               </div>
             </td>
           </tr>
@@ -1956,7 +1942,12 @@
   </span>
 
 </h3>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">remove</span><span class="p">(</span><span class="n"><a class="autorefs autorefs-internal" title="session (oldas.folders.Folders.remove(session))" href="#oldas.folders.Folders.remove(session)">session</a></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="            Session (oldas.session.Session)" href="../session/#oldas.session.Session">Session</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-internal" title="folder (oldas.folders.Folders.remove(folder))" href="#oldas.folders.Folders.remove(folder)">folder</a></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-internal" title="            Folder (oldas.folders.Folder)" href="#oldas.folders.Folder">Folder</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">remove</span><span class="p">(</span><span class="n"><a class="autorefs autorefs-internal" title="session (oldas.folders.Folders.remove(session))" href="#oldas.folders.Folders.remove(session)">session</a></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="            Session (oldas.session.Session)" href="../session/#oldas.session.Session">Session</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-internal" title="folder (oldas.folders.Folders.remove(folder))" href="#oldas.folders.Folders.remove(folder)">folder</a></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-internal" title="            Folder
+
+
+  
+      dataclass
+   (oldas.folders.Folder)" href="#oldas.folders.Folder">Folder</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -1996,7 +1987,12 @@
 <h4 id="oldas.folders.Folders.remove(folder)" class="doc doc-heading doc-heading-parameter">                  <code>folder</code>
 </h4>            </td>
             <td>
-                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <a class="autorefs autorefs-internal" title="            Folder (oldas.folders.Folder)" href="#oldas.folders.Folder">Folder</a></code>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <a class="autorefs autorefs-internal" title="            Folder
+
+
+  
+      dataclass
+   (oldas.folders.Folder)" href="#oldas.folders.Folder">Folder</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2066,7 +2062,12 @@ will handle either case and do the right thing.</p>
 </h3>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">rename</span><span class="p">(</span>
     <span class="n"><a class="autorefs autorefs-internal" title="session (oldas.folders.Folders.rename(session))" href="#oldas.folders.Folders.rename(session)">session</a></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="            Session (oldas.session.Session)" href="../session/#oldas.session.Session">Session</a></span><span class="p">,</span>
-    <span class="n"><a class="autorefs autorefs-internal" title="rename_from (oldas.folders.Folders.rename(rename_from))" href="#oldas.folders.Folders.rename(rename_from)">rename_from</a></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-internal" title="            Folder (oldas.folders.Folder)" href="#oldas.folders.Folder">Folder</a></span><span class="p">,</span>
+    <span class="n"><a class="autorefs autorefs-internal" title="rename_from (oldas.folders.Folders.rename(rename_from))" href="#oldas.folders.Folders.rename(rename_from)">rename_from</a></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-internal" title="            Folder
+
+
+  
+      dataclass
+   (oldas.folders.Folder)" href="#oldas.folders.Folder">Folder</a></span><span class="p">,</span>
     <span class="n"><a class="autorefs autorefs-internal" title="rename_to (oldas.folders.Folders.rename(rename_to))" href="#oldas.folders.Folders.rename(rename_to)">rename_to</a></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span>
 </code></pre></div>
@@ -2108,7 +2109,12 @@ will handle either case and do the right thing.</p>
 <h4 id="oldas.folders.Folders.rename(rename_from)" class="doc doc-heading doc-heading-parameter">                  <code>rename_from</code>
 </h4>            </td>
             <td>
-                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <a class="autorefs autorefs-internal" title="            Folder (oldas.folders.Folder)" href="#oldas.folders.Folder">Folder</a></code>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <a class="autorefs autorefs-internal" title="            Folder
+
+
+  
+      dataclass
+   (oldas.folders.Folder)" href="#oldas.folders.Folder">Folder</a></code>
             </td>
             <td>
               <div class="doc-md-description">
