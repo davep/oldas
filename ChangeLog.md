@@ -5,6 +5,7 @@
 **Released: WiP**
 
 - Added `in` support to `Subscriptions.Categories` for easier checking.
+  ([#32](https://github.com/davep/oldas/pull/32))
 
 ## v0.7.0
 
