@@ -129,12 +129,12 @@ class Subscription:
 
     def __gt__(self, value: object, /) -> bool:
         if isinstance(value, Subscription):
-            return self.title > value.title
+            return self.title.casefold() > value.title.casefold()
         raise NotImplementedError
 
     def __eq__(self, value: object, /) -> bool:
         if isinstance(value, Subscription):
-            return self.title == value.title
+            return self.title.casefold() == value.title.casefold()
         raise NotImplementedError
 
 

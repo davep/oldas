@@ -1,5 +1,12 @@
 # OldAS ChangeLog
 
+## Unreleased
+
+**Released: WiP**
+
+- Ignore case when ordering subscriptions by title.
+- Ignore case when ordering folders by name.
+
 ## v0.9.0
 
 **Released: 2026-01-28**
