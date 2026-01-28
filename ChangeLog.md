@@ -6,6 +6,7 @@
 
 - Moved away from using `NamedTuple` as the base class for all the
   data-wrapping classes and started using frozen dataclasses.
+- Dropped the `raw` property from all classes.
 
 ## v0.8.0
 
