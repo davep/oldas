@@ -6,9 +6,9 @@ from __future__ import annotations
 
 ##############################################################################
 # Python imports.
+from dataclasses import dataclass
 from datetime import datetime, timezone
 from functools import total_ordering
-from typing import NamedTuple
 
 ##############################################################################
 # Local imports.
@@ -19,7 +19,8 @@ from .types import OldList, RawData
 
 
 ##############################################################################
-class Category(NamedTuple):
+@dataclass(frozen=True)
+class Category:
     """Holds details of a category."""
 
     id: str
@@ -66,7 +67,8 @@ class Categories(OldList[Category]):
 
 ##############################################################################
 @total_ordering
-class Subscription(NamedTuple):
+@dataclass(frozen=True, order=False)
+class Subscription:
     """Holds a subscription."""
 
     id: str
@@ -143,7 +145,8 @@ class Subscription(NamedTuple):
 
 
 ##############################################################################
-class SubscribeResult(NamedTuple):
+@dataclass(frozen=True)
+class SubscribeResult:
     """Class that holds the request of adding a subscription."""
 
     query: str

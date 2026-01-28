@@ -6,8 +6,8 @@ from __future__ import annotations
 
 ##############################################################################
 # Python imports.
+from dataclasses import dataclass
 from functools import total_ordering
-from typing import NamedTuple
 
 ##############################################################################
 # Local imports.
@@ -18,7 +18,8 @@ from .types import OldList, RawData
 
 ##############################################################################
 @total_ordering
-class Folder(NamedTuple):
+@dataclass(frozen=True, order=False)
+class Folder:
     """Folder information class."""
 
     id: str

@@ -6,8 +6,9 @@ from __future__ import annotations
 
 ##############################################################################
 # Python imports.
+from dataclasses import dataclass
 from datetime import datetime, timezone
-from typing import Any, AsyncIterator, Iterable, Literal, NamedTuple
+from typing import Any, AsyncIterator, Iterable, Literal
 
 ##############################################################################
 # Local imports.
@@ -24,7 +25,8 @@ Direction = Literal["ltr", "rtl"]
 
 
 ##############################################################################
-class Summary(NamedTuple):
+@dataclass(frozen=True)
+class Summary:
     """The summary details for an [`Article`][oldas.Article]."""
 
     direction: Direction
@@ -52,7 +54,8 @@ class Summary(NamedTuple):
 
 
 ##############################################################################
-class Origin(NamedTuple):
+@dataclass(frozen=True)
+class Origin:
     """The origin details for an [`Article`][oldas.Article]."""
 
     stream_id: str | None
@@ -83,7 +86,8 @@ class Origin(NamedTuple):
 
 
 ##############################################################################
-class Alternate(NamedTuple):
+@dataclass(frozen=True)
+class Alternate:
     """Holds details of an alternate for an [`Article`][oldas.Article]."""
 
     href: str
@@ -116,7 +120,8 @@ class Alternates(OldList[Alternate]):
 
 
 ##############################################################################
-class Article(NamedTuple):
+@dataclass(frozen=True)
+class Article:
     """Holds details about an article."""
 
     id: str

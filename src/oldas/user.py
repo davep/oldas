@@ -6,7 +6,7 @@ from __future__ import annotations
 
 ##############################################################################
 # Python imports.
-from typing import NamedTuple
+from dataclasses import dataclass
 
 ##############################################################################
 # Local imports.
@@ -15,7 +15,8 @@ from .types import RawData
 
 
 ##############################################################################
-class User(NamedTuple):
+@dataclass
+class User:
     """TheOldReader user information."""
 
     user_id: str

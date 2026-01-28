@@ -6,8 +6,8 @@ from __future__ import annotations
 
 ##############################################################################
 # Python imports.
+from dataclasses import dataclass
 from datetime import datetime, timezone
-from typing import NamedTuple
 
 ##############################################################################
 # Local imports.
@@ -17,7 +17,8 @@ from .types import OldList, RawData
 
 
 ##############################################################################
-class Count(NamedTuple):
+@dataclass(frozen=True)
+class Count:
     """Unread count information class."""
 
     id: str
@@ -65,7 +66,8 @@ class Counts(OldList[Count]):
 
 
 ##############################################################################
-class Unread(NamedTuple):
+@dataclass(frozen=True)
+class Unread:
     """Class that loads and holds [unread counts][oldas.Counts]."""
 
     total: int

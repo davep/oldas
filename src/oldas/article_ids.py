@@ -6,8 +6,9 @@ from __future__ import annotations
 
 ##############################################################################
 # Python imports.
+from dataclasses import dataclass
 from datetime import datetime, timezone
-from typing import Any, AsyncIterator, NamedTuple
+from typing import Any, AsyncIterator
 
 ##############################################################################
 # Local imports.
@@ -18,7 +19,8 @@ from .types import OldList, RawData
 
 
 ##############################################################################
-class ArticleID(NamedTuple):
+@dataclass(frozen=True)
+class ArticleID:
     """Holds an article ID."""
 
     article_id: str
