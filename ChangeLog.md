@@ -5,7 +5,9 @@
 **Released: WiP**
 
 - Ignore case when ordering subscriptions by title.
+  ([#38](https://github.com/davep/oldas/pull/38))
 - Ignore case when ordering folders by name.
+  ([#38](https://github.com/davep/oldas/pull/38))
 
 ## v0.9.0
 
