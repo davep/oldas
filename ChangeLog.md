@@ -5,7 +5,7 @@
 **Released: WiP**
 
 - Removed sort-supporting comparison overrides for `Folder` and
-  `Subscription`.
+  `Subscription`. ([#39](https://github.com/davep/oldas/pull/39))
 
 ## v0.9.0
 
