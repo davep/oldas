@@ -6,8 +6,8 @@ from __future__ import annotations
 
 ##############################################################################
 # Python imports.
+from dataclasses import dataclass
 from datetime import datetime, timezone
-from typing import NamedTuple
 
 ##############################################################################
 # Local imports.
@@ -17,7 +17,8 @@ from .types import OldList, RawData
 
 
 ##############################################################################
-class Count(NamedTuple):
+@dataclass(frozen=True)
+class Count:
     """Unread count information class."""
 
     id: str
@@ -28,8 +29,6 @@ class Count(NamedTuple):
     """The timestamp of the newest item."""
     prefix: str
     """The prefix related to this type of count."""
-    raw: RawData | None = None
-    """The raw data from the API."""
 
     @property
     def name(self) -> str:
@@ -48,7 +47,6 @@ class Count(NamedTuple):
             The count information.
         """
         return Count(
-            raw=data,
             id=data["id"],
             unread=data["count"],
             newest_timestamp=datetime.fromtimestamp(
@@ -65,7 +63,8 @@ class Counts(OldList[Count]):
 
 
 ##############################################################################
-class Unread(NamedTuple):
+@dataclass(frozen=True)
+class Unread:
     """Class that loads and holds [unread counts][oldas.Counts]."""
 
     total: int

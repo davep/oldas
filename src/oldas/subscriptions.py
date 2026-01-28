@@ -6,9 +6,9 @@ from __future__ import annotations
 
 ##############################################################################
 # Python imports.
+from dataclasses import dataclass
 from datetime import datetime, timezone
 from functools import total_ordering
-from typing import NamedTuple
 
 ##############################################################################
 # Local imports.
@@ -19,15 +19,14 @@ from .types import OldList, RawData
 
 
 ##############################################################################
-class Category(NamedTuple):
+@dataclass(frozen=True)
+class Category:
     """Holds details of a category."""
 
     id: str
     """The ID for the category."""
     label: str
     """The label for the category."""
-    raw: RawData | None = None
-    """The raw data from the API."""
 
     @classmethod
     def from_json(cls, data: RawData) -> Category:
@@ -40,7 +39,6 @@ class Category(NamedTuple):
             The category.
         """
         return cls(
-            raw=data,
             id=data["id"],
             label=data["label"],
         )
@@ -66,7 +64,8 @@ class Categories(OldList[Category]):
 
 ##############################################################################
 @total_ordering
-class Subscription(NamedTuple):
+@dataclass(frozen=True, order=False)
+class Subscription:
     """Holds a subscription."""
 
     id: str
@@ -83,8 +82,6 @@ class Subscription(NamedTuple):
     """The HTML URL of the subscription."""
     categories: Categories
     """The categories for the subscription."""
-    raw: RawData | None = None
-    """The raw data from the API."""
 
     @classmethod
     def from_json(cls, data: RawData) -> Subscription:
@@ -97,7 +94,6 @@ class Subscription(NamedTuple):
             The subscription.
         """
         return cls(
-            raw=data,
             id=data["id"],
             title=data["title"],
             sort_id=data["sortid"],
@@ -143,7 +139,8 @@ class Subscription(NamedTuple):
 
 
 ##############################################################################
-class SubscribeResult(NamedTuple):
+@dataclass(frozen=True)
+class SubscribeResult:
     """Class that holds the request of adding a subscription."""
 
     query: str
@@ -154,8 +151,6 @@ class SubscribeResult(NamedTuple):
     """The stream ID if the subscription took place."""
     error: str | None
     """The reason why the subscribe failed, if it did."""
-    raw: RawData | None = None
-    """The raw data from the API."""
 
     @classmethod
     def from_json(cls, data: RawData) -> SubscribeResult:
@@ -168,7 +163,6 @@ class SubscribeResult(NamedTuple):
             The result of making the subscribe request.
         """
         return cls(
-            raw=data,
             query=data["query"],
             number_of_results=data["numResults"],
             stream_id=data.get("streamId"),

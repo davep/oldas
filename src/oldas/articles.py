@@ -6,8 +6,9 @@ from __future__ import annotations
 
 ##############################################################################
 # Python imports.
+from dataclasses import dataclass
 from datetime import datetime, timezone
-from typing import Any, AsyncIterator, Iterable, Literal, NamedTuple
+from typing import Any, AsyncIterator, Iterable, Literal
 
 ##############################################################################
 # Local imports.
@@ -24,15 +25,14 @@ Direction = Literal["ltr", "rtl"]
 
 
 ##############################################################################
-class Summary(NamedTuple):
+@dataclass(frozen=True)
+class Summary:
     """The summary details for an [`Article`][oldas.Article]."""
 
     direction: Direction
     """The direction for the text in the summary."""
     content: str
     """The content of the summary."""
-    raw: RawData | None = None
-    """The raw data from the API."""
 
     @classmethod
     def from_json(cls, data: RawData) -> Summary:
@@ -45,14 +45,14 @@ class Summary(NamedTuple):
             The summary.
         """
         return cls(
-            raw=data,
             direction=data["direction"],
             content=data["content"],
         )
 
 
 ##############################################################################
-class Origin(NamedTuple):
+@dataclass(frozen=True)
+class Origin:
     """The origin details for an [`Article`][oldas.Article]."""
 
     stream_id: str | None
@@ -61,8 +61,6 @@ class Origin(NamedTuple):
     """The title of the origin of the article."""
     html_url: str
     """The URL of the HTML of the origin of the article."""
-    raw: RawData | None = None
-    """The raw data from the API."""
 
     @classmethod
     def from_json(cls, data: RawData) -> Origin:
@@ -75,7 +73,6 @@ class Origin(NamedTuple):
             The origin data.
         """
         return cls(
-            raw=data,
             stream_id=data.get("streamId"),
             title=data["title"],
             html_url=data["htmlUrl"],
@@ -83,15 +80,14 @@ class Origin(NamedTuple):
 
 
 ##############################################################################
-class Alternate(NamedTuple):
+@dataclass(frozen=True)
+class Alternate:
     """Holds details of an alternate for an [`Article`][oldas.Article]."""
 
     href: str
     """The URL for the alternate."""
     mime_type: str
     """The MIME type of the alternate."""
-    raw: RawData | None = None
-    """The raw data from the API."""
 
     @classmethod
     def from_json(cls, data: RawData) -> Alternate:
@@ -104,7 +100,6 @@ class Alternate(NamedTuple):
             The alternates.
         """
         return cls(
-            raw=data,
             href=data["href"],
             mime_type=data["type"],
         )
@@ -116,7 +111,8 @@ class Alternates(OldList[Alternate]):
 
 
 ##############################################################################
-class Article(NamedTuple):
+@dataclass(frozen=True)
+class Article:
     """Holds details about an article."""
 
     id: str
@@ -137,8 +133,6 @@ class Article(NamedTuple):
     """The origin of the article."""
     alternate: Alternates
     """Alternates for the article."""
-    raw: RawData | None = None
-    """The raw data from the API."""
 
     @property
     def is_read(self) -> bool:
@@ -236,7 +230,6 @@ class Article(NamedTuple):
             The article.
         """
         return cls(
-            raw=data,
             id=data["id"],
             title=data["title"],
             published=datetime.fromtimestamp(data["published"], timezone.utc),

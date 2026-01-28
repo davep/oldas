@@ -6,7 +6,7 @@ from __future__ import annotations
 
 ##############################################################################
 # Python imports.
-from typing import NamedTuple
+from dataclasses import dataclass
 
 ##############################################################################
 # Local imports.
@@ -15,7 +15,8 @@ from .types import RawData
 
 
 ##############################################################################
-class User(NamedTuple):
+@dataclass
+class User:
     """TheOldReader user information."""
 
     user_id: str
@@ -34,8 +35,6 @@ class User(NamedTuple):
     """Is multi-login enabled?"""
     is_premium: bool
     """Is the user a premium user?"""
-    raw: RawData | None = None
-    """The raw data from the API."""
 
     @classmethod
     async def load(cls, session: Session) -> User:
@@ -49,7 +48,6 @@ class User(NamedTuple):
         """
         user = await session.get("user-info")
         return cls(
-            raw=user,
             user_id=user["userId"],
             name=user["userName"],
             profile_id=user["userProfileId"],

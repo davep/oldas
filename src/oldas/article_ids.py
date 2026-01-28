@@ -6,8 +6,9 @@ from __future__ import annotations
 
 ##############################################################################
 # Python imports.
+from dataclasses import dataclass
 from datetime import datetime, timezone
-from typing import Any, AsyncIterator, NamedTuple
+from typing import Any, AsyncIterator
 
 ##############################################################################
 # Local imports.
@@ -18,7 +19,8 @@ from .types import OldList, RawData
 
 
 ##############################################################################
-class ArticleID(NamedTuple):
+@dataclass(frozen=True)
+class ArticleID:
     """Holds an article ID."""
 
     article_id: str
@@ -27,8 +29,6 @@ class ArticleID(NamedTuple):
     """The direct stream IDs."""
     timestamp: datetime
     """The timestamp associated with the article ID."""
-    raw: RawData | None = None
-    """The raw data from the API."""
 
     @property
     def full_id(self) -> str:
@@ -46,7 +46,6 @@ class ArticleID(NamedTuple):
             The article ID.
         """
         return cls(
-            raw=data,
             article_id=data["id"],
             direct_stream_ids=data["directStreamIds"],
             timestamp=datetime.fromtimestamp(
