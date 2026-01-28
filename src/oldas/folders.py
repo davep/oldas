@@ -26,8 +26,6 @@ class Folder:
     """The ID of the folder."""
     sort_id: str
     """The sort ID of the folder."""
-    raw: RawData | None = None
-    """The raw data from the API."""
 
     @property
     def name(self) -> str:
@@ -45,7 +43,6 @@ class Folder:
             The folder information.
         """
         return Folder(
-            raw=data,
             id=data["id"],
             sort_id=data["sortid"],
         )

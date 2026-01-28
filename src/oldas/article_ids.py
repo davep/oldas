@@ -29,8 +29,6 @@ class ArticleID:
     """The direct stream IDs."""
     timestamp: datetime
     """The timestamp associated with the article ID."""
-    raw: RawData | None = None
-    """The raw data from the API."""
 
     @property
     def full_id(self) -> str:
@@ -48,7 +46,6 @@ class ArticleID:
             The article ID.
         """
         return cls(
-            raw=data,
             article_id=data["id"],
             direct_stream_ids=data["directStreamIds"],
             timestamp=datetime.fromtimestamp(

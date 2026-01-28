@@ -27,8 +27,6 @@ class Category:
     """The ID for the category."""
     label: str
     """The label for the category."""
-    raw: RawData | None = None
-    """The raw data from the API."""
 
     @classmethod
     def from_json(cls, data: RawData) -> Category:
@@ -41,7 +39,6 @@ class Category:
             The category.
         """
         return cls(
-            raw=data,
             id=data["id"],
             label=data["label"],
         )
@@ -85,8 +82,6 @@ class Subscription:
     """The HTML URL of the subscription."""
     categories: Categories
     """The categories for the subscription."""
-    raw: RawData | None = None
-    """The raw data from the API."""
 
     @classmethod
     def from_json(cls, data: RawData) -> Subscription:
@@ -99,7 +94,6 @@ class Subscription:
             The subscription.
         """
         return cls(
-            raw=data,
             id=data["id"],
             title=data["title"],
             sort_id=data["sortid"],
@@ -157,8 +151,6 @@ class SubscribeResult:
     """The stream ID if the subscription took place."""
     error: str | None
     """The reason why the subscribe failed, if it did."""
-    raw: RawData | None = None
-    """The raw data from the API."""
 
     @classmethod
     def from_json(cls, data: RawData) -> SubscribeResult:
@@ -171,7 +163,6 @@ class SubscribeResult:
             The result of making the subscribe request.
         """
         return cls(
-            raw=data,
             query=data["query"],
             number_of_results=data["numResults"],
             stream_id=data.get("streamId"),

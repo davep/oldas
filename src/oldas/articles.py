@@ -33,8 +33,6 @@ class Summary:
     """The direction for the text in the summary."""
     content: str
     """The content of the summary."""
-    raw: RawData | None = None
-    """The raw data from the API."""
 
     @classmethod
     def from_json(cls, data: RawData) -> Summary:
@@ -47,7 +45,6 @@ class Summary:
             The summary.
         """
         return cls(
-            raw=data,
             direction=data["direction"],
             content=data["content"],
         )
@@ -64,8 +61,6 @@ class Origin:
     """The title of the origin of the article."""
     html_url: str
     """The URL of the HTML of the origin of the article."""
-    raw: RawData | None = None
-    """The raw data from the API."""
 
     @classmethod
     def from_json(cls, data: RawData) -> Origin:
@@ -78,7 +73,6 @@ class Origin:
             The origin data.
         """
         return cls(
-            raw=data,
             stream_id=data.get("streamId"),
             title=data["title"],
             html_url=data["htmlUrl"],
@@ -94,8 +88,6 @@ class Alternate:
     """The URL for the alternate."""
     mime_type: str
     """The MIME type of the alternate."""
-    raw: RawData | None = None
-    """The raw data from the API."""
 
     @classmethod
     def from_json(cls, data: RawData) -> Alternate:
@@ -108,7 +100,6 @@ class Alternate:
             The alternates.
         """
         return cls(
-            raw=data,
             href=data["href"],
             mime_type=data["type"],
         )
@@ -142,8 +133,6 @@ class Article:
     """The origin of the article."""
     alternate: Alternates
     """Alternates for the article."""
-    raw: RawData | None = None
-    """The raw data from the API."""
 
     @property
     def is_read(self) -> bool:
@@ -241,7 +230,6 @@ class Article:
             The article.
         """
         return cls(
-            raw=data,
             id=data["id"],
             title=data["title"],
             published=datetime.fromtimestamp(data["published"], timezone.utc),

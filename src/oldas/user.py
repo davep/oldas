@@ -35,8 +35,6 @@ class User:
     """Is multi-login enabled?"""
     is_premium: bool
     """Is the user a premium user?"""
-    raw: RawData | None = None
-    """The raw data from the API."""
 
     @classmethod
     async def load(cls, session: Session) -> User:
@@ -50,7 +48,6 @@ class User:
         """
         user = await session.get("user-info")
         return cls(
-            raw=user,
             user_id=user["userId"],
             name=user["userName"],
             profile_id=user["userProfileId"],

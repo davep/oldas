@@ -29,8 +29,6 @@ class Count:
     """The timestamp of the newest item."""
     prefix: str
     """The prefix related to this type of count."""
-    raw: RawData | None = None
-    """The raw data from the API."""
 
     @property
     def name(self) -> str:
@@ -49,7 +47,6 @@ class Count:
             The count information.
         """
         return Count(
-            raw=data,
             id=data["id"],
             unread=data["count"],
             newest_timestamp=datetime.fromtimestamp(
