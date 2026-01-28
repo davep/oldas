@@ -8,7 +8,6 @@ from __future__ import annotations
 # Python imports.
 from dataclasses import dataclass
 from datetime import datetime, timezone
-from functools import total_ordering
 
 ##############################################################################
 # Local imports.
@@ -63,8 +62,7 @@ class Categories(OldList[Category]):
 
 
 ##############################################################################
-@total_ordering
-@dataclass(frozen=True, order=False)
+@dataclass(frozen=True)
 class Subscription:
     """Holds a subscription."""
 
@@ -126,16 +124,6 @@ class Subscription:
             ),
             None,
         )
-
-    def __gt__(self, value: object, /) -> bool:
-        if isinstance(value, Subscription):
-            return self.title.casefold() > value.title.casefold()
-        raise NotImplementedError
-
-    def __eq__(self, value: object, /) -> bool:
-        if isinstance(value, Subscription):
-            return self.title.casefold() == value.title.casefold()
-        raise NotImplementedError
 
 
 ##############################################################################

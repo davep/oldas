@@ -48,16 +48,6 @@ TEST_SUBSCRIPTIONS = Subscriptions(
 
 
 ##############################################################################
-def test_sort_subscriptions() -> None:
-    """Subscriptions should sort by title."""
-    assert [subscription.title for subscription in TEST_SUBSCRIPTIONS] == ["Z", "a"]
-    assert [subscription.title for subscription in sorted(TEST_SUBSCRIPTIONS)] == [
-        "a",
-        "Z",
-    ]
-
-
-##############################################################################
 @mark.parametrize(
     "data, result",
     (
