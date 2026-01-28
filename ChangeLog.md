@@ -1,8 +1,8 @@
 # OldAS ChangeLog
 
-## Unrealsed
+## v0.9.0
 
-**Released: WiP**
+**Released: 2026-01-28**
 
 - Moved away from using `NamedTuple` as the base class for all the
   data-wrapping classes and started using frozen dataclasses.
