@@ -6,7 +6,9 @@
 
 - Moved away from using `NamedTuple` as the base class for all the
   data-wrapping classes and started using frozen dataclasses.
+  ([#36](https://github.com/davep/oldas/pull/36))
 - Dropped the `raw` property from all classes.
+  ([#36](https://github.com/davep/oldas/pull/36))
 
 ## v0.8.0
 
