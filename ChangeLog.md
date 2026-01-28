@@ -1,8 +1,8 @@
 # OldAS ChangeLog
 
-## Unreleased
+## v0.10.0
 
-**Released: WiP**
+**Released: 2026-01-28**
 
 - Removed sort-supporting comparison overrides for `Folder` and
   `Subscription`. ([#39](https://github.com/davep/oldas/pull/39))
