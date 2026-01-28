@@ -1,5 +1,11 @@
 # OldAS ChangeLog
 
+## Unreleased
+
+**Released: WiP**
+
+- Added `in` support to `Subscriptions.Categories` for easier checking.
+
 ## v0.7.0
 
 **Released: 2026-01-27**

@@ -50,6 +50,19 @@ class Category(NamedTuple):
 class Categories(OldList[Category]):
     """Holds a collection of [categories][oldas.subscriptions.Category]."""
 
+    def __contains__(self, data: Category | Folder | str) -> bool:
+        """Check if some data is `in` the categories.
+
+        Args:
+            data: The category, folder or string to look for.
+
+        Returns:
+            [`True`][True] if the data was found, [`False`][False] if not.
+        """
+        if isinstance(data, (Category, Folder)):
+            data = data.id
+        return any(category.id == data for category in self)
+
 
 ##############################################################################
 @total_ordering
