@@ -4,10 +4,8 @@
 
 **Released: WiP**
 
-- Ignore case when ordering subscriptions by title.
-  ([#38](https://github.com/davep/oldas/pull/38))
-- Ignore case when ordering folders by name.
-  ([#38](https://github.com/davep/oldas/pull/38))
+- Removed sort-supporting comparison overrides for `Folder` and
+  `Subscription`. ([#39](https://github.com/davep/oldas/pull/39))
 
 ## v0.9.0
 

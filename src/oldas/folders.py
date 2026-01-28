@@ -7,7 +7,6 @@ from __future__ import annotations
 ##############################################################################
 # Python imports.
 from dataclasses import dataclass
-from functools import total_ordering
 
 ##############################################################################
 # Local imports.
@@ -17,8 +16,7 @@ from .types import OldList, RawData
 
 
 ##############################################################################
-@total_ordering
-@dataclass(frozen=True, order=False)
+@dataclass(frozen=True)
 class Folder:
     """Folder information class."""
 
@@ -46,16 +44,6 @@ class Folder:
             id=data["id"],
             sort_id=data["sortid"],
         )
-
-    def __gt__(self, value: object, /) -> bool:
-        if isinstance(value, Folder):
-            return self.name.casefold() > value.name.casefold()
-        raise NotImplementedError
-
-    def __eq__(self, value: object, /) -> bool:
-        if isinstance(value, Folder):
-            return self.name.casefold() == value.name.casefold()
-        raise NotImplementedError
 
 
 ##############################################################################
