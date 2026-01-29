@@ -18,7 +18,7 @@ __licence__ = "MIT"
 # Local imports.
 from .article_ids import ArticleID, ArticleIDs
 from .articles import Article, Articles
-from .exceptions import OldASError, OldASInvalidLogin
+from .exceptions import OldASError, OldASInvalidLogin, OldASLoginNeeded
 from .folders import Folder, Folders
 from .prefixes import Prefix, id_is_a_feed, id_is_a_folder, id_is_an_article
 from .session import Session
@@ -43,6 +43,7 @@ __all__ = [
     "id_is_an_article",
     "OldASError",
     "OldASInvalidLogin",
+    "OldASLoginNeeded",
     "Prefix",
     "Session",
     "State",
