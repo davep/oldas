@@ -5,9 +5,12 @@
 **Released: WiP**
 
 - The `User` class is now exported at the top level of the library.
+  ([#41](https://github.com/davep/oldas/pull/41))
 - `User.signup_time` is now a `datetime`.
+  ([#41](https://github.com/davep/oldas/pull/41))
 - Corrected the type of `User.is_blogger_user` (it had been left as `str`
   from very early testing, and has now become a `bool`).
+  ([#41](https://github.com/davep/oldas/pull/41))
 
 ## v0.10.0
 
