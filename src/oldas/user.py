@@ -11,7 +11,6 @@ from dataclasses import dataclass
 ##############################################################################
 # Local imports.
 from .session import Session
-from .types import RawData
 
 
 ##############################################################################
