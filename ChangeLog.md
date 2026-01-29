@@ -11,6 +11,8 @@
 - Corrected the type of `User.is_blogger_user` (it had been left as `str`
   from very early testing, and has now become a `bool`).
   ([#41](https://github.com/davep/oldas/pull/41))
+- Added the `OldASLoginNeeded` exception as a top-level export.
+  ([#42](https://github.com/davep/oldas/pull/42))
 
 ## v0.10.0
 
