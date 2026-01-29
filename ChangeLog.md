@@ -1,5 +1,14 @@
 # OldAS ChangeLog
 
+## Unreleased
+
+**Released: WiP**
+
+- The `User` class is now exported at the top level of the library.
+- `User.signup_time` is now a `datetime`.
+- Corrected the type of `User.is_blogger_user` (it had been left as `str`
+  from very early testing, and has now become a `bool`).
+
 ## v0.10.0
 
 **Released: 2026-01-28**
