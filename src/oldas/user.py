@@ -27,7 +27,7 @@ class User:
     """The user's profile ID."""
     email: str
     """The user's email address."""
-    is_blogger_user: str
+    is_blogger_user: bool
     """Is the user a Blogger user?"""
     signup_time: datetime
     """The signup time of the user."""
