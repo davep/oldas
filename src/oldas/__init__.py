@@ -25,6 +25,7 @@ from .session import Session
 from .states import State
 from .subscriptions import Subscription, Subscriptions
 from .unread import Count, Counts, Unread
+from .user import User
 
 ##############################################################################
 # Exports.
@@ -47,6 +48,7 @@ __all__ = [
     "State",
     "Subscription",
     "Subscriptions",
+    "User",
     "Unread",
 ]
 

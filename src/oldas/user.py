@@ -7,11 +7,11 @@ from __future__ import annotations
 ##############################################################################
 # Python imports.
 from dataclasses import dataclass
+from datetime import datetime, timezone
 
 ##############################################################################
 # Local imports.
 from .session import Session
-from .types import RawData
 
 
 ##############################################################################
@@ -27,9 +27,9 @@ class User:
     """The user's profile ID."""
     email: str
     """The user's email address."""
-    is_blogger_user: str
+    is_blogger_user: bool
     """Is the user a Blogger user?"""
-    signup_time: int
+    signup_time: datetime
     """The signup time of the user."""
     is_multi_login_enabled: bool
     """Is multi-login enabled?"""
@@ -53,7 +53,7 @@ class User:
             profile_id=user["userProfileId"],
             email=user["userEmail"],
             is_blogger_user=user["isBloggerUser"],
-            signup_time=user["signupTimeSec"],
+            signup_time=datetime.fromtimestamp(user["signupTimeSec"], timezone.utc),
             is_multi_login_enabled=user["isMultiLoginEnabled"],
             is_premium=user["isPremium"],
         )
