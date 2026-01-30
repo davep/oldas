@@ -879,6 +879,47 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supported-python-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supported Python versions
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -902,10 +943,25 @@
 <a href="https://docs.python.org/3/library/asyncio.html">async</a>-friendly interaction
 with <a href="https://github.com/theoldreader/api">the API</a> for
 <a href="https://theoldreader.com">TheOldReader</a>.</p>
-<h1 id="installing">Installing</h1>
+<h2 id="installing">Installing</h2>
 <p><code>oldas</code> is <a href="https://pypi.org/project/oldas/">available from pypi</a> and can be
-installed with <code>pip</code> or similar Python package tools:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>oldas
+installed your package installer of choice</p>
+<p>With <code>pip</code>:</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>oldas
+</code></pre></div>
+<p>With <code>uv</code>:</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>add<span class="w"> </span>oldas
+</code></pre></div>
+<h2 id="requirements">Requirements</h2>
+<p>The only requirement for this library, other than the standard Python
+library, is <a href="https://www.python-httpx.org"><code>httpx</code></a>.</p>
+<h2 id="supported-python-versions">Supported Python versions</h2>
+<p>OldAS is usable with <a href="https://devguide.python.org/versions/">all supported Python
+versions</a> from 3.11 and above.</p>
+<h1 id="source">Source</h1>
+<p>The source for this library can always be found <a href="https://github.com/davep/oldas">in its GitHub
+repository</a>.</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:davep/oldas.git
 </code></pre></div>
 
 
