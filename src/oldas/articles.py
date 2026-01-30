@@ -13,7 +13,7 @@ from typing import Any, AsyncIterator, Iterable, Literal
 ##############################################################################
 # Local imports.
 from .folders import Folder
-from .prefixes import id_is_a_folder
+from .prefixes import Prefix, id_is_a_folder, id_is_an_article
 from .session import Session
 from .states import State
 from .subscriptions import Subscription
@@ -247,6 +247,20 @@ class Article:
 ##############################################################################
 class Articles(OldList[Article]):
     """Loads and holds a full list of [articles][oldas.Article]."""
+
+    @staticmethod
+    def full_id(article: str | Article) -> str:
+        """Get the full ID for a given article.
+
+        Args:
+            article: The article to get the full ID for.
+
+        Returns:
+            The full ID for the article.
+        """
+        if isinstance(article, Article):
+            article = article.id
+        return article if id_is_an_article(article) else f"{Prefix.ARTICLE}{article}"
 
     @classmethod
     async def stream(

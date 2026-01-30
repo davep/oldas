@@ -12,7 +12,7 @@ from typing import Any, AsyncIterator
 
 ##############################################################################
 # Local imports.
-from .prefixes import Prefix
+from .articles import Articles
 from .session import Session
 from .states import State
 from .types import OldList, RawData
@@ -33,7 +33,7 @@ class ArticleID:
     @property
     def full_id(self) -> str:
         """The full, prefixed, ID for the article."""
-        return f"{Prefix.ARTICLE}{self.article_id}"
+        return Articles.full_id(self.article_id)
 
     @classmethod
     def from_json(cls, data: RawData) -> ArticleID:
