@@ -13,6 +13,8 @@
   ([#41](https://github.com/davep/oldas/pull/41))
 - Added the `OldASLoginNeeded` exception as a top-level export.
   ([#42](https://github.com/davep/oldas/pull/42))
+- Added `Subscriptions.full_id`.
+  ([#43](https://github.com/davep/oldas/pull/43))
 - Added `Articles.full_id`. ([#44](https://github.com/davep/oldas/pull/44))
 
 ## v0.10.0
