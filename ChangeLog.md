@@ -1,8 +1,8 @@
 # OldAS ChangeLog
 
-## Unreleased
+## v0.11.0
 
-**Released: WiP**
+**Released: 2026-01-30**
 
 - The `User` class is now exported at the top level of the library.
   ([#41](https://github.com/davep/oldas/pull/41))
