@@ -203,7 +203,7 @@ class Subscriptions(OldList[Subscription]):
         )
 
     @staticmethod
-    def _full_id(subscription: str | Subscription) -> str:
+    def full_id(subscription: str | Subscription) -> str:
         """Get the full ID for a given subscription.
 
         Args:
@@ -239,7 +239,7 @@ class Subscriptions(OldList[Subscription]):
             it can be a [`Subscription`][oldas.Subscription] object.
         """
         return await session.post_ok(
-            "subscription/edit", ac="edit", s=cls._full_id(subscription), t=new_name
+            "subscription/edit", ac="edit", s=cls.full_id(subscription), t=new_name
         )
 
     @classmethod
@@ -258,7 +258,7 @@ class Subscriptions(OldList[Subscription]):
             it can be a [`Subscription`][oldas.Subscription] object.
         """
         return await session.post_ok(
-            "subscription/edit", ac="unsubscribe", s=cls._full_id(subscription)
+            "subscription/edit", ac="unsubscribe", s=cls.full_id(subscription)
         )
 
     @classmethod
@@ -291,7 +291,7 @@ class Subscriptions(OldList[Subscription]):
             else {"a": Folders.full_id(target_folder)}
         )
         return await session.post_ok(
-            "subscription/edit", ac="edit", s=cls._full_id(subscription), **operation
+            "subscription/edit", ac="edit", s=cls.full_id(subscription), **operation
         )
 
 
