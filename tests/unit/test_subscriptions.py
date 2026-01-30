@@ -7,7 +7,6 @@ from pytest import mark
 ##############################################################################
 # Local imports.
 from oldas import Folder, Folders, Subscription, Subscriptions
-from oldas.prefixes import Prefix
 from oldas.subscriptions import Category
 
 ##############################################################################
@@ -23,7 +22,7 @@ TEST_SUBSCRIPTIONS = Subscriptions(
     [
         Subscription.from_json(
             {
-                "id": f"{Prefix.FEED}foo",
+                "id": Subscriptions.full_id("foo"),
                 "title": "Z",
                 "sortid": "",
                 "firstitemmsec": 0,
@@ -34,7 +33,7 @@ TEST_SUBSCRIPTIONS = Subscriptions(
         ),
         Subscription.from_json(
             {
-                "id": f"{Prefix.FEED}bar",
+                "id": Subscriptions.full_id("bar"),
                 "title": "a",
                 "sortid": "",
                 "firstitemmsec": 0,
