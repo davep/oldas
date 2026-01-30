@@ -23,7 +23,7 @@ from .folders import Folder, Folders
 from .prefixes import Prefix, id_is_a_feed, id_is_a_folder, id_is_an_article
 from .session import Session
 from .states import State
-from .subscriptions import Subscription, Subscriptions
+from .subscriptions import SubscribeResult, Subscription, Subscriptions
 from .unread import Count, Counts, Unread
 from .user import User
 
@@ -47,6 +47,7 @@ __all__ = [
     "Prefix",
     "Session",
     "State",
+    "SubscribeResult",
     "Subscription",
     "Subscriptions",
     "User",

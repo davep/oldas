@@ -1,5 +1,11 @@
 # OldAS ChangeLog
 
+## Unreleased
+
+**Released: WiP**
+
+- Added `SubscribeResult` as a top-level export.
+
 ## v0.11.0
 
 **Released: 2026-01-30**
