@@ -55,7 +55,7 @@ def test_bool(old_list: NumberList, expected: bool) -> None:
         (NumberList(range(100)), True),
     ),
 )
-def test_is_in(old_list: OldList, expected: bool) -> None:
+def test_is_in(old_list: NumberList, expected: bool) -> None:
     """The `in` test should work as expected."""
     assert (23 in old_list) is expected
 
