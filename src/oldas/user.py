@@ -7,7 +7,7 @@ from __future__ import annotations
 ##############################################################################
 # Python imports.
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 ##############################################################################
 # Local imports.
@@ -53,7 +53,7 @@ class User:
             profile_id=user["userProfileId"],
             email=user["userEmail"],
             is_blogger_user=user["isBloggerUser"],
-            signup_time=datetime.fromtimestamp(user["signupTimeSec"], timezone.utc),
+            signup_time=datetime.fromtimestamp(user["signupTimeSec"], UTC),
             is_multi_login_enabled=user["isMultiLoginEnabled"],
             is_premium=user["isPremium"],
         )

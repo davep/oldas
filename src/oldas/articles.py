@@ -7,7 +7,7 @@ from __future__ import annotations
 ##############################################################################
 # Python imports.
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Any, AsyncIterator, Iterable, Literal
 
 ##############################################################################
@@ -232,8 +232,8 @@ class Article:
         return cls(
             id=data["id"],
             title=data["title"],
-            published=datetime.fromtimestamp(data["published"], timezone.utc),
-            updated=datetime.fromtimestamp(data["updated"], timezone.utc),
+            published=datetime.fromtimestamp(data["published"], UTC),
+            updated=datetime.fromtimestamp(data["updated"], UTC),
             author=data["author"],
             summary=Summary.from_json(data["summary"]),
             categories=cls.clean_categories(data["categories"]),
