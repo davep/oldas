@@ -7,7 +7,7 @@ from __future__ import annotations
 ##############################################################################
 # Python imports.
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Any, AsyncIterator
 
 ##############################################################################
@@ -49,7 +49,7 @@ class ArticleID:
             article_id=data["id"],
             direct_stream_ids=data["directStreamIds"],
             timestamp=datetime.fromtimestamp(
-                int(data["timestampUsec"]) / 1_000_000, timezone.utc
+                int(data["timestampUsec"]) / 1_000_000, UTC
             ),
         )
 
