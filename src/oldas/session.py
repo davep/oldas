@@ -85,7 +85,7 @@ class Session:
         try:
             response = await call
         except ReadTimeout:
-            raise OldASError("Timeout while talking to TheOldReader API")
+            raise OldASError("Timeout while talking to TheOldReader API") from None
         except RequestError as error:
             raise OldASError(str(error)) from None
         try:
