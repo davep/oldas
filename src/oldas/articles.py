@@ -6,9 +6,10 @@ from __future__ import annotations
 
 ##############################################################################
 # Python imports.
+from collections.abc import AsyncIterator, Iterable
 from dataclasses import dataclass
-from datetime import datetime, timezone
-from typing import Any, AsyncIterator, Iterable, Literal
+from datetime import UTC, datetime
+from typing import Any, Literal
 
 ##############################################################################
 # Local imports.
@@ -107,7 +108,10 @@ class Alternate:
 
 ##############################################################################
 class Alternates(OldList[Alternate]):
-    """Holds a list of [alternates][oldas.articles.Alternate] for an [`Article`][oldas.Article]."""
+    """Holds a list of [alternates][oldas.articles.Alternate]
+
+    Used within an [`Article`][oldas.Article].
+    """
 
 
 ##############################################################################
@@ -232,8 +236,8 @@ class Article:
         return cls(
             id=data["id"],
             title=data["title"],
-            published=datetime.fromtimestamp(data["published"], timezone.utc),
-            updated=datetime.fromtimestamp(data["updated"], timezone.utc),
+            published=datetime.fromtimestamp(data["published"], UTC),
+            updated=datetime.fromtimestamp(data["updated"], UTC),
             author=data["author"],
             summary=Summary.from_json(data["summary"]),
             categories=cls.clean_categories(data["categories"]),

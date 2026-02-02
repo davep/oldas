@@ -7,7 +7,7 @@ from __future__ import annotations
 ##############################################################################
 # Python imports.
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 ##############################################################################
 # Local imports.
@@ -51,7 +51,7 @@ class Count:
             unread=data["count"],
             newest_timestamp=datetime.fromtimestamp(
                 int(data["newestItemTimestampUsec"]) / 1_000_000,
-                timezone.utc,
+                UTC,
             ),
             prefix=prefix,
         )

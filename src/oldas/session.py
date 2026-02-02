@@ -1,7 +1,8 @@
 """Provides a class for getting and managing a login session."""
 
 ##############################################################################
-from typing import Any, Awaitable, Final, Literal, Self
+from collections.abc import Awaitable
+from typing import Any, Final, Literal, Self
 
 ##############################################################################
 # Httpx imports.
@@ -84,7 +85,7 @@ class Session:
         try:
             response = await call
         except ReadTimeout:
-            raise OldASError("Timeout while talking to TheOldReader API")
+            raise OldASError("Timeout while talking to TheOldReader API") from None
         except RequestError as error:
             raise OldASError(str(error)) from None
         try:

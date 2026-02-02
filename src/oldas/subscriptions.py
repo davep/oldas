@@ -7,7 +7,7 @@ from __future__ import annotations
 ##############################################################################
 # Python imports.
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 ##############################################################################
 # Local imports.
@@ -96,7 +96,7 @@ class Subscription:
             title=data["title"],
             sort_id=data["sortid"],
             first_item_time=datetime.fromtimestamp(
-                int(data["firstitemmsec"]) / 1_000, timezone.utc
+                int(data["firstitemmsec"]) / 1_000, UTC
             ),
             url=data["url"],
             html_url=data["htmlUrl"],
@@ -107,9 +107,11 @@ class Subscription:
 
     @property
     def folder_id(self) -> str | None:
-        """The ID of the folder that this subscription belongs to, or [`None`][None] if it doesn't.
+        """The ID of the folder that this subscription belongs to
 
         Note:
+            Will be [`None`][None] if it is outside any folder.
+
             According to the API documentation it would appear that a
             subscription could be a member of multiple folders. Note that
             this property is the ID of the first folder that could be found
