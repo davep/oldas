@@ -107,9 +107,11 @@ class Subscription:
 
     @property
     def folder_id(self) -> str | None:
-        """The ID of the folder that this subscription belongs to, or [`None`][None] if it doesn't.
+        """The ID of the folder that this subscription belongs to
 
         Note:
+            Will be [`None`][None] if it is outside any folder.
+
             According to the API documentation it would appear that a
             subscription could be a member of multiple folders. Note that
             this property is the ID of the first folder that could be found

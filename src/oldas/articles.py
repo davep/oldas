@@ -108,7 +108,10 @@ class Alternate:
 
 ##############################################################################
 class Alternates(OldList[Alternate]):
-    """Holds a list of [alternates][oldas.articles.Alternate] for an [`Article`][oldas.Article]."""
+    """Holds a list of [alternates][oldas.articles.Alternate]
+
+    Used within an [`Article`][oldas.Article].
+    """
 
 
 ##############################################################################
