@@ -6,9 +6,10 @@ from __future__ import annotations
 
 ##############################################################################
 # Python imports.
+from collections.abc import AsyncIterator, Iterable
 from dataclasses import dataclass
 from datetime import UTC, datetime
-from typing import Any, AsyncIterator, Iterable, Literal
+from typing import Any, Literal
 
 ##############################################################################
 # Local imports.

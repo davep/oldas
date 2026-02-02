@@ -6,12 +6,11 @@ from __future__ import annotations
 
 ##############################################################################
 # Python imports.
+from collections.abc import Iterable, Iterator
 from typing import (
     TYPE_CHECKING,
     Any,
     Generic,
-    Iterable,
-    Iterator,
     TypeAlias,
     TypeVar,
     overload,
