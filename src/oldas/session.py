@@ -278,7 +278,7 @@ class Session:
             [`True`][True] if the tag edit operation worked,
             [`False`][False] if not.
         """
-        return await self.post_ok("/edit-tag", i=item, **{str(operation): str(tag)})
+        return await self.post_ok("edit-tag", i=item, **{str(operation): str(tag)})
 
     async def add_tag(self, item: str | list[str], tag: str | State) -> bool:
         """Add a tag to an item.
