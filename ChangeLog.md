@@ -1,5 +1,13 @@
 # OldAS ChangeLog
 
+## Unreleased
+
+**Released: WiP**
+
+- Added `SubscribeResult.succeeded`.
+- Added `SubscribeResult.__bool__` as an alias for
+  `SubscribeResult.succeeded`.
+
 ## v0.12.0
 
 **Released: 2026-02-08**
