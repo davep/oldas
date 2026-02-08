@@ -1,8 +1,8 @@
 # OldAS ChangeLog
 
-## Unreleased
+## v0.12.0
 
-**Released: WiP**
+**Released: 2026-02-08**
 
 - Added `SubscribeResult` as a top-level export.
   ([#47](https://github.com/davep/oldas/pull/47))
