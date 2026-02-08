@@ -2,6 +2,7 @@
 
 ##############################################################################
 from collections.abc import Awaitable
+from logging import Logger
 from typing import Any, Final, Literal, Self
 
 ##############################################################################
@@ -31,7 +32,11 @@ class Session:
     """The user agent to use for the library."""
 
     def __init__(
-        self, client: str, auth_code: str | None = None, timeout: int = 60
+        self,
+        client: str,
+        auth_code: str | None = None,
+        timeout: int = 60,
+        logger: Logger | None = None,
     ) -> None:
         """Initialise the object.
 
@@ -39,6 +44,7 @@ class Session:
             client: The name of the client that is logging in.
             auth_code: Optional authorisation code to resume a session.
             timeout: The timeout in seconds to use when making calls.
+            logger: Optional logging object.
 
         Note:
             The `client` should be a unique name you give your client
@@ -50,6 +56,8 @@ class Session:
         """The authorisation code."""
         self._timeout = timeout
         """The timeout, in seconds, to use when making calls."""
+        self._logger = logger
+        """Optional logging object."""
         self._web_client_: AsyncClient | None = None
         """The internal reference to the HTTPX client."""
 
@@ -69,6 +77,15 @@ class Session:
     def auth_code(self) -> str | None:
         """The auth code, if we are logged in, else [`None`][None]."""
         return self._auth_code
+
+    def _log(self, message: str) -> None:
+        """Log a message.
+
+        Args:
+            message: The message to log.
+        """
+        if self._logger:
+            self._logger.debug(message)
 
     async def _call(self, call: Awaitable[Response]) -> Response:
         """Make a call out to the API.
@@ -123,26 +140,31 @@ class Session:
             OldASError: If there was an error connecting or logging in.
         """
         if self._auth_code is None:
-            self._auth_code = (
-                (
-                    await self._call(
-                        self._web_client.post(
-                            self._LOGIN,
-                            json={
-                                "accountType": "HOSTED_OR_GOOGLE",
-                                "client": self._client,
-                                "Email": user,
-                                "Passwd": password,
-                                "service": "reader",
-                                "output": "json",
-                            },
-                            headers=self._headers,
+            try:
+                self._log(f"Start POST {self._LOGIN}")
+                self._auth_code = (
+                    (
+                        await self._call(
+                            self._web_client.post(
+                                self._LOGIN,
+                                json={
+                                    "accountType": "HOSTED_OR_GOOGLE",
+                                    "client": self._client,
+                                    "Email": user,
+                                    "Passwd": password,
+                                    "service": "reader",
+                                    "output": "json",
+                                },
+                                headers=self._headers,
+                            )
                         )
                     )
+                    .json()
+                    .get("Auth")
                 )
-                .json()
-                .get("Auth")
-            )
+            finally:
+                self._log(f"End POST {self._LOGIN}")
+
         return self
 
     def logout(self) -> Self:
@@ -187,17 +209,21 @@ class Session:
             OldASError: If there was an error connecting or logging in.
         """
         self._must_be_logged_in()
-        return self._verify_raw(
-            (
-                await self._call(
-                    self._web_client.get(
-                        f"{self._API}{url}",
-                        headers=self._headers,
-                        params={**params, "output": "json"},
+        self._log(f"Start GET {self._API}{url}")
+        try:
+            return self._verify_raw(
+                (
+                    await self._call(
+                        self._web_client.get(
+                            f"{self._API}{url}",
+                            headers=self._headers,
+                            params={**params, "output": "json"},
+                        )
                     )
-                )
-            ).json()
-        )
+                ).json()
+            )
+        finally:
+            self._log(f"End GET {self._API}{url}")
 
     @staticmethod
     def _verify_ok(response: Response) -> bool:
@@ -226,13 +252,17 @@ class Session:
             OldASError: If there was an error connecting or logging in.
         """
         self._must_be_logged_in()
-        return await self._call(
-            self._web_client.post(
-                f"{self._API}{url}",
-                headers=self._headers,
-                data=data,
+        self._log(f"Start POST {self._API}{url}")
+        try:
+            return await self._call(
+                self._web_client.post(
+                    f"{self._API}{url}",
+                    headers=self._headers,
+                    data=data,
+                )
             )
-        )
+        finally:
+            self._log(f"End POST {self._API}{url}")
 
     async def post(self, url: str, **data: Any) -> RawData:
         """Make a POST call to the API.
