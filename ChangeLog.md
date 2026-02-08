@@ -8,6 +8,8 @@
   ([#47](https://github.com/davep/oldas/pull/47))
 - Cleaned up the URLs for some API calls.
   ([#52](https://github.com/davep/oldas/pull/52))
+- Added support for some low-level `DEBUG` logging via a passed-in `Logger`
+  object. ([#53](https://github.com/davep/oldas/pull/53))
 
 ## v0.11.0
 
