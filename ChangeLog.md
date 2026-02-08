@@ -7,6 +7,7 @@
 - Added `SubscribeResult` as a top-level export.
   ([#47](https://github.com/davep/oldas/pull/47))
 - Cleaned up the URLs for some API calls.
+  ([#52](https://github.com/davep/oldas/pull/52))
 
 ## v0.11.0
 
