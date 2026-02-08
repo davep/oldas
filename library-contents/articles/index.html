@@ -2603,7 +2603,7 @@
 
 
 </h2>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">Alternates</span><span class="p">(</span><span class="n"><span title="oldas.articles.Alternates(data)">data</span></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Iterable" href="https://docs.python.org/3/library/typing.html#typing.Iterable">Iterable</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="            OldData
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">Alternates</span><span class="p">(</span><span class="n"><span title="oldas.articles.Alternates(data)">data</span></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="            OldData
 
 
   
@@ -2627,7 +2627,8 @@
 
   
       dataclass
-  " href="#oldas.articles.Alternate">alternates</a> for an <a class="autorefs autorefs-internal" title="            Article
+  " href="#oldas.articles.Alternate">alternates</a></p>
+<p>Used within an <a class="autorefs autorefs-internal" title="            Article
 
 
   
@@ -3109,7 +3110,7 @@
 
 </h3>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">clean_categories</span><span class="p">(</span>
-    <span class="n"><a class="autorefs autorefs-internal" title="categories (oldas.articles.Article.clean_categories(categories))" href="#oldas.articles.Article.clean_categories(categories)">categories</a></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Iterable" href="https://docs.python.org/3/library/typing.html#typing.Iterable">Iterable</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">],</span>
+    <span class="n"><a class="autorefs autorefs-internal" title="categories (oldas.articles.Article.clean_categories(categories))" href="#oldas.articles.Article.clean_categories(categories)">categories</a></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">],</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="            State (oldas.states.State)" href="../states/#oldas.states.State">State</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">]</span>
 </code></pre></div>
 
@@ -3134,7 +3135,7 @@
 <h4 id="oldas.articles.Article.clean_categories(categories)" class="doc doc-heading doc-heading-parameter">                  <code>categories</code>
 </h4>            </td>
             <td>
-                  <code><a class="autorefs autorefs-external" title="typing.Iterable" href="https://docs.python.org/3/library/typing.html#typing.Iterable">Iterable</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>]</code>
+                  <code><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -3477,7 +3478,7 @@ will be turned into their related type.</p>
 
 
 </h2>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">Articles</span><span class="p">(</span><span class="n"><span title="oldas.articles.Articles(data)">data</span></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Iterable" href="https://docs.python.org/3/library/typing.html#typing.Iterable">Iterable</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="            OldData
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">Articles</span><span class="p">(</span><span class="n"><span title="oldas.articles.Articles(data)">data</span></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="            OldData
 
 
   
@@ -3639,7 +3640,7 @@ will be turned into their related type.</p>
       dataclass
    (oldas.folders.Folder)" href="../folders/#oldas.folders.Folder">Folder</a></span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
     <span class="o">**</span><span class="n"><span title="oldas.articles.Articles.stream(**filters)">filters</span></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" title="typing.AsyncIterator" href="https://docs.python.org/3/library/typing.html#typing.AsyncIterator">AsyncIterator</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="            Article
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.AsyncIterator" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.AsyncIterator">AsyncIterator</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="            Article
 
 
   
@@ -3741,7 +3742,7 @@ will be turned into their related type.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
-                  <code><a class="autorefs autorefs-external" title="typing.AsyncIterator" href="https://docs.python.org/3/library/typing.html#typing.AsyncIterator">AsyncIterator</a>[<a class="autorefs autorefs-internal" title="            Article
+                  <code><a class="autorefs autorefs-external" title="collections.abc.AsyncIterator" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.AsyncIterator">AsyncIterator</a>[<a class="autorefs autorefs-internal" title="            Article
 
 
   
@@ -3795,7 +3796,7 @@ will be turned into their related type.</p>
       dataclass
    (oldas.folders.Folder)" href="../folders/#oldas.folders.Folder">Folder</a></span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
     <span class="o">**</span><span class="n"><span title="oldas.articles.Articles.stream_new_since(**filters)">filters</span></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" title="typing.AsyncIterator" href="https://docs.python.org/3/library/typing.html#typing.AsyncIterator">AsyncIterator</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="            Article
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.AsyncIterator" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.AsyncIterator">AsyncIterator</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="            Article
 
 
   
@@ -3913,7 +3914,7 @@ will be turned into their related type.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
-                  <code><a class="autorefs autorefs-external" title="typing.AsyncIterator" href="https://docs.python.org/3/library/typing.html#typing.AsyncIterator">AsyncIterator</a>[<a class="autorefs autorefs-internal" title="            Article
+                  <code><a class="autorefs autorefs-external" title="collections.abc.AsyncIterator" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.AsyncIterator">AsyncIterator</a>[<a class="autorefs autorefs-internal" title="            Article
 
 
   
