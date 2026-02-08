@@ -75,7 +75,7 @@ class ArticleIDs(OldList[ArticleID]):
         continuation: str | None = ""
         while True:
             result = await session.get(
-                "/stream/items/ids", s=str(state), n=10_000, c=continuation, **filters
+                "stream/items/ids", s=str(state), n=10_000, c=continuation, **filters
             )
             for article_id in (
                 ArticleID.from_json(article_id)
