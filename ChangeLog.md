@@ -5,8 +5,10 @@
 **Released: WiP**
 
 - Added `SubscribeResult.succeeded`.
+  ([#56](https://github.com/davep/oldas/pull/56))
 - Added `SubscribeResult.__bool__` as an alias for
   `SubscribeResult.succeeded`.
+  ([#56](https://github.com/davep/oldas/pull/56))
 
 ## v0.12.0
 
