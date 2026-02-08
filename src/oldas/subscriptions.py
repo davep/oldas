@@ -164,6 +164,15 @@ class SubscribeResult:
         """Did the request to subscribe fail?"""
         return self.number_of_results == 0
 
+    @property
+    def succeeded(self) -> bool:
+        """Did the request to subscribe succeed?"""
+        return not self.failed
+
+    def __bool__(self) -> bool:
+        """The [`bool`][bool] of a `SubscribeResult` is if it `succeeded`."""
+        return self.succeeded
+
 
 ##############################################################################
 class Subscriptions(OldList[Subscription]):
