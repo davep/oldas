@@ -285,7 +285,7 @@ class Articles(OldList[Article]):
         continuation: str | None = ""
         while True:
             result = await session.get(
-                "/stream/contents", s=stream, c=continuation, **filters
+                "stream/contents", s=stream, c=continuation, **filters
             )
             for article in (
                 Article.from_json(article) for article in result.get("items", [])
