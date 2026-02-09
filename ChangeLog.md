@@ -1,8 +1,8 @@
 # OldAS ChangeLog
 
-## Unreleased
+## v1.0.0
 
-**Released: WiP**
+**Released: 2026-02-09**
 
 - Added `SubscribeResult.succeeded`.
   ([#56](https://github.com/davep/oldas/pull/56))
