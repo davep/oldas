@@ -195,11 +195,23 @@ class Session:
             return data
         raise OldASError("Unexpected data type received from TheOldReader API")
 
-    async def get(self, url: str, **params: Any) -> RawData:
+    @classmethod
+    def _api(cls, endpoint: str) -> str:
+        """Create the URL from the endpoint.
+
+        Args:
+            endpoint: The endpoint to call on.
+
+        Returns:
+            The URL for the endpoint.
+        """
+        return f"{cls._API}{endpoint.removeprefix('/')}"
+
+    async def get(self, endpoint: str, **params: Any) -> RawData:
         """Make a GET call to the API.
 
         Args:
-            url: The URL to call.
+            endpoint: The endpoint to call.
             params: Any extra parameters that need to be passed.
 
         Returns:
@@ -209,13 +221,14 @@ class Session:
             OldASError: If there was an error connecting or logging in.
         """
         self._must_be_logged_in()
-        self._log(f"Start GET {self._API}{url}")
+        url = self._api(endpoint)
+        self._log(f"Start GET {url}")
         try:
             return self._verify_raw(
                 (
                     await self._call(
                         self._web_client.get(
-                            f"{self._API}{url}",
+                            url,
                             headers=self._headers,
                             params={**params, "output": "json"},
                         )
@@ -223,7 +236,7 @@ class Session:
                 ).json()
             )
         finally:
-            self._log(f"End GET {self._API}{url}")
+            self._log(f"End GET {url}")
 
     @staticmethod
     def _verify_ok(response: Response) -> bool:
@@ -238,11 +251,11 @@ class Session:
         """
         return response.text.strip() == "OK"
 
-    async def _post(self, url: str, **data: Any) -> Response:
+    async def _post(self, endpoint: str, **data: Any) -> Response:
         """Make a POST call to the API.
 
         Args:
-            url: The URL to call.
+            endpoint: The endpoint to call.
             data: The data to pass.
 
         Returns:
@@ -252,17 +265,18 @@ class Session:
             OldASError: If there was an error connecting or logging in.
         """
         self._must_be_logged_in()
-        self._log(f"Start POST {self._API}{url}")
+        url = self._api(endpoint)
+        self._log(f"Start POST {url}")
         try:
             return await self._call(
                 self._web_client.post(
-                    f"{self._API}{url}",
+                    url,
                     headers=self._headers,
                     data=data,
                 )
             )
         finally:
-            self._log(f"End POST {self._API}{url}")
+            self._log(f"End POST {url}")
 
     async def post(self, url: str, **data: Any) -> RawData:
         """Make a POST call to the API.
