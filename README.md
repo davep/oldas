@@ -17,7 +17,7 @@ API](https://github.com/theoldreader/api) for
 ## Installing
 
 `oldas` is [available from pypi](https://pypi.org/project/oldas/) and can be
-installed your package installer of choice
+installed with your package installer of choice.
 
 With `pip`:
 
